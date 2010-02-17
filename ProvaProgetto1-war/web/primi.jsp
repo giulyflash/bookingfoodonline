@@ -28,7 +28,7 @@
                 out.println("nome " + p.getNome());
                 out.println("costo " + p.getCosto());
                 out.println("categoria " + p.getCategoria());
-                out.println("lista materie modificabili " + (p.getMaterieModificabili()).get(0));
+                out.println("lista materie modificabili " + p.getMaterieSottraibili().get(0));
                 out.println("lista materie non modificabili " + (p.getMaterieNonModificabili()).get(0));
         }%>
 
