@@ -47,10 +47,9 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
         return(List<LineaMagazzino>)em.createQuery("select object(m) from LineaMagazzino m where m.mag.Localita = '"+zona+"' and m.matPrima.nome = '"+nome+"'").getResultList();
     }
 
-    
-
-
-
+    public List<LineaMagazzino> findLineaMagazzino(Long id_mag,String materia){
+        return(List<LineaMagazzino>)em.createQuery("select object(m) from LineaMagazzino m where m.mag = '"+id_mag+"' and m.matPrima.nome = '"+materia+"'").getResultList();
+    }
 
 
     public List<LineaMagazzino> findLocalità(){
