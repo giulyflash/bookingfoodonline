@@ -9,15 +9,23 @@ package pacchetto;
 import Prova.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Iterator;
-import java.util.List;
+import javax.jms.Connection;
+import javax.jms.Queue;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.jms.MessageProducer;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+
 
 /**
  *
@@ -33,6 +41,11 @@ public class Servlet1 extends HttpServlet {
     @EJB     
     private GestorePiattoBeanLocal gpb;
 
+    
+    @Resource(mappedName = "jms/ConsumerOrdineFactory")
+    private ConnectionFactory connectionFactory;
+    @Resource(mappedName = "jms/ConsumerOrdine")
+    private Queue queue;
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -51,7 +64,7 @@ public class Servlet1 extends HttpServlet {
         //GESTIRE SESSIONE
         //GESTIRE SESSIONE*************************************************************************
         try {
-            Magazzino m = new Magazzino();
+            /*Magazzino m = new Magazzino();
             Magazzino m2 = new Magazzino();
             m.setLocalita("Milano");
             m.setId(Long.MIN_VALUE);
@@ -71,9 +84,31 @@ public class Servlet1 extends HttpServlet {
             lm.setMatPrima(mp);
             lm.setN_rif("150");
             lm.setQuantita(300);
-            lm.setSogliaMinima("50");
-            lineaMagazzinoFacade.create(lm);
-/*
+            lm.setSogliaMinima("50");*/
+              try {
+        Connection connection = connectionFactory.createConnection();
+        Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+        MessageProducer messageProducer = session.createProducer(queue);
+
+        ObjectMessage message = session.createObjectMessage();
+        // here we create NewsEntity, that will be sent in JMS message
+
+
+        message.setObject("salve giovani");
+        messageProducer.send(message);
+        messageProducer.close();
+        connection.close();
+
+
+    } catch (JMSException ex) {
+        ex.printStackTrace();
+    }
+
+
+        
+
+
+             /*
         Piatto p= new Piatto();
         MateriaPrima mp = new MateriaPrima();
         mp.setNome("pepe");
@@ -112,8 +147,8 @@ public class Servlet1 extends HttpServlet {
            out.println("ciao");
            //List<LineaMagazzino> listaMagag = lineaMagazzinoFacade.findAll();
            //out.println(listaMagag.toString());
-           out.println("quantita:"+lineaMagazzinoFacade.findCheckMateria("pepe","Milano" ).get(0).getQuantita());
-           out.println("quantita:"+lineaMagazzinoFacade.findCheckMateria("pepe","Milano" ).get(0).getSogliaMinima());
+           //out.println("quantita:"+lineaMagazzinoFacade.findCheckMateria("pepe","Milano" ).get(0).getQuantita());
+           //out.println("quantita:"+lineaMagazzinoFacade.findCheckMateria("pepe","Milano" ).get(0).getSogliaMinima());
 
            // out.println("localita:"+lineaMagazzinoFacade.findLocalità().get(0).getQuantita());
             
@@ -127,8 +162,9 @@ public class Servlet1 extends HttpServlet {
             }*/
             out.println("</body>");
             out.println("</html>");
-            
-        } finally { 
+           
+        }catch(Exception e){}
+        finally {
             out.close();
         }
     } 
@@ -168,5 +204,7 @@ public class Servlet1 extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+
+
 
 }
