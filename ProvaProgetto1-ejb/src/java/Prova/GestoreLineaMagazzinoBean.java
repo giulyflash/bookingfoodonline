@@ -66,7 +66,7 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
 
             ObjectMessage message = session.createObjectMessage();
             // here we create NewsEntity, that will be sent in JMS message
-            message.setStringProperty(zona, zona);
+            message.setStringProperty("zona", zona);
             message.setLongProperty("id_mag", id_Magazzino);
             message.setIntProperty("rifornimenti", n_rifornimenti);
             messageProducer.send(message);
