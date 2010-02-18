@@ -25,12 +25,12 @@ import javax.jms.ObjectMessage;
     })
 public class ConsumerOrdineBean implements MessageListener {
     @EJB
-    private LineaMagazzinoFacadeLocal lineaMagazzinoFacade1;
+    private LineaMagazzinoFacadeLocal lineaMagazzinoFacade;
 
     @Resource
     private MessageDrivenContext mdc;
 
-    private LineaMagazzinoFacadeLocal lineaMagazzinoFacade;
+   
     
     public ConsumerOrdineBean() {
     }
@@ -40,8 +40,10 @@ public class ConsumerOrdineBean implements MessageListener {
         try {
             if (message instanceof ObjectMessage) {
                 msg = (ObjectMessage) message;
-                String e = (String) msg.getObject();
-                System.out.println(e);
+                int quantita = (int) msg.getIntProperty("rifornimenti");
+                String zona = (String)msg.getStringProperty("zona");
+                Long id = (Long)msg.getLongProperty("id_mag");
+
             }
         } catch (JMSException e) {
             e.printStackTrace();

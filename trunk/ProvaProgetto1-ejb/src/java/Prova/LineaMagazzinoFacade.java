@@ -26,7 +26,10 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
 
     public void edit(LineaMagazzino lineaMagazzino) {
         em.merge(lineaMagazzino);
+
     }
+
+
 
     public void remove(LineaMagazzino lineaMagazzino) {
         em.remove(em.merge(lineaMagazzino));
@@ -43,6 +46,8 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
     public List<LineaMagazzino> findCheckMateria(String nome,String zona){
         return(List<LineaMagazzino>)em.createQuery("select object(m) from LineaMagazzino m where m.mag.Localita = '"+zona+"' and m.matPrima.nome = '"+nome+"'").getResultList();
     }
+
+    
 
 
 
