@@ -24,8 +24,8 @@ public class LineaMagazzino implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private int quantita;
-    private String sogliaMinima;
-    private String n_rif;
+    private int sogliaMinima;
+    private int n_rif;
     
     @ManyToOne
     private MateriaPrima matPrima;
@@ -75,7 +75,7 @@ public class LineaMagazzino implements Serializable {
      *
      * @return the value of n_rif
      */
-    public String getN_rif() {
+    public int getN_rif() {
         return n_rif;
     }
 
@@ -84,7 +84,7 @@ public class LineaMagazzino implements Serializable {
      *
      * @param n_rif new value of n_rif
      */
-    public void setN_rif(String n_rif) {
+    public void setN_rif(int n_rif) {
         this.n_rif = n_rif;
     }
 
@@ -93,7 +93,7 @@ public class LineaMagazzino implements Serializable {
      *
      * @return the value of sogliaMinima
      */
-    public String getSogliaMinima() {
+    public int getSogliaMinima() {
         return sogliaMinima;
     }
 
@@ -102,7 +102,7 @@ public class LineaMagazzino implements Serializable {
      *
      * @param sogliaMinima new value of sogliaMinima
      */
-    public void setSogliaMinima(String sogliaMinima) {
+    public void setSogliaMinima(int sogliaMinima) {
         this.sogliaMinima = sogliaMinima;
     }
 
