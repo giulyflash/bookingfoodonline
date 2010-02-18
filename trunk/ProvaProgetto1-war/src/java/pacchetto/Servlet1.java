@@ -7,14 +7,18 @@ package pacchetto;
 
 
 import Prova.*;
+import Prova.ConfigurazionePiatto;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.jms.Connection;
 import javax.jms.Queue;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSException;
+import javax.jms.MessageConsumer;
 import javax.jms.MessageProducer;
 import javax.jms.ObjectMessage;
 import javax.jms.Session;
@@ -27,11 +31,14 @@ import javax.servlet.http.HttpServletResponse;
 
 
 
+
 /**
  *
  * @author Matteo
  */
 public class Servlet1 extends HttpServlet {
+    @EJB
+    private GestoreLineaMagazzinoBeanLocal gestoreLineaMagazzinoBean;
     @EJB
     private MateriaPrimaFacadeLocal materiaPrimaFacade;
     @EJB
@@ -40,6 +47,7 @@ public class Servlet1 extends HttpServlet {
     private LineaMagazzinoFacadeLocal lineaMagazzinoFacade;
     @EJB     
     private GestorePiattoBeanLocal gpb;
+
 
     
     @Resource(mappedName = "jms/ConsumerOrdineFactory")
@@ -85,24 +93,37 @@ public class Servlet1 extends HttpServlet {
             lm.setN_rif("150");
             lm.setQuantita(300);
             lm.setSogliaMinima("50");*/
-              try {
+            //List<LineaMagazzino> listLm= lineaMagazzinoFacade.findAll();
+            //listLm.get(0).setQuantita(30);
+            //lineaMagazzinoFacade.edit(listLm.get(0));
+            MateriaPrima mp = new MateriaPrima();
+            mp.setNome("pepe");
+            ConfigurazionePiatto cp= new ConfigurazionePiatto();
+            cp.addMateriaNonModificabile(mp);
+            Prenotazione p = new Prenotazione();
+            ArrayList<ConfigurazionePiatto> array = new ArrayList<ConfigurazionePiatto>();
+            array.add(cp);
+            p.setZona("Milano");
+            p.setListaPiatti(array);
+            //gestoreLineaMagazzinoBean.checkQuantità(p);
+              /*try {
         Connection connection = connectionFactory.createConnection();
         Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-        MessageProducer messageProducer = session.createProducer(queue);
-
-        ObjectMessage message = session.createObjectMessage();
+        //MessageProducer messageProducer = session.createProducer(queue);
+        //MessageConsumer messageConsumer = session.createConsumer(queue);
+        //ObjectMessage message = session.createObjectMessage();
         // here we create NewsEntity, that will be sent in JMS message
 
-
-        message.setObject("salve giovani");
-        messageProducer.send(message);
-        messageProducer.close();
+        //messageConsumer.receive();
+        //message.setObject("salve giovani");
+        //messageProducer.send(message);
+        //messageConsumer.close();
         connection.close();
 
 
     } catch (JMSException ex) {
         ex.printStackTrace();
-    }
+    }*/
 
 
         
