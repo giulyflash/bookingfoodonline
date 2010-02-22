@@ -5,7 +5,6 @@
 
 package pacchetto;
 
-
 import Prova.*;
 import Prova.ConfigurazionePiatto;
 import java.io.IOException;
