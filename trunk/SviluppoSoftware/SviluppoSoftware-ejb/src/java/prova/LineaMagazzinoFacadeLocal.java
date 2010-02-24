@@ -27,7 +27,7 @@ public interface LineaMagazzinoFacadeLocal {
 
     List<LineaMagazzino> findCheckMateria(String nome,String zona);
 
-    List<LineaMagazzino> findLocalità();
+    List<LineaMagazzino> findLocalita();
 
      void editLineaMagazzino(Long id_mag,String materia,int quantitaAggiunta);
 
