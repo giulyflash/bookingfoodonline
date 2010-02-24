@@ -54,8 +54,8 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
     }
 
 
-    public List<LineaMagazzino> findLocalità(){
-        //return (String)em.createQuery("SELECT lm.mag.Località FROM LineaMagazzino lm WHERE lm.mag.Località='Torino'").getSingleResult();
+    public List<LineaMagazzino> findLocalita(){
+        //return (String)em.createQuery("SELECT lm.mag.LocalitÃ  FROM LineaMagazzino lm WHERE lm.mag.LocalitÃ ='Torino'").getSingleResult();
         return em.createQuery("select l from LineaMagazzino l where l.sogliaMinima = '50'").getResultList();
     }
 }

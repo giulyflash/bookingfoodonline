@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Matteo
  */
 public class ConfigurazionePiatto extends Piatto {
-    
+
     private ArrayList<String> aggiunte; //aggiunte effettuate nella configurazione
     private ArrayList<String> sottratte;
 
@@ -77,10 +77,11 @@ public class ConfigurazionePiatto extends Piatto {
     }
 
     public ArrayList<String> materiePrime(){
-        ArrayList<String> totale = new ArrayList<String>();
-        totale.addAll(this.getMaterieNonModificabili());
-        totale.addAll(this.getAggiunte());
-        totale.addAll(this.getSottratte());
-        return totale;
+        //ArrayList<String> totale = new ArrayList<String>();
+        //totale.addAll(this.getMaterieNonModificabili());
+        //totale.addAll(this.getAggiunte());
+        //totale.addAll(this.getSottratte());
+
+        return this.getListaPossibiliAggiunte();
     }
 }

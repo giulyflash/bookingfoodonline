@@ -5,6 +5,7 @@
 
 package prova;
 
+import java.io.PrintWriter;
 import javax.ejb.Local;
 
 /**
@@ -12,9 +13,9 @@ import javax.ejb.Local;
  * @author Matteo
  */
 @Local
-public interface GestoreLineaMagazzinoBeanLocal {    
+public interface GestoreLineaMagazzinoBeanLocal {
 
-    void checkQuantita(Prenotazione p);
+    void checkQuantita(Prenotazione p,PrintWriter o);
 }
 
 
