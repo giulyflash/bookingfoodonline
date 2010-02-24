@@ -22,6 +22,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.annotation.security.PermitAll;
 
+import javax.jms.Connection;
+import javax.jms.MessageConsumer;
+import javax.jms.Session;
 import prova.*;
 
 
@@ -31,11 +34,11 @@ import prova.*;
 /**
  *
  * @author Matteo
- */@PermitAll    
+ */@PermitAll
 public class Servlet1 extends HttpServlet {
     @EJB
     private GestoreLineaMagazzinoBeanLocal gestoreLineaMagazzinoBean;
-    
+
     @EJB
     private MateriaPrimaFacadeLocal materiaPrimaFacade;
     @EJB
@@ -47,9 +50,9 @@ public class Servlet1 extends HttpServlet {
 
 
 
-    @Resource(mappedName = "jms/ConsumerOrdineFactory")
+    @Resource(mappedName = "jms/ConsumazioneOrdiniFactory")
     private ConnectionFactory connectionFactory;
-    @Resource(mappedName = "jms/ConsumerOrdine")
+    @Resource(mappedName = "jms/ConsumazioneOrdini")
     private Queue queue;
 
     /**
@@ -59,7 +62,7 @@ public class Servlet1 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @PermitAll    
+    @PermitAll
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -76,11 +79,14 @@ public class Servlet1 extends HttpServlet {
             out.println("<title>Servlet Servlet1</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("lagoÃ²");
+            out.println("lagoÃƒÂ²");
             out.println("<h1>Servlet Servlet1 at " + request.getContextPath () + "</h1>");
+
             Magazzino m = new Magazzino();
+
             m.setId(Long.MIN_VALUE);
             m.setLocalita("Milano");
+            magazzinoFacade.create(m);
 
             MateriaPrima mp = new MateriaPrima();
             mp.setId(Long.MIN_VALUE);
@@ -88,37 +94,46 @@ public class Servlet1 extends HttpServlet {
             materiaPrimaFacade.create(mp);
             LineaMagazzino lm = new LineaMagazzino();
             lm.setId(Long.MIN_VALUE);
-            lm.setMag(m);
             lm.setN_rif(10);
             lm.setQuantita(300);
             lm.setSogliaMinima(350);
             List<LineaMagazzino> listaLm = new ArrayList<LineaMagazzino>();
             listaLm.add(lm);
             m.setLineaMagazzinos(listaLm);
-            magazzinoFacade.create(m);
             lm.setMatPrima(mp);
+            lm.setMag(m);
             lineaMagazzinoFacade.create(lm);
+            magazzinoFacade.edit(m);
 
-            Prenotazione p = new Prenotazione();
-            p.setZona("Milano");
-
+            ArrayList<String> listaMaterie = new ArrayList<String>();
+            listaMaterie.add(mp.getNome());
             ConfigurazionePiatto piatto = new ConfigurazionePiatto();
             piatto.setId(Long.MIN_VALUE);
             piatto.setNome("pasta al sugo");
-            
-            
+            piatto.setListaPossibiliAggiunte(listaMaterie);
+            piatto.setAggiunte(new ArrayList<String>());
+            piatto.setSottratte(new ArrayList<String>());
 
+            Prenotazione p = new Prenotazione();
+            p.setZona("Milano");
+            ArrayList<ConfigurazionePiatto> conf = new ArrayList<ConfigurazionePiatto>();
+            conf.add(piatto);
+            p.setListaPiatti(conf);
+            gestoreLineaMagazzinoBean.checkQuantita(p,out);
+            //out.println(p.getListaPiatti().get(0).materiePrime().toString());
 
-            gestoreLineaMagazzinoBean.checkQuantita(null);
    //         List<Magazzino> magazzini = mfl.findAll();
-            //out.println("localitÃ :"+lineaMagazzinoFacade.findLocalitÃ ().get(0).toString());
+            //out.println("localitÃƒÂ :"+lineaMagazzinoFacade.findLocalitÃƒÂ ().get(0).toString());
            out.println("ciao");
+           //Connection connection = connectionFactory.createConnection();
+            //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            //MessageConsumer mc = session.createConsumer(queue);
            //List<LineaMagazzino> listaMagag = lineaMagazzinoFacade.findAll();
            //out.println(listaMagag.toString());
            //out.println("quantita:"+lineaMagazzinoFacade.findCheckMateria("pepe","Milano" ).get(0).getQuantita());
            //out.println("quantita:"+lineaMagazzinoFacade.findCheckMateria("pepe","Milano" ).get(0).getSogliaMinima());
 
-           // out.println("localita:"+lineaMagazzinoFacade.findLocalitÃ ().get(0).getQuantita());
+           // out.println("localita:"+lineaMagazzinoFacade.findLocalitÃƒÂ ().get(0).getQuantita());
 
            /* for (Iterator it = magazzini.iterator(); it.hasNext();) {
                 Magazzino ma = (Piatt) it.next();
