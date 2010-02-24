@@ -73,7 +73,9 @@ public class Servlet1 extends HttpServlet {
         //GESTIRE SESSIONE
         //GESTIRE SESSIONE*************************************************************************
         try {
-
+            Connection connection = connectionFactory.createConnection();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+           
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Servlet1</title>");
@@ -125,6 +127,7 @@ public class Servlet1 extends HttpServlet {
    //         List<Magazzino> magazzini = mfl.findAll();
             //out.println("localitÃƒÂ :"+lineaMagazzinoFacade.findLocalitÃƒÂ ().get(0).toString());
            out.println("ciao");
+           
            //Connection connection = connectionFactory.createConnection();
             //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             //MessageConsumer mc = session.createConsumer(queue);
