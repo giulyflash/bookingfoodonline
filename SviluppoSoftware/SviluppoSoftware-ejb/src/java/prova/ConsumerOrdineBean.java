@@ -51,11 +51,8 @@ public class ConsumerOrdineBean implements MessageListener {
             if (message instanceof ObjectMessage) {
                 msg = (ObjectMessage) message;
             try {
-                //String materia = (String) msg.getObject();
-                MateriaPrima mp = new MateriaPrima();
-            mp.setId(Long.MIN_VALUE);
-            mp.setNome("rerewetw");
-            materiaPrimaFacade.create(mp);
+        //        String materia = (String) msg.getObject();
+
                 //Long id = (Long)msg.getLongProperty("id_mag");
                 //String nomeMateria = (String)msg.getStringProperty("zona");
                 int quantita = msg.getIntProperty("rifornimenti");
