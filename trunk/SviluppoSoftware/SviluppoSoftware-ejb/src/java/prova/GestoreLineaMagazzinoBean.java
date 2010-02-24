@@ -67,27 +67,25 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
                 quantitaMinima = o.getSogliaMinima();
                 quantita = o.getQuantita();
                 n_rifornimenti = o.getN_rif();
-
                 if(quantita<quantitaMinima){
                     MateriaPrima mp = new MateriaPrima();
                 mp.setId(Long.MIN_VALUE);
                 mp.setNome("sugo");
                 materiaPrimaFacade.create(mp);
-        ot.print("stampo zona" +zona);
 
-                    contattaFornitori(zona,idMagazzino,n_rifornimenti,id_materia,ot);
+                    contattaFornitori(zona,idMagazzino,n_rifornimenti,id_materia);
                 }
             }
         }
 
     }
 
-    private void contattaFornitori(String zona,Long id_Magazzino,int n_rifornimenti,Long id_MateriaPrima,PrintWriter out){
+    private void contattaFornitori(String zona,Long id_Magazzino,int n_rifornimenti,Long id_MateriaPrima){
         try{
             Connection connection = connectionFactory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(queue);
-            out.println(zona);
+
             ObjectMessage message = session.createObjectMessage();
 
             //message.setObject("salve giovani");
@@ -96,8 +94,6 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
             message.setStringProperty("zona", zona);
             message.setLongProperty("id_mag", id_Magazzino);
             message.setIntProperty("rifornimenti", n_rifornimenti);
-                        out.println(message.getStringProperty("zona"));
-
             messageProducer.send(message);
             MessageConsumer mc = session.createConsumer(queue);
             messageProducer.close();
