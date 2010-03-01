@@ -8,6 +8,7 @@ package pacchetto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.Long;
 import java.util.ArrayList;
 import java.util.List;
 import javax.jms.Queue;
@@ -37,6 +38,10 @@ import prova.*;
  */@PermitAll
 public class Servlet1 extends HttpServlet {
     @EJB
+    private FornitoreFacadeLocal fornitoreFacade;
+    @EJB
+    private FornitureFacadeLocal fornitureFacade;
+    @EJB
     private GestoreLineaMagazzinoBeanLocal gestoreLineaMagazzinoBean;
 
     @EJB
@@ -47,6 +52,9 @@ public class Servlet1 extends HttpServlet {
     private LineaMagazzinoFacadeLocal lineaMagazzinoFacade;
     @EJB
     private GestorePiattoBeanLocal gpb;
+
+
+
 
 
 
@@ -62,7 +70,7 @@ public class Servlet1 extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    @PermitAll
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -75,6 +83,7 @@ public class Servlet1 extends HttpServlet {
         try {
             Connection connection = connectionFactory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+
            
             out.println("<html>");
             out.println("<head>");
@@ -99,13 +108,33 @@ public class Servlet1 extends HttpServlet {
             lm.setN_rif(10);
             lm.setQuantita(300);
             lm.setSogliaMinima(350);
-            List<LineaMagazzino> listaLm = new ArrayList<LineaMagazzino>();
+                List<LineaMagazzino> listaLm = new ArrayList<LineaMagazzino>();
             listaLm.add(lm);
             m.setLineaMagazzinos(listaLm);
             lm.setMatPrima(mp);
             lm.setMag(m);
             lineaMagazzinoFacade.create(lm);
             magazzinoFacade.edit(m);
+
+
+            Fornitore forn = new Fornitore();
+            forn.setId(Long.MIN_VALUE);
+            forn.setIndirizzo("reer");
+            forn.setLocalita("Milano");
+            forn.setNome("carlo");
+            forn.setTelefono("43433");
+            fornitoreFacade.create(forn);
+
+            Forniture f = new Forniture();
+            f.setId(Long.MIN_VALUE);
+            f.setForn(forn);
+            f.setMatPrima(mp);
+            fornitureFacade.create(f);
+
+
+
+
+
 
             ArrayList<String> listaMaterie = new ArrayList<String>();
             listaMaterie.add(mp.getNome());
@@ -121,7 +150,15 @@ public class Servlet1 extends HttpServlet {
             ArrayList<ConfigurazionePiatto> conf = new ArrayList<ConfigurazionePiatto>();
             conf.add(piatto);
             p.setListaPiatti(conf);
-            gestoreLineaMagazzinoBean.checkQuantita(p,out);
+            
+            /*List<LineaMagazzino> l = lineaMagazzinoFacade.findAll();
+            LineaMagazzino lm1 = l.get(0);
+            out.println(lm1.getMag().getId());
+            out.println(lm1.getMatPrima().getId());
+            lineaMagazzinoFacade.editLineaMagazzino(lm1.getMag().getId(), lm1.getMatPrima().getId(), lm1.getN_rif());
+            */
+            
+           gestoreLineaMagazzinoBean.checkQuantita(p,out);
             //out.println(p.getListaPiatti().get(0).materiePrime().toString());
 
    //         List<Magazzino> magazzini = mfl.findAll();
