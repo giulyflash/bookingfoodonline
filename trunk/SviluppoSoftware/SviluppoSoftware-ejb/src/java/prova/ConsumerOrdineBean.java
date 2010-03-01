@@ -27,11 +27,14 @@ import javax.jms.ObjectMessage;
     })
 public class ConsumerOrdineBean implements MessageListener {
     @EJB
+    private GestoreFornitureLocal gestoreFornitureBean;
+    @EJB
     private FornitoreFacadeLocal fornitoreFacade;
     @EJB
     private MateriaPrimaFacadeLocal materiaPrimaFacade;
     @EJB
     private LineaMagazzinoFacadeLocal lineaMagazzinoFacade;
+
 
 
 
@@ -47,30 +50,42 @@ public class ConsumerOrdineBean implements MessageListener {
     public void onMessage(Message message) {
         ObjectMessage msg = null;
 
-        //try {
+        try {
             if (message instanceof ObjectMessage) {
                 msg = (ObjectMessage) message;
-            try {
+        
         //        String materia = (String) msg.getObject();
 
                 //Long id = (Long)msg.getLongProperty("id_mag");
                 //String nomeMateria = (String)msg.getStringProperty("zona");
-                int quantita = msg.getIntProperty("rifornimenti");
-                String zona = msg.getStringProperty("zona");
                 Long id_mag = msg.getLongProperty("id_mag");
-                Long id_materia = msg.getLongProperty("id_MateriaPrima");
-                //lineaMagazzinoFacade.editLineaMagazzino(id, zona, quantita);
+                Long id_materia = msg.getLongProperty("id_materia");
+                String zona = msg.getStringProperty("zona");
+                int quantita = msg.getIntProperty("rifornimenti");
+
+          /*      Long id_mag =(Long) msg.getObject();
+                Long id_materia = (Long)msg.getObject();
+                String zona = (String)msg.getObject();
+                int quantita = (Integer)msg.getObject();*/
+               
+                
+                       
+                
 
                 Fornitore f = new Fornitore();
                 f.setId(Long.MIN_VALUE);
                 f.setIndirizzo("via savigliano");
-                f.setLocalita(zona);
+                f.setLocalita("zona");
                 f.setNome("pippo");
                 f.setTelefono("fdfs");
                 fornitoreFacade.create(f);
-            } catch (JMSException ex) {
+
+                gestoreFornitureBean.gestisciRifornimenti(id_mag,id_materia,zona,quantita);
+
+               // lineaMagazzinoFacade.editLineaMagazzino(id_mag,id_materia,quantita);
+            } } catch (Exception ex) {
                 Logger.getLogger(ConsumerOrdineBean.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
 
                 //Long id = (Long)msg.getLongProperty("id_mag");
                 //String nomeMateria = (String)msg.getStringProperty("zona");

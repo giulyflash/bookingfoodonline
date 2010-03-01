@@ -25,6 +25,6 @@ public interface FornitureFacadeLocal {
 
     List<Forniture> findAll();
 
-    List<Forniture> checkForniture(String zona,String nomeMateria);
+    List<Forniture> checkForniture(String zona,Long idMateria);
 
 }

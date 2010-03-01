@@ -29,7 +29,7 @@ public interface LineaMagazzinoFacadeLocal {
 
     List<LineaMagazzino> findLocalita();
 
-     void editLineaMagazzino(Long id_mag,String materia,int quantitaAggiunta);
+     void editLineaMagazzino(Long id_mag,Long id_materia,int quantitaAggiunta);
 
 
 }

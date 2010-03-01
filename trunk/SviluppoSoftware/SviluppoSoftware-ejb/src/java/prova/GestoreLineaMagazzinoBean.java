@@ -24,7 +24,7 @@ import javax.jms.Session;
 /**
  *
  * @author Matteo
- */@PermitAll
+ */
 @Stateless
 public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal {
     @EJB
@@ -41,8 +41,7 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
     private ConnectionFactory connectionFactory;
     @Resource(mappedName = "jms/ConsumazioneOrdini")
     private Queue queue;
-
-    @PermitAll
+   
     public void checkQuantita(Prenotazione p, PrintWriter ot){
         String zona = p.getZona();
         Long idMagazzino;
@@ -54,49 +53,65 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
         ArrayList<ConfigurazionePiatto> piatti = p.getListaPiatti();
 
 
-
+            
 
        for(ConfigurazionePiatto cp: piatti){
             listaMaterie= cp.materiePrime();
             ot.println(listaMaterie);
             for(String nome:listaMaterie){
-
                 LineaMagazzino o = (LineaMagazzino)lineaMagazzinoFacade.findCheckMateria(nome, zona).get(0);
                 id_materia = o.getMatPrima().getId();
                 idMagazzino = o.getMag().getId();
                 quantitaMinima = o.getSogliaMinima();
                 quantita = o.getQuantita();
-                n_rifornimenti = o.getN_rif();
+                n_rifornimenti = o.getN_rif();           
+                
                 if(quantita<quantitaMinima){
                     MateriaPrima mp = new MateriaPrima();
                 mp.setId(Long.MIN_VALUE);
                 mp.setNome("sugo");
                 materiaPrimaFacade.create(mp);
 
+
+
+                    ot.println("zonaaaa"+zona);
+                    ot.println("id_magazzinooo"+ idMagazzino);
+                    ot.println("n_rifornimentiiii"+ n_rifornimenti);
+                            ot.println("id_materiaaaa"+ id_materia);
+
                     contattaFornitori(zona,idMagazzino,n_rifornimenti,id_materia);
+                    
                 }
             }
         }
 
     }
 
-    private void contattaFornitori(String zona,Long id_Magazzino,int n_rifornimenti,Long id_MateriaPrima){
+    private void contattaFornitori(String zona,Long id_Magazzino,int n_rifornimenti,Long materia){
         try{
             Connection connection = connectionFactory.createConnection();
             Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(queue);
+           
 
             ObjectMessage message = session.createObjectMessage();
 
             //message.setObject("salve giovani");
             // here we create NewsEntity, that will be sent in JMS message
-            message.setLongProperty("id_MateriaPrima", id_MateriaPrima);
-            message.setStringProperty("zona", zona);
+            /*message.setObject(id_Magazzino);
+            message.setObject(materia);
+            message.setObject(zona);
+            message.setObject(n_rifornimenti);*/
             message.setLongProperty("id_mag", id_Magazzino);
+            message.setLongProperty("id_materia", materia);
+            message.setStringProperty("zona", zona);            
             message.setIntProperty("rifornimenti", n_rifornimenti);
+            
             messageProducer.send(message);
-            MessageConsumer mc = session.createConsumer(queue);
+             MessageConsumer mc = session.createConsumer(queue);
+            
             messageProducer.close();
+           
             connection.close();
         }catch(Exception e){}
     }
