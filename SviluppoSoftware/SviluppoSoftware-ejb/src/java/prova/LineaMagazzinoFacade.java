@@ -47,8 +47,9 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
         return(List<LineaMagazzino>)em.createQuery("select object(m) from LineaMagazzino m where m.mag.Localita = '"+zona+"' and m.matPrima.nome = '"+nome+"'").getResultList();
     }
 
-    public void editLineaMagazzino(Long id_mag,String materia,int quantitaAggiunta){
-        List<LineaMagazzino> Lista = em.createQuery("select object(m) from LineaMagazzino m where m.mag = '"+id_mag+"' and m.matPrima.nome = '"+materia+"'").getResultList();
+    public void editLineaMagazzino(Long id_mag,Long id_materia,int quantitaAggiunta){
+        List<LineaMagazzino> Lista = em.createQuery("select object(m) from LineaMagazzino m where m.mag.id = "+ id_mag+ " and m.matPrima.id = "+ id_materia).getResultList();
+        //Lista.get(0).setQuantita(500);
         Lista.get(0).setQuantita(Lista.get(0).getQuantita()+ quantitaAggiunta);
         edit(Lista.get(0));
     }

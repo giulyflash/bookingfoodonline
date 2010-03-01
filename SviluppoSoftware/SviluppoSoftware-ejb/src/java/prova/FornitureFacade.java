@@ -39,7 +39,7 @@ public class FornitureFacade implements FornitureFacadeLocal {
         return em.createQuery("select object(o) from Forniture as o").getResultList();
     }
 
-    public List<Forniture> checkForniture(String zona,String nomeMateria){
-        return(List<Forniture>)em.createQuery("select object(f) from Forniture f where f.forn.localita = '"+zona+"' and f.matPrima.nome = '"+nomeMateria+"'").getResultList();
+    public List<Forniture> checkForniture(String zona,Long idMateria){
+        return(List<Forniture>)em.createQuery("select object(f) from Forniture f where f.forn.localita = '"+zona+"' and f.matPrima.id = "+idMateria).getResultList();
     }
 }
