@@ -30,6 +30,7 @@ public class Piatto implements Serializable {
     private ArrayList<String> listaMaterieNonModificabili= new ArrayList<String>();
     private ArrayList<String> listaPossibiliAggiunte = new ArrayList<String>();
 
+
     /**
      * Get the value of categoria
      *
@@ -65,6 +66,15 @@ public class Piatto implements Serializable {
     public void setListaPossibiliAggiunte(ArrayList<String> listaPossibiliAggiunte) {
         this.listaPossibiliAggiunte = listaPossibiliAggiunte;
     }
+
+    public void setListaMaterieNonModificabili(ArrayList<String> materie) {
+        this.listaMaterieNonModificabili = materie;
+    }
+
+    public void setListaMaterieSottraibili(ArrayList<String> materie) {
+        this.listaMaterieSottraibili = materie;
+    }
+    
     
     /**
      * Get the value of costo
@@ -153,10 +163,12 @@ public class Piatto implements Serializable {
     public ArrayList<String> getMaterieNonModificabili(){
         return listaMaterieNonModificabili;
     }
-
-    /*public ArrayList<String> getMateriePrime(){
-        ArrayList<String> materiePrime = listaMaterieSottraibili;
+/*
+    public ArrayList<String> getMateriePrime(){
+        ArrayList<String> materiePrime = listaPossibiliAggiunte;
         materiePrime.addAll(listaMaterieNonModificabili);
+
+        materiePrime.removeAll(listaMaterieSottratte);
         return materiePrime;
     }*/
 

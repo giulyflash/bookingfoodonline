@@ -52,59 +52,21 @@ public class ConsumerOrdineBean implements MessageListener {
 
         try {
             if (message instanceof ObjectMessage) {
-                msg = (ObjectMessage) message;
-        
-        //        String materia = (String) msg.getObject();
-
-                //Long id = (Long)msg.getLongProperty("id_mag");
-                //String nomeMateria = (String)msg.getStringProperty("zona");
+                msg = (ObjectMessage) message;       
                 Long id_mag = msg.getLongProperty("id_mag");
                 Long id_materia = msg.getLongProperty("id_materia");
                 String zona = msg.getStringProperty("zona");
-                int quantita = msg.getIntProperty("rifornimenti");
-
-          /*      Long id_mag =(Long) msg.getObject();
-                Long id_materia = (Long)msg.getObject();
-                String zona = (String)msg.getObject();
-                int quantita = (Integer)msg.getObject();*/
+                int quantita = msg.getIntProperty("rifornimenti");        
+                try{
+                    gestoreFornitureBean.gestisciRifornimenti(id_mag,id_materia,zona,quantita);
+                }catch(Exception e){System.out.println("Fornitura non trovata");
+                }
                
-                
-                       
-                
-
-                Fornitore f = new Fornitore();
-                f.setId(Long.MIN_VALUE);
-                f.setIndirizzo("via savigliano");
-                f.setLocalita("zona");
-                f.setNome("pippo");
-                f.setTelefono("fdfs");
-                fornitoreFacade.create(f);
-
-                gestoreFornitureBean.gestisciRifornimenti(id_mag,id_materia,zona,quantita);
-
-               // lineaMagazzinoFacade.editLineaMagazzino(id_mag,id_materia,quantita);
-            } } catch (Exception ex) {
-                Logger.getLogger(ConsumerOrdineBean.class.getName()).log(Level.SEVERE, null, ex);
-           
-
-                //Long id = (Long)msg.getLongProperty("id_mag");
-                //String nomeMateria = (String)msg.getStringProperty("zona");
-                /*MateriaPrima mp = new MateriaPrima();
-                mp.setId(Long.MIN_VALUE);
-                mp.setNome("sugo");
-                materiaPrimaFacade.create(mp);*/
-
-                /*int quantita = (int) msg.getIntProperty("rifornimenti");
-                String zona = (String)msg.getStringProperty("zona");
-                Long id = (Long)msg.getLongProperty("id_mag");
-                lineaMagazzinoFacade.editLineaMagazzino(id, zona, quantita);*/
             }
-        /*} catch (JMSException e) {
-            e.printStackTrace();
-            mdc.setRollbackOnly();
-        } catch (Throwable te) {
-            te.printStackTrace();
-        }*/
+        } catch (Exception ex) {
+                Logger.getLogger(ConsumerOrdineBean.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
     }
 
 }

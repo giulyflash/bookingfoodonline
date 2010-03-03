@@ -34,6 +34,6 @@ public class GestoreFornitureBean implements GestoreFornitureLocal {
        if(!lf.isEmpty())
            lineaMagazzinoFacade.editLineaMagazzino(id_mag,id_materia, n_rifornimenti);
        else
-           throw new Exception();
+           throw new Exception("Fornitura non trovata");
    }
 }
