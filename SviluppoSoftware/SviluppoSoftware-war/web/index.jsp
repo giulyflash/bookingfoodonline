@@ -1,10 +1,10 @@
 <%--
     Document   : index
-    Created on : 11-gen-2010, 11.21.55
-    Author     : Matteo
+    Created on : 3-mar-2010, 11.21.55
+    Author     : dani1913
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -101,16 +101,13 @@
             </form>
 
           </li>
-          <li id="login">
-              <h2 class="search">Login</h2>
-              <form name="login" action="Servlet1" method="POST">
-                  <input type="text" id="user-text" name="username" value="username"/>
-                  <input type="password" id="password-text" name="password" value="password" />
-                  <input type="submit" id="login-submit" value="Login" name="Login" />
-              </form>
-          </li>
-          <li>
-          </li>
+
+             <% /* inserimento form login */
+                if (session.getAttribute("op") == null) 
+                 //System.out.println("ccc");
+                    /*String op = session.getAttribute("op").toString();
+                 da qui faccio tutti i vari controlli */ %>
+                 <jsp:include page="/login.jsp" />
           <li>
             <h2 class="categories">Lorem Ipsum</h2>
             <ul>
