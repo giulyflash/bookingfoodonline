@@ -146,7 +146,7 @@ public class Servlet1 extends HttpServlet {
             ConfigurazionePiatto piatto = new ConfigurazionePiatto();
             piatto.setId(Long.MIN_VALUE);
             piatto.setNome("pasta al sugo");
-            piatto.setListaPossibiliAggiunte(listaMaterie);
+            piatto.setListaMaterieNonModificabili(listaMaterie);
             piatto.setAggiunte(new ArrayList<String>());
             piatto.setSottratte(new ArrayList<String>());
 
@@ -172,7 +172,8 @@ public class Servlet1 extends HttpServlet {
    //         List<Magazzino> magazzini = mfl.findAll();
             //out.println("localitÃƒÂ :"+lineaMagazzinoFacade.findLocalitÃƒÂ ().get(0).toString());
            out.println("ciao");
-           
+
+ 
            //Connection connection = connectionFactory.createConnection();
             //Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             //MessageConsumer mc = session.createConsumer(queue);

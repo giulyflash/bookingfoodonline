@@ -97,9 +97,10 @@
               <fieldset>
               <input type="text" id="search-text" name="s" value="" />
               <input type="submit" id="search-submit" value="Search" />
-              </fieldset>
-
+              </fieldset>                
             </form>
+            <a href="Servlet1">servlet</a>
+
           </li>
           <li>
             <h2 class="categories">Lorem Ipsum</h2>
