@@ -66,22 +66,10 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
                 quantita = o.getQuantita();
                 n_rifornimenti = o.getN_rif();           
                 
-                if(quantita<quantitaMinima){
-                    MateriaPrima mp = new MateriaPrima();
-                mp.setId(Long.MIN_VALUE);
-                mp.setNome("sugo");
-                materiaPrimaFacade.create(mp);
-
-
-
-                    ot.println("zonaaaa"+zona);
-                    ot.println("id_magazzinooo"+ idMagazzino);
-                    ot.println("n_rifornimentiiii"+ n_rifornimenti);
-                            ot.println("id_materiaaaa"+ id_materia);
-
+                if(quantita<quantitaMinima)
                     contattaFornitori(zona,idMagazzino,n_rifornimenti,id_materia);
                     
-                }
+                
             }
         }
 
@@ -94,21 +82,13 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
             MessageProducer messageProducer = session.createProducer(queue);
            
 
-            ObjectMessage message = session.createObjectMessage();
-
-            //message.setObject("salve giovani");
-            // here we create NewsEntity, that will be sent in JMS message
-            /*message.setObject(id_Magazzino);
-            message.setObject(materia);
-            message.setObject(zona);
-            message.setObject(n_rifornimenti);*/
+            ObjectMessage message = session.createObjectMessage();            
             message.setLongProperty("id_mag", id_Magazzino);
             message.setLongProperty("id_materia", materia);
             message.setStringProperty("zona", zona);            
-            message.setIntProperty("rifornimenti", n_rifornimenti);
-            
+            message.setIntProperty("rifornimenti", n_rifornimenti);            
             messageProducer.send(message);
-             MessageConsumer mc = session.createConsumer(queue);
+            MessageConsumer mc = session.createConsumer(queue);
             
             messageProducer.close();
            
