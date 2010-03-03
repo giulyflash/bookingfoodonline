@@ -77,11 +77,11 @@ public class ConfigurazionePiatto extends Piatto {
     }
 
     public ArrayList<String> materiePrime(){
-        //ArrayList<String> totale = new ArrayList<String>();
-        //totale.addAll(this.getMaterieNonModificabili());
-        //totale.addAll(this.getAggiunte());
-        //totale.addAll(this.getSottratte());
-
-        return this.getListaPossibiliAggiunte();
+        ArrayList<String> totale = new ArrayList<String>();
+        totale.addAll(this.getMaterieNonModificabili());
+        totale.addAll(this.getAggiunte());
+        totale.addAll(this.getMaterieSottraibili());
+        totale.removeAll(this.getSottratte());
+        return totale;
     }
 }

@@ -59,9 +59,12 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
             listaMaterie= cp.materiePrime();
             ot.println(listaMaterie);
             for(String nome:listaMaterie){
+                ot.println("agòiehgoòaeihgioawe");
+
                 LineaMagazzino o = (LineaMagazzino)lineaMagazzinoFacade.findCheckMateria(nome, zona).get(0);
                 id_materia = o.getMatPrima().getId();
                 idMagazzino = o.getMag().getId();
+                ot.println(id_materia.toString());
                 quantitaMinima = o.getSogliaMinima();
                 quantita = o.getQuantita();
                 n_rifornimenti = o.getN_rif();           
@@ -88,7 +91,10 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
             message.setStringProperty("zona", zona);            
             message.setIntProperty("rifornimenti", n_rifornimenti);            
             messageProducer.send(message);
+
+           
             MessageConsumer mc = session.createConsumer(queue);
+            
             
             messageProducer.close();
            
