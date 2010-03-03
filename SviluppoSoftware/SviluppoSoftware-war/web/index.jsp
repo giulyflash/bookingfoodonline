@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>Culinary by Free Css Templates</title>
+<title>Culinary by melloiencorogno</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 <link href="culinarycss.css" rel="stylesheet" type="text/css" />
@@ -99,8 +99,17 @@
               <input type="submit" id="search-submit" value="Search" />
               </fieldset>                
             </form>
-            <a href="Servlet1">servlet</a>
 
+          </li>
+          <li id="login">
+              <h2 class="search">Login</h2>
+              <form name="login" action="Servlet1" method="POST">
+                  <input type="text" id="user-text" name="username" value="username"/>
+                  <input type="password" id="password-text" name="password" value="password" />
+                  <input type="submit" id="login-submit" value="Login" name="Login" />
+              </form>
+          </li>
+          <li>
           </li>
           <li>
             <h2 class="categories">Lorem Ipsum</h2>
