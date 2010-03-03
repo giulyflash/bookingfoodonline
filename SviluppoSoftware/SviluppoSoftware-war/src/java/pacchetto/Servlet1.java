@@ -93,6 +93,31 @@ public class Servlet1 extends HttpServlet {
             out.println("lagoÃƒÂ²");
             out.println("<h1>Servlet Servlet1 at " + request.getContextPath () + "</h1>");
 
+      /*      Piatto p = new Piatto();
+
+            ArrayList<String> listaPossibiliAggiunte = new ArrayList<String>();
+            ArrayList<String> listaMaterieNonModificabili = new ArrayList<String>();
+            ArrayList<String> listaMaterieSottraibili = new ArrayList<String>();
+
+            
+            listaPossibiliAggiunte.add("ricotta");
+            listaPossibiliAggiunte.add("spinaci");
+            p.setListaPossibiliAggiunte(listaPossibiliAggiunte);
+
+            listaMaterieNonModificabili.add("uova");
+            listaMaterieNonModificabili.add("pesce");
+            listaMaterieNonModificabili.add("salsaTonnata");
+            p.setListaMaterieNonModificabili(listaMaterieNonModificabili);
+            
+            listaMaterieSottraibili.add("")
+
+    */
+
+
+
+
+
+            
             Magazzino m = new Magazzino();
 
             m.setId(Long.MIN_VALUE);
@@ -150,6 +175,9 @@ public class Servlet1 extends HttpServlet {
             ArrayList<ConfigurazionePiatto> conf = new ArrayList<ConfigurazionePiatto>();
             conf.add(piatto);
             p.setListaPiatti(conf);
+      
+
+            gestoreLineaMagazzinoBean.checkQuantita(p,out);
             
             /*List<LineaMagazzino> l = lineaMagazzinoFacade.findAll();
             LineaMagazzino lm1 = l.get(0);
@@ -158,7 +186,7 @@ public class Servlet1 extends HttpServlet {
             lineaMagazzinoFacade.editLineaMagazzino(lm1.getMag().getId(), lm1.getMatPrima().getId(), lm1.getN_rif());
             */
             
-           gestoreLineaMagazzinoBean.checkQuantita(p,out);
+          
             //out.println(p.getListaPiatti().get(0).materiePrime().toString());
 
    //         List<Magazzino> magazzini = mfl.findAll();
