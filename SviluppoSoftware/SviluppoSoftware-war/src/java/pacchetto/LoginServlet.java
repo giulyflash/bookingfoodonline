@@ -7,16 +7,24 @@ package pacchetto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.ejb.EJB;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import prova.UtenteRegistratoFacadeLocal;
+import prova.UtenteRegistrato;
+
 
 /**
  *
  * @author dani1913
  */
 public class LoginServlet extends HttpServlet {
+    @EJB
+    private UtenteRegistratoFacadeLocal utenteRegistratoFacade;
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -29,17 +37,32 @@ public class LoginServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session = request.getSession();
+
+        RequestDispatcher index = getServletContext().getRequestDispatcher("/abbb");
+
         try {
-            /* TODO output your page here
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-            */
+            
+            String operazione=request.getParameter("op");
+            String id=request.getParameter("username");
+
+            if (operazione == null)
+                index.forward(request, response);
+
+            /* Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale */
+            if(operazione.equals("login")){
+                UtenteRegistrato tmp=utenteRegistratoFacade.find(request.getParameter("username"));
+                if(tmp!=null){
+                    if(tmp.getPassword().equals(request.getParameter("password"))){
+                        session.setAttribute("login", id);
+                        /* inoltro alla pagina iniziale */
+                        index.forward(request, response);
+                    }
+                    else index.forward(request, response);
+                }
+                else index.forward(request, response);
+            }
+
         } finally { 
             out.close();
         }

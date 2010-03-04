@@ -103,7 +103,7 @@
           </li>
 
              <% /* inserimento form login */
-                if (session.getAttribute("op") == null) 
+                if (session.getAttribute("username") == null)
                  //System.out.println("ccc");
                     /*String op = session.getAttribute("op").toString();
                  da qui faccio tutti i vari controlli */ %>
