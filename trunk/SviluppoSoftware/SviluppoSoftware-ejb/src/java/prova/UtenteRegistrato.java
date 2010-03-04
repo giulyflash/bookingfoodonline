@@ -21,6 +21,7 @@ public class UtenteRegistrato implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String password;
     private String Nome;
     private String Cognome;
     private String Mail;
@@ -175,6 +176,24 @@ public class UtenteRegistrato implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * Get the value of password
+     *
+     * @return the value of password
+     */
+    public String getPassword() {
+        return password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @param password new value of password
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
