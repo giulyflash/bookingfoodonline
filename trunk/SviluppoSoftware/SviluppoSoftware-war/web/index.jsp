@@ -3,8 +3,8 @@
     Created on : 3-mar-2010, 11.21.55
     Author     : dani1913
 --%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
+<%@ page session="true" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 
@@ -103,7 +103,7 @@
           </li>
 
              <% /* inserimento form login */
-                if (session.getAttribute("username") == null)
+                if (session.getAttribute("login") == null)
                  //System.out.println("ccc");
                     /*String op = session.getAttribute("op").toString();
                  da qui faccio tutti i vari controlli */ %>
