@@ -37,30 +37,53 @@ public class LoginServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
+        HttpSession s = request.getSession();
 
-        RequestDispatcher index = getServletContext().getRequestDispatcher("/abbb");
+        RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
+        RequestDispatcher reg = getServletContext().getRequestDispatcher("/register.jsp");
 
         try {
             
+            
             String operazione=request.getParameter("op");
-            String id=request.getParameter("username");
-
+            /*String id=request.getParameter("username");
+            
+            s.setAttribute("login", id);
+            
+            index.forward(request, response);
             if (operazione == null)
                 index.forward(request, response);
 
-            /* Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale */
+            //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
             if(operazione.equals("login")){
                 UtenteRegistrato tmp=utenteRegistratoFacade.find(request.getParameter("username"));
                 if(tmp!=null){
                     if(tmp.getPassword().equals(request.getParameter("password"))){
                         session.setAttribute("login", id);
-                        /* inoltro alla pagina iniziale */
+                        // inoltro alla pagina iniziale
                         index.forward(request, response);
                     }
                     else index.forward(request, response);
                 }
                 else index.forward(request, response);
+            }*/
+
+
+            //richiesta registrazione dell' utente
+            if(operazione.equals("registrazione"))
+                reg.forward(request, response);
+
+            //dati registrazione inviati dall' utente e storaging
+            if(operazione.equals("datiRegistrazione")){
+                UtenteRegistrato tmp = new UtenteRegistrato();
+                tmp.setId(request.getParameter("username"));
+                tmp.setPassword(request.getParameter("password"));
+                tmp.setNome(request.getParameter("nome"));
+                tmp.setCognome(request.getParameter("cognome"));
+                tmp.setMail(request.getParameter("mail"));
+                tmp.setIndirizzo(request.getParameter("indirizzo"));
+                tmp.setN_cartacredito(request.getParameter("n_cartacredito"));
+                utenteRegistratoFacade.create(tmp);
             }
 
         } finally { 
