@@ -9,27 +9,28 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id; //libreria per chiavi esterne di tipo semplice
+import javax.persistence.Id;
 
 /**
  *
- * @author Matteo
+ * @author dani1913
  */
 @Entity
 public class UtenteRegistrato implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
     private String password;
-    private String Nome;
-    private String Cognome;
-    private String Mail;
-    private String N_CartaCredito;
-    private String Telefono;
-    private int N_Acquisti;
+    private String nome;
+    private String cognome;
+    private String mail;
+    private String indirizzo;
+    private String n_cartacredito;
+    private String telefono;
+    private String n_acquisti;
     private String zona;
-    private String Indirizzo;
+
     /**
      * Get the value of zona
      *
@@ -47,136 +48,141 @@ public class UtenteRegistrato implements Serializable {
     public void setZona(String zona) {
         this.zona = zona;
     }
-    
-     /**
-     * Get the value of N_Acquisti
+
+
+    /**
+     * Get the value of n_acquisti
      *
-     * @return the value of N_Acquisti
+     * @return the value of n_acquisti
      */
-    public int getN_Acquisti() {
-        return N_Acquisti;
+    public String getN_acquisti() {
+        return n_acquisti;
     }
 
     /**
-     * Get the value of Telefono
+     * Set the value of n_acquisti
      *
-     * @return the value of Telefono
+     * @param n_acquisti new value of n_acquisti
+     */
+    public void setN_acquisti(String n_acquisti) {
+        this.n_acquisti = n_acquisti;
+    }
+
+
+    /**
+     * Get the value of telefono
+     *
+     * @return the value of telefono
      */
     public String getTelefono() {
-        return Telefono;
+        return telefono;
     }
 
     /**
-     * Set the value of Telefono
+     * Set the value of telefono
      *
-     * @param Telefono new value of Telefono
+     * @param telefono new value of telefono
      */
-    public void setTelefono(String Telefono) {
-        this.Telefono = Telefono;
-    }
-
-
-    /**
-     * Get the value of N_CartaCredito
-     *
-     * @return the value of N_CartaCredito
-     */
-    public String getN_CartaCredito() {
-        return N_CartaCredito;
-    }
-
-    /**
-     * Set the value of N_CartaCredito
-     *
-     * @param N_CartaCredito new value of N_CartaCredito
-     */
-    public void setN_CartaCredito(String N_CartaCredito) {
-        this.N_CartaCredito = N_CartaCredito;
-    }
-
-   /**
-     * Get the value of Mail
-     *
-     * @return the value of Mail
-     */
-    public String getMail() {
-        return Mail;
-    }
-
-    /**
-     * Set the value of Mail
-     *
-     * @param Mail new value of Mail
-     */
-    public void setMail(String Mail) {
-        this.Mail = Mail;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
 
     /**
-     * Get the value of Indirizzo
+     * Get the value of indirizzo
      *
-     * @return the value of Indirizzo
+     * @return the value of indirizzo
      */
     public String getIndirizzo() {
-        return Indirizzo;
+        return indirizzo;
     }
 
     /**
-     * Set the value of Indirizzo
+     * Set the value of indirizzo
      *
-     * @param Indirizzo new value of Indirizzo
+     * @param indirizzo new value of indirizzo
      */
-    public void setIndirizzo(String Indirizzo) {
-        this.Indirizzo = Indirizzo;
+    public void setIndirizzo(String indirizzo) {
+        this.indirizzo = indirizzo;
+    }
+
+
+
+    /**
+     * Get the value of n_cartacredito
+     *
+     * @return the value of n_cartacredito
+     */
+    public String getN_cartacredito() {
+        return n_cartacredito;
+    }
+
+    /**
+     * Set the value of n_cartacredito
+     *
+     * @param n_cartacredito new value of n_cartacredito
+     */
+    public void setN_cartacredito(String n_cartacredito) {
+        this.n_cartacredito = n_cartacredito;
     }
 
 
     /**
-     * Get the value of Cognome
+     * Get the value of mail
      *
-     * @return the value of Cognome
+     * @return the value of mail
+     */
+    public String getMail() {
+        return mail;
+    }
+
+    /**
+     * Set the value of mail
+     *
+     * @param mail new value of mail
+     */
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+
+    /**
+     * Get the value of cognome
+     *
+     * @return the value of cognome
      */
     public String getCognome() {
-        return Cognome;
+        return cognome;
     }
 
     /**
-     * Set the value of Cognome
+     * Set the value of cognome
      *
-     * @param Cognome new value of Cognome
+     * @param cognome new value of cognome
      */
-    public void setCognome(String Cognome) {
-        this.Cognome = Cognome;
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
     }
 
 
     /**
-     * Get the value of Nome
+     * Get the value of nome
      *
-     * @return the value of Nome
+     * @return the value of nome
      */
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     /**
-     * Set the value of Nome
+     * Set the value of nome
      *
-     * @param Nome new value of Nome
+     * @param nome new value of nome
      */
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     /**
      * Get the value of password
@@ -194,6 +200,15 @@ public class UtenteRegistrato implements Serializable {
      */
     public void setPassword(String password) {
         this.password = password;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
@@ -218,7 +233,7 @@ public class UtenteRegistrato implements Serializable {
 
     @Override
     public String toString() {
-        return "Prova.UtenteRegistrato[id=" + id + "]";
+        return "prova.UtenteRegistrato[id=" + id + "]";
     }
 
 }
