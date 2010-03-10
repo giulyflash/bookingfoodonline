@@ -13,7 +13,6 @@ import java.util.ArrayList;
  */
 public class Prenotazione {
     private Long id;
-
     private long idUtente;
     private ArrayList<ConfigurazionePiatto> ListaPiatti;
     private double prezzo;
