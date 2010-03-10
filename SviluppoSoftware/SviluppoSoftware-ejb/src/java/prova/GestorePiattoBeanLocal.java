@@ -18,4 +18,6 @@ public interface GestorePiattoBeanLocal {
     public List<Piatto> findPiatti();
 
     public void addPiatto(Piatto piatto);
+
+    public List<Piatto> findPiattiPerCategoria(String categoria);
 }

@@ -25,4 +25,6 @@ public interface PiattoFacadeLocal {
 
     List<Piatto> findAll();
 
+    List<Piatto> findPiatto(String name);
+
 }
