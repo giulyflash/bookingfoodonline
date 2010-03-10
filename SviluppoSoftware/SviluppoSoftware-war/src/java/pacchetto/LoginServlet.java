@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import prova.UtenteRegistratoFacadeLocal;
+import prova.GestoreUtenteRegistratoLocal;
 import prova.UtenteRegistrato;
 
 
@@ -24,8 +24,8 @@ import prova.UtenteRegistrato;
  */
 public class LoginServlet extends HttpServlet {
     @EJB
-    private UtenteRegistratoFacadeLocal utenteRegistratoFacade;
-   
+    private GestoreUtenteRegistratoLocal gestoreUtenteRegistrato;
+    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
@@ -37,18 +37,21 @@ public class LoginServlet extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        HttpSession s = request.getSession();
+        HttpSession session = request.getSession();
 
         RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
         RequestDispatcher reg = getServletContext().getRequestDispatcher("/register.jsp");
+        RequestDispatcher err = getServletContext().getRequestDispatcher("/error.jsp");
+        
+        UtenteRegistrato tmp;
 
         try {
             
-            
+            // sezione login utente
             String operazione=request.getParameter("op");
-            /*String id=request.getParameter("username");
+            String id=request.getParameter("username");
             
-            s.setAttribute("login", id);
+            session.setAttribute("login", id);
             
             index.forward(request, response);
             if (operazione == null)
@@ -56,17 +59,14 @@ public class LoginServlet extends HttpServlet {
 
             //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
             if(operazione.equals("login")){
-                UtenteRegistrato tmp=utenteRegistratoFacade.find(request.getParameter("username"));
-                if(tmp!=null){
-                    if(tmp.getPassword().equals(request.getParameter("password"))){
-                        session.setAttribute("login", id);
-                        // inoltro alla pagina iniziale
-                        index.forward(request, response);
-                    }
-                    else index.forward(request, response);
+                tmp=gestoreUtenteRegistrato.findUser(id);
+                if (tmp!=null) {
+                    session.setAttribute("login", id);
+                    index.forward(request, response);
                 }
-                else index.forward(request, response);
-            }*/
+                else
+                    err.forward(request, response);
+                }
 
 
             //richiesta registrazione dell' utente
@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 
             //dati registrazione inviati dall' utente e storaging
             if(operazione.equals("datiRegistrazione")){
-                UtenteRegistrato tmp = new UtenteRegistrato();
+                tmp = new UtenteRegistrato();
                 tmp.setId(request.getParameter("username"));
                 tmp.setPassword(request.getParameter("password"));
                 tmp.setNome(request.getParameter("nome"));
@@ -83,7 +83,8 @@ public class LoginServlet extends HttpServlet {
                 tmp.setMail(request.getParameter("mail"));
                 tmp.setIndirizzo(request.getParameter("indirizzo"));
                 tmp.setN_cartacredito(request.getParameter("n_cartacredito"));
-                utenteRegistratoFacade.create(tmp);
+                gestoreUtenteRegistrato.addUser(tmp);
+                //aggiungere pagina risultato
             }
 
         } finally { 
