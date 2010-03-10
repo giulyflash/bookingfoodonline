@@ -38,6 +38,8 @@ import prova.*;
  */@PermitAll
 public class Servlet1 extends HttpServlet {
     @EJB
+    private PiattoFacadeLocal piattoFacade;
+    @EJB
     private FornitoreFacadeLocal fornitoreFacade;
     @EJB
     private FornitureFacadeLocal fornitureFacade;
@@ -52,6 +54,7 @@ public class Servlet1 extends HttpServlet {
     private LineaMagazzinoFacadeLocal lineaMagazzinoFacade;
     @EJB
     private GestorePiattoBeanLocal gpb;
+
 
 
 
@@ -94,8 +97,44 @@ public class Servlet1 extends HttpServlet {
             out.println("<h1>Servlet Servlet1 at " + request.getContextPath () + "</h1>");
 
       
+/*
+            Piatto p = new Piatto();
+            p.setId(Long.MIN_VALUE);
+            p.setCategoria("rwr");
+            p.setCosto(40.0);
+            p.setNome("pasta al sugo");
 
 
+
+            Piatto p1 = new Piatto();
+            p1.setId(Long.MIN_VALUE);
+            p1.setCategoria("rwr");
+            p1.setCosto(40.0);
+            p1.setNome("pasta alla carbonara");
+            Piatto p2 = new Piatto();
+            p2.setId(Long.MIN_VALUE);
+            p2.setCategoria("rwr");
+            p2.setCosto(40.0);
+            p2.setNome("carne al sugo");
+
+            Piatto p3 = new Piatto();
+            p3.setId(Long.MIN_VALUE);
+            p3.setCategoria("rwr");
+            p3.setCosto(40.0);
+            p3.setNome("carne al pesce");
+
+            piattoFacade.create(p);
+            piattoFacade.create(p1);
+            piattoFacade.create(p2);
+            piattoFacade.create(p3);
+
+            List<Piatto> list = piattoFacade.findPiatto("pasta");
+            out.println(list.get(0).getNome());
+            out.println(list.get(1).getNome());
+        */
+
+            
+/*
 
             
             Magazzino m = new Magazzino();

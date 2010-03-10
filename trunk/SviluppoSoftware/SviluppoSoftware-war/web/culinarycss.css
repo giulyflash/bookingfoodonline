@@ -431,7 +431,30 @@ a:hover {
 	color: #808080;
 }
 
-#footer a:hover {
-	text-decoration: none;
+#minimalista-righe
+{
+	background: #fff;
+	border-collapse: collapse;
+	font-family: "Arial", "Verdana", Sans-Serif;
+	font-size: 14px;
+	width: 620px;
+	text-align: left;
 }
-
+#minimalista-righe th
+{
+	border-bottom: 2px solid #394A57;
+	color: #394A57;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px;
+}
+#minimalista-righe td
+{
+	border-bottom: 1px solid #CCCCCC;
+	color: #394A57;
+	padding: 14px;
+}
+#minimalista-righe tr:hover td
+{
+	color: #95b4c4;
+}
