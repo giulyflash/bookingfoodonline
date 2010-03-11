@@ -47,6 +47,10 @@ public class PiattoFacade implements PiattoFacadeLocal {
          List<Piatto> list= em.createQuery("select object(o) from Piatto as o where o.nome = '"+ nomePiatto + "'").getResultList();
          return list.get(0).getCategoria();
     }
+    
+    public List<Piatto> findPiattoPerCategoria(String categoria){
+        return em.createQuery("select object(o) from Piatto as o where o.categoria = '" + categoria + "'").getResultList();
+    }
 
 }
 
