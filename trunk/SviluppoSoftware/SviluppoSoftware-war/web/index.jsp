@@ -73,72 +73,7 @@
       </div>
       <!-- end div#content -->
       <div id="sidebar">
-
-        <%@ include file="Sidebar.jsp" %>        
-
-
-        <ul>
-          <li id="search">
-            <h2 class="search">Search</h2>
-            <form method="get" action="">              
-              <input type="text" id="search-text" name="s" value="" />
-              <input type="submit" id="search-submit" value="Search" />              
-            </form>
-
-          </li>
-
-             <% /* inserimento form login */
-                if (session.getAttribute("login") == null){
-                 //System.out.println("ccc");
-                    /*String op = session.getAttribute("op").toString();
-                 da qui faccio tutti i vari controlli */ %>
-                 <jsp:include page="/login.jsp" />
-                 <%}%>
-          <li>
-            <h2 class="categories">Lorem Ipsum</h2>
-            <ul>
-              <li><a href="#">Fusce dui neque fringilla</a></li>
-              <li><a href="#">Eget tempor eget nonummy</a></li>
-
-              <li><a href="#">Magna lacus bibendum mauris</a></li>
-              <li><a href="#">Nec metus sed donec</a></li>
-              <li><a href="#">Magna lacus bibendum mauris</a></li>
-              <li><a href="#">Velit semper nisi molestie</a></li>
-              <li><a href="#">Eget tempor eget nonummy</a></li>
-            </ul>
-
-          </li>
-          <li>
-            <h2>Volutpat Dolore</h2>
-            <ul>
-              <li><a href="#">Nec metus sed donec</a></li>
-              <li><a href="#">Magna lacus bibendum mauris</a></li>
-              <li><a href="#">Velit semper nisi molestie</a></li>
-
-              <li><a href="#">Eget tempor eget nonummy</a></li>
-              <li><a href="#">Nec metus sed donec</a></li>
-              <li><a href="#">Magna lacus bibendum mauris</a></li>
-              <li><a href="#">Velit semper nisi molestie</a></li>
-            </ul>
-          </li>
-          <li>
-
-            <h2>Bebindum Mauris </h2>
-            <ul>
-              <li><a href="#">Nec metus sed donec</a></li>
-              <li><a href="#">Magna lacus bibendum mauris</a></li>
-              <li><a href="#">Velit semper nisi molestie</a></li>
-              <li><a href="#">Eget tempor eget nonummy</a></li>
-
-              <li><a href="#">Nec metus sed donec</a></li>
-              <li><a href="#">Velit semper nisi molestie</a></li>
-              <li><a href="#">Eget tempor eget nonummy</a></li>
-              <li><a href="#">Velit semper nisi molestie</a></li>
-            </ul>
-          </li>
-        </ul>
-
-
+        <%@ include file="Sidebar.jsp" %>
       </div>
       <!-- end div#sidebar -->
       <div style="clear: both; height: 1px"></div>
