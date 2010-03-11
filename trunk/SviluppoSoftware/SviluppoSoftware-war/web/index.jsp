@@ -22,7 +22,7 @@
 </head>
 <body>
 <div id="wrapper">
-       <%@ include file="header.jsp" %>
+       <jsp:include page="/header.jsp"/>
   <div id="page">
     <div id="page-bgtop">
       <div id="content">
@@ -73,7 +73,7 @@
       </div>
       <!-- end div#content -->
       <div id="sidebar">
-        <%@ include file="Sidebar.jsp" %>
+        <jsp:include page="/Sidebar.jsp" />
       </div>
       <!-- end div#sidebar -->
       <div style="clear: both; height: 1px"></div>

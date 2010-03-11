@@ -24,7 +24,7 @@
 </head>
 <body>
 <div id="wrapper">
-       <%@ include file="header.jsp" %>
+       <%@ include jsp="header.jsp" %>
   <div id="page">
     <div id="page-bgtop">
       <div id="content">
