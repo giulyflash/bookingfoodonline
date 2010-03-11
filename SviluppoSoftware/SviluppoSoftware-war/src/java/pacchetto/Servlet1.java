@@ -97,15 +97,20 @@ public class Servlet1 extends HttpServlet {
             out.println("<h1>Servlet Servlet1 at " + request.getContextPath () + "</h1>");
 
       
-/*
+
             Piatto p = new Piatto();
             p.setId(Long.MIN_VALUE);
-            p.setCategoria("rwr");
-            p.setCosto(40.0);
-            p.setNome("pasta al sugo");
+            p.setCategoria("secondi");
+            p.setCosto(5.0);
+            p.setNome("carne");
+            ArrayList<String> l = new ArrayList<String>();
+            l.add("pasta");
+            p.setListaMaterieNonModificabili(l);
+            p.setListaMaterieSottraibili(l);
+            p.setListaPossibiliAggiunte(l);
+            piattoFacade.create(p);
 
-
-
+            /*
             Piatto p1 = new Piatto();
             p1.setId(Long.MIN_VALUE);
             p1.setCategoria("rwr");

@@ -99,9 +99,9 @@ a:hover {
 
 #logo h1 {
 	margin: 0;
-	padding: 10px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	text-transform: lowercase;
-	font: normal 46px Georgia, "Times New Roman", Times, serif;
+	font: normal 36px Georgia, "Times New Roman", Times, serif;
 }
 
 #logo h2 {
