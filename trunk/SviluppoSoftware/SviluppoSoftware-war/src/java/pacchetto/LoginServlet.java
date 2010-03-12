@@ -40,8 +40,8 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
-        RequestDispatcher reg = getServletContext().getRequestDispatcher("/register.jsp");
-        RequestDispatcher err = getServletContext().getRequestDispatcher("/error.jsp");
+        RequestDispatcher reg = getServletContext().getRequestDispatcher("/Box/register.jsp");
+        RequestDispatcher err = getServletContext().getRequestDispatcher("/Box/error.jsp");
         
         UtenteRegistrato tmp;
 
@@ -50,17 +50,16 @@ public class LoginServlet extends HttpServlet {
             // sezione login utente
             String operazione=request.getParameter("op");
             String id=request.getParameter("username");
+            String password=request.getParameter("password");
             
-            session.setAttribute("login", id);
             
-            index.forward(request, response);
-            if (operazione == null)
-                index.forward(request, response);
+            /*if (operazione == null)
+                index.forward(request, response);*/
 
             //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
             if(operazione.equals("login")){
                 tmp=gestoreUtenteRegistrato.findUser(id);
-                if (tmp!=null) {
+                if (tmp!=null && tmp.getPassword().equals(password)) {
                     session.setAttribute("login", id);
                     index.forward(request, response);
                 }
