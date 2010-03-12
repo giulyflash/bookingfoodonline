@@ -1,8 +1,4 @@
-<%-- 
-    Document   : tabella.jsp
-    Created on : 9-mar-2010, 12.49.04
-    Author     : Matteo
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -12,10 +8,10 @@
 <%@page import="javax.servlet.http.HttpServlet"%>
 <%@page import="javax.servlet.http.HttpServletRequest"%>
 
-<table id="minimalista righe">
+<table id="minimalista-righe">
     <thead>
         <tr>
-            <th>Nome piatto</th>
+            <th>Nome</th>
             <th>Prezzo</th>
         </tr>
     </thead>
@@ -29,7 +25,7 @@
             <td><%= p.getNome()%></td>
             <td><%= p.getCosto()%></td>
           </tr>
-        <%}%>
+        <%}}%>
     </tbody>
 </table>
 
