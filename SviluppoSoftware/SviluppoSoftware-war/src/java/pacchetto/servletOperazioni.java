@@ -69,27 +69,27 @@ public class servletOperazioni extends HttpServlet {
 
 */
              if(categoria.equals("primi")){
-                rd = sc.getRequestDispatcher("/Primi.jsp");
+                rd = sc.getRequestDispatcher("/CategoriePiatti/Primi.jsp");
                 rd.forward(request,response);
              }else
                  if(categoria.equals("secondi")){
-                    rd = sc.getRequestDispatcher("/Secondi.jsp");
+                    rd = sc.getRequestDispatcher("/CategoriePiatti/Secondi.jsp");
                     rd.forward(request,response);
                  }else 
                      if(categoria.equals("contorni")){
-                        rd = sc.getRequestDispatcher("/Contorni.jsp");
+                        rd = sc.getRequestDispatcher("/CategoriePiatti/Contorni.jsp");
                         rd.forward(request,response);
                      }else 
                          if(categoria.equals("dessert")){
-                             rd = sc.getRequestDispatcher("/Dessert.jsp");
+                             rd = sc.getRequestDispatcher("/CategoriePiatti/Dessert.jsp");
                              rd.forward(request,response);
                          }else
                              if(categoria.equals("bevande")){
-                                rd = sc.getRequestDispatcher("/Bevande.jsp");
+                                rd = sc.getRequestDispatcher("/CategoriePiatti/Bevande.jsp");
                                 rd.forward(request,response);
                              }else
                                  if(categoria.equals("vino")){
-                                    rd = sc.getRequestDispatcher("/Vino.jsp");
+                                    rd = sc.getRequestDispatcher("/CategoriePiatti/Vino.jsp");
                                     rd.forward(request,response);
                                  }
 
