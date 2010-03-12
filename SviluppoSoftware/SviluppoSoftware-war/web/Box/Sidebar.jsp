@@ -6,7 +6,6 @@
               <input type="text" id="search-text" name="s" value="" />
               <input type="submit" id="search-submit" value="Cerca" />
             </form>
-            <a href="servletOperazioni">servlet</a>
           </li>
           <li>
           <% /* inserimento form login */
@@ -17,8 +16,7 @@
                  <jsp:include page="/Box/login.jsp" />
                  <%}%>
           </li>
-          <li><%= session.getAttribute("login") %></li>
-
+          
           <li>
             <h2 class="categories">Categorie</h2>
             <ul>
