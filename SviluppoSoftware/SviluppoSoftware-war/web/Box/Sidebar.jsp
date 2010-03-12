@@ -17,6 +17,7 @@
                  <jsp:include page="/Box/login.jsp" />
                  <%}%>
           </li>
+          <li><%= session.getAttribute("login") %></li>
 
           <li>
             <h2 class="categories">Categorie</h2>
