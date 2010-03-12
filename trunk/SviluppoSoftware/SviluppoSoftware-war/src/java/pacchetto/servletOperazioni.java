@@ -68,7 +68,7 @@ public class servletOperazioni extends HttpServlet {
             out.println("</html>");
 
 */
-             if(categoria.equals("primi")){
+            if(categoria.equals("primi")){
                 rd = sc.getRequestDispatcher("/CategoriePiatti/Primi.jsp");
                 rd.forward(request,response);
              }else

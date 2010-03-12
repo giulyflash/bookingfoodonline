@@ -28,21 +28,9 @@
   <div id="page">
     <div id="page-bgtop">
       <div id="content">
-          <% List<Piatto> listaSecondi;
-             if(request.getSession().getAttribute("lista") !=null){
-               listaSecondi=(List<Piatto>)request.getSession().getAttribute("lista");
-           %>
-
-           <p><%= listaSecondi.get(0).getNome()%></p>
-           <%}
-           %>
-
-
+       <jsp:include page="/Box/tabella.jsp" />
       </div>
-
     </div>
-
-
 
       <!-- end div#content -->
       <div id="sidebar">

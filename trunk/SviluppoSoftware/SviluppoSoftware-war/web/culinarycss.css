@@ -437,7 +437,7 @@ a:hover {
 	border-collapse: collapse;
 	font-family: "Arial", "Verdana", Sans-Serif;
 	font-size: 14px;
-	width: 620px;
+	width: 400px;
 	text-align: left;
 }
 #minimalista-righe th
@@ -458,4 +458,6 @@ a:hover {
 {
 	color: #95b4c4;
 }
+
+
 
