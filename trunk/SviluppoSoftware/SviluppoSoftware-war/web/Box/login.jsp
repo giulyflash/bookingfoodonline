@@ -8,5 +8,5 @@
     </form>
 </li>
 <li>
-    <a href="register.jsp?op=registrazione">Non hai un account?</a>
+    <a href="LoginServlet?op=registrazione">Non hai un account?</a>
 </li>

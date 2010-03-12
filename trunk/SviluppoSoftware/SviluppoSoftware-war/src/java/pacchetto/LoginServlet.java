@@ -39,9 +39,12 @@ public class LoginServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
-        RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
-        RequestDispatcher reg = getServletContext().getRequestDispatcher("/Box/register.jsp");
+        // Recupero i riferimenti alle pagine
+        RequestDispatcher index = getServletContext().getRequestDispatcher("/Box/index.jsp");
+        RequestDispatcher welcome = getServletContext().getRequestDispatcher("/Pages/welcomePage.jsp");
+        RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
         RequestDispatcher err = getServletContext().getRequestDispatcher("/Box/error.jsp");
+        RequestDispatcher gotReg = getServletContext().getRequestDispatcher("/Pages/gotReg.jsp");
         
         UtenteRegistrato tmp;
 
@@ -53,15 +56,15 @@ public class LoginServlet extends HttpServlet {
             String password=request.getParameter("password");
             
             
-            /*if (operazione == null)
-                index.forward(request, response);*/
+            if (operazione == null)
+                index.forward(request, response);
 
             //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
             if(operazione.equals("login")){
                 tmp=gestoreUtenteRegistrato.findUser(id);
                 if (tmp!=null && tmp.getPassword().equals(password)) {
                     session.setAttribute("login", id);
-                    index.forward(request, response);
+                    welcome.forward(request, response);
                 }
                 else
                     err.forward(request, response);
@@ -83,7 +86,9 @@ public class LoginServlet extends HttpServlet {
                 tmp.setIndirizzo(request.getParameter("indirizzo"));
                 tmp.setN_cartacredito(request.getParameter("n_cartacredito"));
                 gestoreUtenteRegistrato.addUser(tmp);
-                //aggiungere pagina risultato
+                
+                // pagina risultato
+                gotReg.forward(request, response);
             }
 
         } finally { 
