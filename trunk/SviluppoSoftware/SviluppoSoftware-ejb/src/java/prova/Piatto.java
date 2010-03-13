@@ -26,7 +26,27 @@ public class Piatto implements Serializable {
     protected String nome;
     private Double costo;
     private String categoria;
- //   private String url_immagine;
+    private String url_immagine;
+
+    /**
+     * Get the value of url_immagine
+     *
+     * @return the value of url_immagine
+     */
+    public String getUrl_immagine() {
+        return url_immagine;
+    }
+
+    /**
+     * Set the value of url_immagine
+     *
+     * @param url_immagine new value of url_immagine
+     */
+    public void setUrl_immagine(String url_immagine) {
+        this.url_immagine = url_immagine;
+    }
+
+
 
     private ArrayList<String> listaMaterieSottraibili= new ArrayList<String>();
     private ArrayList<String> listaMaterieNonModificabili= new ArrayList<String>();
@@ -165,14 +185,13 @@ public class Piatto implements Serializable {
     public ArrayList<String> getMaterieNonModificabili(){
         return listaMaterieNonModificabili;
     }
-/*
+    
     public ArrayList<String> getMateriePrime(){
         ArrayList<String> materiePrime = listaPossibiliAggiunte;
         materiePrime.addAll(listaMaterieNonModificabili);
-
-        materiePrime.removeAll(listaMaterieSottratte);
+        materiePrime.removeAll(listaMaterieSottraibili);
         return materiePrime;
-    }*/
+    }
 
     public boolean deleteMateriaSottraibile(MateriaPrima materia){
         if(!listaMaterieSottraibili.isEmpty())
