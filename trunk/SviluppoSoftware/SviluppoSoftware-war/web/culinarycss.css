@@ -275,7 +275,7 @@ a:hover {
 #page {
 	width: 844px;
 	margin: 0 auto;
-	padding: 0px 28px;
+	padding: 20px 28px;
 	background: #FFFFFF url(images/img05.jpg) repeat-y left top;
 }
 
@@ -438,7 +438,7 @@ a:hover {
 	font-family: "Arial", "Verdana", Sans-Serif;
 	font-size: 14px;
 	width: 400px;
-	text-align: left;
+	text-align:center;
 }
 #minimalista-righe th
 {
@@ -446,7 +446,7 @@ a:hover {
 	color: #394A57;
 	font-size: 14px;
 	font-weight: normal;
-	padding: 10px;
+	padding: 20px;
 }
 #minimalista-righe td
 {
@@ -459,5 +459,8 @@ a:hover {
 	color: #95b4c4;
 }
 
-
+#categoria_piatto
+{   text-align:left;
+    color:red;
+}
 

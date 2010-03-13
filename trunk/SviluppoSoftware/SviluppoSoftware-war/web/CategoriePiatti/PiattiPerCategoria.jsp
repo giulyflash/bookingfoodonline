@@ -11,7 +11,7 @@
 <%@page import="prova.*"%>
 <%@page import="javax.servlet.http.HttpServlet"%>
 <%@page import="javax.servlet.http.HttpServletRequest"%>
-
+<%@page import="java.lang.String"%>
 
 
 <title>BOOKING FOOD ONLINE</title>
@@ -28,23 +28,12 @@
   <div id="page">
     <div id="page-bgtop">
       <div id="content">
-          <% List<Piatto> listaPrimi;
-             if(request.getSession().getAttribute("lista") !=null){
-               listaPrimi=(List<Piatto>)request.getSession().getAttribute("lista");
-           %>
-
-           <b> <% listaPrimi.get(0).getNome();%></b>
-           <%}
-           %>
-
-
-
-        
+        <div id="categoria_piatto"
+             <b> <%=request.getParameter("categoria").toUpperCase()%></b>
+        </div>
+             <jsp:include page="/Box/tabella.jsp" />
       </div>
-        
     </div>
-
-
 
       <!-- end div#content -->
       <div id="sidebar">

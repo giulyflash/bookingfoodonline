@@ -9,8 +9,10 @@
 <%@page import="javax.servlet.http.HttpServletRequest"%>
 
 <table id="minimalista-righe">
+
     <thead>
         <tr>
+            <th>Immagine</th>
             <th>Nome</th>
             <th>Prezzo</th>
         </tr>
@@ -21,9 +23,13 @@
                listaPiatti=(List<Piatto>)request.getSession().getAttribute("lista");
            %>
           <%for(Piatto p: listaPiatti){ %>
-          <tr>        
+          <% String url = p.getUrl_immagine();
+          %>
+          <tr>
+              <td><img src= <%=url%> alt="immagine" ></td>
             <td><%= p.getNome()%></td>
             <td><%= p.getCosto()%></td>
+
           </tr>
         <%}}%>
     </tbody>
