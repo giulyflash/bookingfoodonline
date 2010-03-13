@@ -103,12 +103,40 @@ public class Servlet1 extends HttpServlet {
             p.setCategoria("secondi");
             p.setCosto(5.0);
             p.setNome("carne");
+            p.setUrl_immagine("images/carne.jpg");
             ArrayList<String> l = new ArrayList<String>();
             l.add("pasta");
             p.setListaMaterieNonModificabili(l);
             p.setListaMaterieSottraibili(l);
             p.setListaPossibiliAggiunte(l);
             piattoFacade.create(p);
+
+            Piatto p1 = new Piatto();
+            p1.setId(Long.MIN_VALUE);
+            p1.setCategoria("secondi");
+            p1.setCosto(5.0);
+            p1.setNome("focaccia");
+            p1.setUrl_immagine("images/focaccia.jpg");
+            ArrayList<String> l1 = new ArrayList<String>();
+            l.add("farina");
+            p1.setListaMaterieNonModificabili(l1);
+            p1.setListaMaterieSottraibili(l1);
+            p1.setListaPossibiliAggiunte(l1);
+            piattoFacade.create(p1);
+
+            Piatto p2 = new Piatto();
+            p2.setId(Long.MIN_VALUE);
+            p2.setCategoria("primi");
+            p2.setCosto(5.0);
+            p2.setNome("tagliatelle al sugo");
+            p2.setUrl_immagine("images/pasta.jpg");
+            ArrayList<String> l2 = new ArrayList<String>();
+            l2.add("farina");
+            p2.setListaMaterieNonModificabili(l2);
+            p2.setListaMaterieSottraibili(l2);
+            p2.setListaPossibiliAggiunte(l2);
+            piattoFacade.create(p2);
+
 
             /*
             Piatto p1 = new Piatto();

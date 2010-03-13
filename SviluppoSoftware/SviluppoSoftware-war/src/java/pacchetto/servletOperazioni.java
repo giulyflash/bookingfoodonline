@@ -44,16 +44,20 @@ public class servletOperazioni extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        
+        ServletContext sc = getServletContext();
+        RequestDispatcher rd;
         String categoria = request.getParameter("categoria");
 
 
         //RICERCA CATEGORIA
         if(categoria!=null)
-            {ServletContext sc = getServletContext();
-             RequestDispatcher rd;
-             List<Piatto> listaPiatti  = gestorePiattoBean.findPiattiPerCategoria("secondi");
+            {List<Piatto> listaPiatti  = gestorePiattoBean.findPiattiPerCategoria(categoria);
              s.setAttribute("lista",listaPiatti);
+             rd = sc.getRequestDispatcher("/CategoriePiatti/PiattiPerCategoria.jsp");
+             rd.forward(request,response);
+            }
+
+
 
              
              /*
@@ -66,39 +70,6 @@ public class servletOperazioni extends HttpServlet {
             out.println(listaPiatti.get(0).getNome());
             out.println("</body>");
             out.println("</html>");
-
-*/
-            if(categoria.equals("primi")){
-                rd = sc.getRequestDispatcher("/CategoriePiatti/Primi.jsp");
-                rd.forward(request,response);
-             }else
-                 if(categoria.equals("secondi")){
-                    rd = sc.getRequestDispatcher("/CategoriePiatti/Secondi.jsp");
-                    rd.forward(request,response);
-                 }else 
-                     if(categoria.equals("contorni")){
-                        rd = sc.getRequestDispatcher("/CategoriePiatti/Contorni.jsp");
-                        rd.forward(request,response);
-                     }else 
-                         if(categoria.equals("dessert")){
-                             rd = sc.getRequestDispatcher("/CategoriePiatti/Dessert.jsp");
-                             rd.forward(request,response);
-                         }else
-                             if(categoria.equals("bevande")){
-                                rd = sc.getRequestDispatcher("/CategoriePiatti/Bevande.jsp");
-                                rd.forward(request,response);
-                             }else
-                                 if(categoria.equals("vino")){
-                                    rd = sc.getRequestDispatcher("/CategoriePiatti/Vino.jsp");
-                                    rd.forward(request,response);
-                                 }
-
-
-                 
-        }
-
-
-
 
 
              
