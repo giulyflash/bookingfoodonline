@@ -19,7 +19,7 @@
       
 
       <h1><a href="#">MelloIencoRogno</a></h1>
-      <h2><a href="http://www.freecsstemplates.org/">Online Restaurant</a></h2>
+      <h2><a href="#">Online Restaurant</a></h2>
 
     </div>
 </div>

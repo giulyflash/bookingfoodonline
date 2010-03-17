@@ -43,7 +43,7 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher index = getServletContext().getRequestDispatcher("/Box/index.jsp");
         RequestDispatcher welcome = getServletContext().getRequestDispatcher("/Pages/welcomePage.jsp");
         RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
-        RequestDispatcher err = getServletContext().getRequestDispatcher("/Box/error.jsp");
+        RequestDispatcher err = getServletContext().getRequestDispatcher("/Pages/error.jsp");
         RequestDispatcher gotReg = getServletContext().getRequestDispatcher("/Pages/gotReg.jsp");
         
         UtenteRegistrato tmp;
