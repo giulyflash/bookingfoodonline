@@ -5,7 +5,6 @@
               <input type="text" id="search-text" name="s" value="" />
               <input type="submit" id="search-submit" value="Cerca" />
             </form>
-            <a href="Servlet1">servlet</a>
           </li>
           <li>
           <% /* inserimento form login */

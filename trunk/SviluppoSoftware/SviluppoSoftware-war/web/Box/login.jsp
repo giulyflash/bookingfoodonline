@@ -9,4 +9,7 @@
 </li>
 <li>
     <a href="LoginServlet?op=registrazione">Non hai un account?</a>
+    <!--RPX link-->
+    <a class="rpxnow" onclick="return false;"
+href="https://sviluppo-software.rpxnow.com/openid/v2/signin?token_url=http%3A%2F%2Flocalhost%3A2192%2FSviluppoSoftware-war%2FopenIDServlet?format=xml"> Sign In </a>
 </li>

@@ -12,6 +12,10 @@
         <servlet-name>servletOperazioni</servlet-name>
         <servlet-class>pacchetto.servletOperazioni</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>openIDServlet</servlet-name>
+        <servlet-class>pacchetto.openIDServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet1</servlet-name>
         <url-pattern>/Servlet1</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>servletOperazioni</servlet-name>
         <url-pattern>/servletOperazioni</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>openIDServlet</servlet-name>
+        <url-pattern>/openIDServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
