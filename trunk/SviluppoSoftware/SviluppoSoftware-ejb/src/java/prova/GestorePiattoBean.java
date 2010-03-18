@@ -28,14 +28,17 @@ public class GestorePiattoBean implements GestorePiattoBeanLocal {
         return aP;
     }
 
-    public void addPiatto(Piatto piatto) {
-        
+    public void addPiatto(Piatto piatto) {        
         piattoFacade.create(piatto);
     }
+
     public List<Piatto> findPiattiPerCategoria(String categoria){
         return piattoFacade.findPiattoPerCategoria(categoria);
     }
 
+    public Piatto findPiatto(Long id){
+        return piattoFacade.find(id);
+    }
 
     
  

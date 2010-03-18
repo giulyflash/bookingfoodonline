@@ -28,6 +28,10 @@ public class Piatto implements Serializable {
     private String categoria;
     private String url_immagine;
 
+    private ArrayList<String> listaMaterieSottraibili= new ArrayList<String>();
+    private ArrayList<String> listaMaterieNonModificabili= new ArrayList<String>();
+    private ArrayList<String> listaPossibiliAggiunte = new ArrayList<String>();
+
     /**
      * Get the value of url_immagine
      *
@@ -48,9 +52,7 @@ public class Piatto implements Serializable {
 
 
 
-    private ArrayList<String> listaMaterieSottraibili= new ArrayList<String>();
-    private ArrayList<String> listaMaterieNonModificabili= new ArrayList<String>();
-    private ArrayList<String> listaPossibiliAggiunte = new ArrayList<String>();
+   
 
 
     /**
@@ -186,12 +188,12 @@ public class Piatto implements Serializable {
         return listaMaterieNonModificabili;
     }
     
-    public ArrayList<String> getMateriePrime(){
+   /* public ArrayList<String> getMateriePrime(){
         ArrayList<String> materiePrime = listaPossibiliAggiunte;
         materiePrime.addAll(listaMaterieNonModificabili);
         materiePrime.removeAll(listaMaterieSottraibili);
         return materiePrime;
-    }
+    }*/
 
     public boolean deleteMateriaSottraibile(MateriaPrima materia){
         if(!listaMaterieSottraibili.isEmpty())
