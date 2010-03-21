@@ -96,19 +96,28 @@ public class Servlet1 extends HttpServlet {
             out.println("lagoÃƒÂ²");
             out.println("<h1>Servlet Servlet1 at " + request.getContextPath () + "</h1>");
 
-      
+            ArrayList<String> nonMod = new ArrayList<String>();
+            ArrayList<String> sott = new ArrayList<String>();
+            ArrayList<String> possAgg = new ArrayList<String>();
 
-          /*  Piatto p = new Piatto();
+            /*Piatto p = new Piatto();
             p.setId(Long.MIN_VALUE);
             p.setCategoria("secondi");
             p.setCosto(5.0);
-            p.setNome("carne");
+            p.setNome("carne al sugo");
             p.setUrl_immagine("images/carne.jpg");
-            ArrayList<String> l = new ArrayList<String>();
-            l.add("pasta");
-            p.setListaMaterieNonModificabili(l);
-            p.setListaMaterieSottraibili(l);
-            p.setListaPossibiliAggiunte(l);
+            
+            nonMod.add("carne");
+            nonMod.add("sugo");
+
+
+            sott.add("sale");
+            sott.add("olio");
+            possAgg.add("pepe");
+            possAgg.add("origano");
+            p.setListaMaterieNonModificabili(nonMod);
+            p.setListaMaterieSottraibili(sott);
+            p.setListaPossibiliAggiunte(possAgg);
             piattoFacade.create(p);
 
             Piatto p1 = new Piatto();
@@ -117,11 +126,18 @@ public class Servlet1 extends HttpServlet {
             p1.setCosto(5.0);
             p1.setNome("focaccia");
             p1.setUrl_immagine("images/focaccia.jpg");
-            ArrayList<String> l1 = new ArrayList<String>();
-            l.add("farina");
-            p1.setListaMaterieNonModificabili(l1);
-            p1.setListaMaterieSottraibili(l1);
-            p1.setListaPossibiliAggiunte(l1);
+            nonMod.clear();
+            nonMod.add("farina");
+            nonMod.add("formaggio");
+            sott.clear();
+            sott.add("sale");
+            sott.add("prosciutto");
+            possAgg.clear();
+            possAgg.add("sugo");
+
+            p1.setListaMaterieNonModificabili(nonMod);
+            p1.setListaMaterieSottraibili(sott);
+            p1.setListaPossibiliAggiunte(possAgg);
             piattoFacade.create(p1);
 
             Piatto p2 = new Piatto();
@@ -130,13 +146,20 @@ public class Servlet1 extends HttpServlet {
             p2.setCosto(5.0);
             p2.setNome("tagliatelle al sugo");
             p2.setUrl_immagine("images/pasta.jpg");
-            ArrayList<String> l2 = new ArrayList<String>();
-            l2.add("farina");
-            p2.setListaMaterieNonModificabili(l2);
-            p2.setListaMaterieSottraibili(l2);
-            p2.setListaPossibiliAggiunte(l2);
+            nonMod.clear();
+            nonMod.add("farina");
+            nonMod.add("sugo");
+            sott.clear();
+            sott.add("sale");
+            sott.add("uovo");
+            possAgg.clear();
+            possAgg.add("formaggio");
+            possAgg.add("basilico");
+            p2.setListaMaterieNonModificabili(nonMod);
+            p2.setListaMaterieSottraibili(sott);
+            p2.setListaPossibiliAggiunte(possAgg);
             piattoFacade.create(p2);
-
+            */
 
             /*
             Piatto p1 = new Piatto();

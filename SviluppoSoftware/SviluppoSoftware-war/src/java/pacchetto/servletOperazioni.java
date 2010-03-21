@@ -53,7 +53,6 @@ public class servletOperazioni extends HttpServlet {
         PrintWriter out = response.getWriter();
         ServletContext sc = getServletContext();
         RequestDispatcher rd;
-
         String operazione = request.getParameter("operazione");
         
 
@@ -78,7 +77,7 @@ public class servletOperazioni extends HttpServlet {
              rd.forward(request,response);
             }
         //configurazione piatto accettata
-        if(operazione.equals("AccettaConfigurazione"))
+        if(operazione.equals("Accetta"))
             {
                 Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");
                 ArrayList<String> materieSottraibili = p.getMaterieSottraibili();
@@ -93,15 +92,15 @@ public class servletOperazioni extends HttpServlet {
                 cp.setUrl_immagine(p.getUrl_immagine());
                 cp.setCosto(p.getCosto());
                 
-                request.getSession().removeAttribute("piatto_selezionato");
+                
 
                 Enumeration names = request.getParameterNames();
 
                 List<String> aList = Collections.list(names);
-                aList.remove("AccettaConfigurazione");
+                
                 ArrayList<String> aggiunte = new ArrayList<String>();
                 ArrayList<String> sottratte = new ArrayList<String>();
-
+                aList.remove("operazione");
                 for(String a : aList)
                     {String result = request.getParameter(a);
                      if(result.equals("ON"))
@@ -121,6 +120,10 @@ public class servletOperazioni extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet servletOperazioni at " + request.getContextPath () + "</h1>");
+            out.println("aList: " + aList.toString());
+            out.println("aggiunte: " + aggiunte.toString());
+            out.println("sottratte: " + sottratte.toString());
+
             out.println("PROVA");
             out.println("</body>");
             out.println("</html>");

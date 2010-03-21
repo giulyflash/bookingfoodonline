@@ -40,7 +40,7 @@
               <td><%=m%></td>
           </tr>
           <%}%>
-    <input type="submit"  value="AccettaConfigurazione" name="operazione"  />
+    <input type="submit"  value="Accetta" name="operazione"  />
     </tbody>
 
 
