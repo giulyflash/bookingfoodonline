@@ -33,6 +33,7 @@
               <li><a href="servletOperazioni?servizio=facebook">Facebook</a></li>
               <li><a href="servletOperazioni?servizio=twitter">Twitter</a></li>
               <li><a href="servletOperazioni?servizio=organizza_evento">Organizza il tuo evento</a></li>
+              <li><a href="Servlet1">Servlet1</a></li>
             </ul>
           </li>
           
