@@ -18,6 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import prova.*;
 import java.lang.String;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+
+
 
 
 
@@ -28,6 +33,8 @@ import java.lang.String;
 public class servletOperazioni extends HttpServlet {
     @EJB
     private GestorePiattoBeanLocal gestorePiattoBean;
+
+
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -46,19 +53,93 @@ public class servletOperazioni extends HttpServlet {
         PrintWriter out = response.getWriter();
         ServletContext sc = getServletContext();
         RequestDispatcher rd;
-        String categoria = request.getParameter("categoria");
+
+        String operazione = request.getParameter("operazione");
+        
 
 
         //RICERCA CATEGORIA
-        if(categoria!=null)
-            {List<Piatto> listaPiatti  = gestorePiattoBean.findPiattiPerCategoria(categoria);
-             s.setAttribute("lista",listaPiatti);
-             rd = sc.getRequestDispatcher("/CategoriePiatti/PiattiPerCategoria.jsp");
+        if(operazione.equals("ricercaPerCategoria")){
+            String categoria = request.getParameter("categoria");
+            if(categoria!=null)
+                {List<Piatto> listaPiatti  = gestorePiattoBean.findPiattiPerCategoria(categoria);
+                 s.setAttribute("lista",listaPiatti);
+                 rd = sc.getRequestDispatcher("/CategoriePiatti/PiattiPerCategoria.jsp");
+                 rd.forward(request,response);
+                }
+        }
+          //GESTIONE PIATTO        
+        if(operazione.equals("selezione_piatto"))
+            {String id = request.getParameter("id");
+             Long i = Long.valueOf(id);
+             Piatto p = gestorePiattoBean.findPiatto(Long.valueOf(id));
+             s.setAttribute("piatto_selezionato", p);
+             rd = sc.getRequestDispatcher("/Box/configurazionePiatto.jsp");
              rd.forward(request,response);
             }
+        //configurazione piatto accettata
+        if(operazione.equals("AccettaConfigurazione"))
+            {
+                Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");
+                ArrayList<String> materieSottraibili = p.getMaterieSottraibili();
+                ArrayList<String> possibiliAggiunte = p.getListaPossibiliAggiunte();
+                ArrayList<String> nonModificabili = p.getMaterieNonModificabili();
+                ConfigurazionePiatto cp = new ConfigurazionePiatto();
+                cp.setListaMaterieNonModificabili(nonModificabili);
+                cp.setListaMaterieSottraibili(materieSottraibili);
+                cp.setListaPossibiliAggiunte(possibiliAggiunte);
+                cp.setCategoria(p.getCategoria());
+                cp.setNome(p.getNome());
+                cp.setUrl_immagine(p.getUrl_immagine());
+                cp.setCosto(p.getCosto());
+                
+                request.getSession().removeAttribute("piatto_selezionato");
+
+                Enumeration names = request.getParameterNames();
+
+                List<String> aList = Collections.list(names);
+                aList.remove("AccettaConfigurazione");
+                ArrayList<String> aggiunte = new ArrayList<String>();
+                ArrayList<String> sottratte = new ArrayList<String>();
+
+                for(String a : aList)
+                    {String result = request.getParameter(a);
+                     if(result.equals("ON"))
+                        {aggiunte.add(a);
+                        }
+                     else
+                         sottratte.add(a);
+                     }
+
+               cp.setAggiunte(aggiunte);
+               cp.setSottratte(sottratte);
+               request.getSession().setAttribute("piattoconfigurato", cp);
+
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet servletOperazioni</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet servletOperazioni at " + request.getContextPath () + "</h1>");
+            out.println("PROVA");
+            out.println("</body>");
+            out.println("</html>");
+            
+            //String[] values = request.getParameterValues("OFF");
+              
+              //out.println(request.getParameter(aList.get(1)));
+            
+          //  out.println(aList.toString());
+//out.println(values.toString());
+            //List bList =Arrays.asList(values);
 
 
 
+//Create ArrayList from Enumeraton of Vector
+//e collezione
+ //ArrayList aList = Collections.list(e);
+
+        }
              
              /*
              out.println("<html>");
