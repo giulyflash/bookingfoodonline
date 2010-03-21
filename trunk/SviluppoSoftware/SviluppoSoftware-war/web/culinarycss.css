@@ -56,11 +56,13 @@ p {
 blockquote {
 }
 
-ul, ol, li {
+ul, ol, li,ti {
 	margin: 0px;
 	padding: 0px;
 	list-style: none;
 }
+
+
 
 a {
 	text-decoration: underline;
@@ -462,5 +464,34 @@ a:hover {
 #categoria_piatto
 {   text-align:left;
     color:red;
+    
 }
 
+tit{
+    color:red;
+    margin-left:5em;
+    margin-top: 3em;
+}
+
+#piatto_info{
+   color:red;
+   
+    margin-top: 1.5em;
+}
+
+#im_piatto{
+   
+    margin-left:3em;
+    float:left;
+}
+
+#dati_piatto{
+   
+    margin-left:15em;
+        
+}
+
+#scelta_configurazione{
+    margin-top:9em;
+
+}

@@ -12,7 +12,7 @@
 
     <thead>
         <tr>
-            <th>Immagine</th>
+            <th></th>
             <th>Nome</th>
             <th>Prezzo</th>
         </tr>
@@ -22,14 +22,18 @@
              if(request.getSession().getAttribute("lista") !=null){
                listaPiatti=(List<Piatto>)request.getSession().getAttribute("lista");
            %>
-          <%for(Piatto p: listaPiatti){ %>
-          <% String url = p.getUrl_immagine();
+          <%for(int i=0;i<listaPiatti.size();i++){ %>
+          <% String url = listaPiatti.get(i).getUrl_immagine();
+          Long id = listaPiatti.get(i).getId();
+          String a= String.valueOf(id);
           %>
           <tr>
-              <td><img src= <%=url%> alt="immagine" ></td>
-            <td><%= p.getNome()%></td>
-            <td><%= p.getCosto()%></td>
-
+              
+              <td><a href="servletOperazioni?operazione=selezione_piatto&id=<%=listaPiatti.get(i).getId().toString()%>">
+                      <img src= <%=url%> alt="immagine" ></a></td>
+                      <td><a href="servletOperazioni?operazione=selezione_piatto&id=<%=listaPiatti.get(i).getId().toString()%>">
+                      <%=listaPiatti.get(i).getNome()%></a></td>
+              <td><%= listaPiatti.get(i).getCosto()%></td>
           </tr>
         <%}}%>
     </tbody>

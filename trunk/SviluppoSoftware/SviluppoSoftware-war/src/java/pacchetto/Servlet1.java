@@ -98,7 +98,7 @@ public class Servlet1 extends HttpServlet {
 
       
 
-            Piatto p = new Piatto();
+          /*  Piatto p = new Piatto();
             p.setId(Long.MIN_VALUE);
             p.setCategoria("secondi");
             p.setCosto(5.0);

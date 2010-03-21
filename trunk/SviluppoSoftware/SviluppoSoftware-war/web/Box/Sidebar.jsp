@@ -19,20 +19,20 @@
           <li>
             <h2 class="categories">Categorie</h2>
             <ul>
-              <li><a href="servletOperazioni?categoria=primi">Primi</a></li>
-              <li><a href="servletOperazioni?categoria=secondi">Secondi</a></li>
-              <li><a href="servletOperazioni?categoria=contorni">Contorni</a></li>
-              <li><a href="servletOperazioni?categoria=dessert">Dessert</a></li>
-              <li><a href="servletOperazioni?categoria=bevande">Bevande</a></li>
-              <li><a href="servletOperazioni?categoria=vini">Vini</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=primi">Primi</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=secondi">Secondi</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=contorni">Contorni</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=dessert">Dessert</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=bevande">Bevande</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=vini">Vini</a></li>
             </ul>
           </li>
           <li>
             <h2>Servizi</h2>
             <ul>
-              <li><a href="servletOperazioni.java?servizio=facebook">Facebook</a></li>
-              <li><a href="servletOperazioni.java?servizio=twitter">Twitter</a></li>
-              <li><a href="servletOperazioni.java?servizio=organizza_evento">Organizza il tuo evento</a></li>
+              <li><a href="servletOperazioni?servizio=facebook">Facebook</a></li>
+              <li><a href="servletOperazioni?servizio=twitter">Twitter</a></li>
+              <li><a href="servletOperazioni?servizio=organizza_evento">Organizza il tuo evento</a></li>
             </ul>
           </li>
           
