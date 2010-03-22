@@ -13,59 +13,80 @@ import javax.persistence.Id;
 
 /**
  *
- * @author Matteo
+ * @author dani1913
  */
 @Entity
 public class Amministratore implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
-    private String pswd;
+    private String id;
+    private String nome;
+    private String cognome;
+    private String password;
 
     /**
-     * Get the value of pswd
+     * Get the value of password
      *
-     * @return the value of pswd
+     * @return the value of password
      */
-    public String getPswd() {
-        return pswd;
+    public String getPassword() {
+        return password;
     }
 
     /**
-     * Set the value of pswd
+     * Set the value of password
      *
-     * @param pswd new value of pswd
+     * @param password new value of password
      */
-    public void setPswd(String pswd) {
-        this.pswd = pswd;
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
+    /**
+     * Get the value of cognome
+     *
+     * @return the value of cognome
+     */
+    public String getCognome() {
+        return cognome;
     }
 
     /**
-     * Get the value of username
+     * Set the value of cognome
      *
-     * @return the value of username
+     * @param cognome new value of cognome
      */
-    public String getUsername() {
-        return username;
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+
+    /**
+     * Get the value of nome
+     *
+     * @return the value of nome
+     */
+    public String getNome() {
+        return nome;
     }
 
     /**
-     * Set the value of username
+     * Set the value of nome
      *
-     * @param username new value of username
+     * @param nome new value of nome
      */
-    public void setUsername(String username) {
-        this.username = username;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -91,7 +112,7 @@ public class Amministratore implements Serializable {
 
     @Override
     public String toString() {
-        return "Prova.Amministratore[id=" + id + "]";
+        return "prova.Amministratore[id=" + id + "]";
     }
 
 }
