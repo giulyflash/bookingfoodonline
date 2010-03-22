@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import prova.Amministratore;
+import prova.GestoreAmministratoreLocal;
 import prova.GestoreUtenteRegistratoLocal;
 import prova.UtenteRegistrato;
 
@@ -23,6 +25,8 @@ import prova.UtenteRegistrato;
  * @author dani1913
  */
 public class LoginServlet extends HttpServlet {
+    @EJB
+    private GestoreAmministratoreLocal gestoreAmministratore;
     @EJB
     private GestoreUtenteRegistratoLocal gestoreUtenteRegistrato;
     
@@ -45,8 +49,10 @@ public class LoginServlet extends HttpServlet {
         RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
         RequestDispatcher err = getServletContext().getRequestDispatcher("/Pages/error.jsp");
         RequestDispatcher gotReg = getServletContext().getRequestDispatcher("/Pages/gotReg.jsp");
-        
-        UtenteRegistrato tmp;
+        RequestDispatcher admin_panel = getServletContext().getRequestDispatcher("/admin/admin_panel.jsp");
+
+        Amministratore tmp_admin;
+        UtenteRegistrato tmp_user;
 
         try {
             
@@ -59,15 +65,23 @@ public class LoginServlet extends HttpServlet {
             if (operazione == null)
                 index.forward(request, response);
 
-            //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
+            
             if(operazione.equals("login")){
-                tmp=gestoreUtenteRegistrato.findUser(id);
-                if (tmp!=null && tmp.getPassword().equals(password)) {
+                // Controllo che non sia l' amministratore
+                tmp_admin=gestoreAmministratore.findAdmin(id);
+                if (tmp_admin!=null && tmp_admin.getPassword().equals(password)) {
                     session.setAttribute("login", id);
-                    welcome.forward(request, response);
+                    admin_panel.forward(request, response);
                 }
-                else
-                    err.forward(request, response);
+                //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
+                else{
+                    tmp_user=gestoreUtenteRegistrato.findUser(id);
+                    if (tmp_user!=null && tmp_user.getPassword().equals(password)) {
+                        session.setAttribute("login", id);
+                        welcome.forward(request, response);
+                    }
+                    else
+                        err.forward(request, response);
                 }
 
 
@@ -77,19 +91,21 @@ public class LoginServlet extends HttpServlet {
 
             //dati registrazione inviati dall' utente e storaging
             if(operazione.equals("datiRegistrazione")){
-                tmp = new UtenteRegistrato();
-                tmp.setId(request.getParameter("username"));
-                tmp.setPassword(request.getParameter("password"));
-                tmp.setNome(request.getParameter("nome"));
-                tmp.setCognome(request.getParameter("cognome"));
-                tmp.setMail(request.getParameter("mail"));
-                tmp.setIndirizzo(request.getParameter("indirizzo"));
-                tmp.setN_cartacredito(request.getParameter("n_cartacredito"));
-                gestoreUtenteRegistrato.addUser(tmp);
+                tmp_user = new UtenteRegistrato();
+                tmp_user.setId(request.getParameter("username"));
+                tmp_user.setPassword(request.getParameter("password"));
+                tmp_user.setNome(request.getParameter("nome"));
+                tmp_user.setCognome(request.getParameter("cognome"));
+                tmp_user.setMail(request.getParameter("mail"));
+                tmp_user.setIndirizzo(request.getParameter("indirizzo"));
+                tmp_user.setN_cartacredito(request.getParameter("n_cartacredito"));
+                gestoreUtenteRegistrato.addUser(tmp_user);
                 
                 // pagina risultato
                 gotReg.forward(request, response);
             }
+
+          }
 
         } finally { 
             out.close();
