@@ -44,12 +44,13 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         // Recupero i riferimenti alle pagine
-        RequestDispatcher index = getServletContext().getRequestDispatcher("/Box/index.jsp");
+        RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
         RequestDispatcher welcome = getServletContext().getRequestDispatcher("/Pages/welcomePage.jsp");
         RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
         RequestDispatcher err = getServletContext().getRequestDispatcher("/Pages/error.jsp");
         RequestDispatcher gotReg = getServletContext().getRequestDispatcher("/Pages/gotReg.jsp");
         RequestDispatcher admin_panel = getServletContext().getRequestDispatcher("/admin/admin_panel.jsp");
+
 
         Amministratore tmp_admin;
         UtenteRegistrato tmp_user;
@@ -58,8 +59,6 @@ public class LoginServlet extends HttpServlet {
             
             // sezione login utente
             String operazione=request.getParameter("op");
-            String id=request.getParameter("username");
-            String password=request.getParameter("password");
             
             
             if (operazione == null)
@@ -68,6 +67,9 @@ public class LoginServlet extends HttpServlet {
             
             if(operazione.equals("login")){
                 // Controllo che non sia l' amministratore
+                String id=request.getParameter("username");
+                String password=request.getParameter("password");
+
                 tmp_admin=gestoreAmministratore.findAdmin(id);
                 if (tmp_admin!=null && tmp_admin.getPassword().equals(password)) {
                     session.setAttribute("login", id);
@@ -83,6 +85,7 @@ public class LoginServlet extends HttpServlet {
                     else
                         err.forward(request, response);
                 }
+            }
 
 
             //richiesta registrazione dell' utente
@@ -105,7 +108,14 @@ public class LoginServlet extends HttpServlet {
                 gotReg.forward(request, response);
             }
 
-          }
+            //operazione di logout
+            if(operazione.equals("logout")){
+                session.invalidate();
+                index.forward(request, response);
+            }
+
+
+          
 
         } finally { 
             out.close();
