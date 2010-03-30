@@ -10,7 +10,6 @@
 <form name="selezione_piatto" action="servletOperazioni" method="POST">
 
 <table id="minimalista-righe">
-
     <thead>
         <tr>
             <th>Aggiungi</th>
@@ -23,8 +22,7 @@
            <%   Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");                
            %>
            <%for(String m:p.getListaPossibiliAggiunte())
-               {%>
-    
+               {%>    
 
           <tr>
               <td><input type="checkbox" name="<%=m%>" value="ON"/>
@@ -40,10 +38,8 @@
               <td><%=m%></td>
           </tr>
           <%}%>
-    <input type="submit"  value="Accetta" name="operazione"  />
+    <input type="submit"  value="Accetta" name="operazione"/>
     </tbody>
-
-
 </table>
 </form>
 
