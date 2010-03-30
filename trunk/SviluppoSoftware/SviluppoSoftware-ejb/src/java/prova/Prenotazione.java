@@ -6,6 +6,7 @@
 package prova;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 public class Prenotazione {
     private Long id;
     private long idUtente;
-    private ArrayList<ConfigurazionePiatto> ListaPiatti;
+    private HashMap<Integer,ConfigurazionePiatto> mappaPiatti;
     private double prezzo=0;
     private String zona;
     private String indirizzo;
@@ -63,7 +64,9 @@ public class Prenotazione {
      * @return the value of prezzo
      */
     public double getPrezzo() {
-        return prezzo;
+        //if(Math.floor(prezzo * 100.0) / 100.0<1)
+          // return 0;
+        return Math.floor(prezzo * 100.0) / 100.0;
     }
 
     /**
@@ -71,8 +74,11 @@ public class Prenotazione {
      *
      * @param prezzo new value of prezzo
      */
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
+    public void setPrezzo(double p) {
+        if((Math.floor(p * 100.0) / 100.0)<1)
+            this.prezzo = 0.0;
+        else
+            this.prezzo = Math.floor(p * 100.0) / 100.0;
     }
 
 
@@ -81,8 +87,8 @@ public class Prenotazione {
      *
      * @return the value of ListaPiatti
      */
-    public ArrayList<ConfigurazionePiatto> getListaPiatti() {
-        return ListaPiatti;
+    public HashMap<Integer,ConfigurazionePiatto> getMappaPiatti(){
+        return this.mappaPiatti;
     }
 
     /**
@@ -90,10 +96,11 @@ public class Prenotazione {
      *
      * @param ListaPiatti new value of ListaPiatti
      */
-    public void setListaPiatti(ArrayList<ConfigurazionePiatto> ListaPiatti) {
-        this.ListaPiatti = ListaPiatti;
+    public void setMappaPiatti(HashMap<Integer,ConfigurazionePiatto> mappaPiatti) {
+        this.mappaPiatti = mappaPiatti;
     }
 
+    
 
     /**
      * Get the value of idUtente

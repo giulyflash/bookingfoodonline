@@ -106,7 +106,7 @@ public class Piatto implements Serializable {
      * @return the value of costo
      */
     public Double getCosto() {
-        return costo;
+        return   Math.floor(costo * 100.0) / 100.0;
     }
 
     /**
@@ -114,8 +114,11 @@ public class Piatto implements Serializable {
      *
      * @param costo new value of costo
      */
-    public void setCosto(Double costo) {
-        this.costo = costo;
+    public void setCosto(Double c) {
+        if((Math.floor(c * 100.0) / 100.0)<1)
+            this.costo=0.0;
+        else
+            this.costo = Math.floor(c * 100.0) / 100.0;
     }
 
     /**
@@ -188,12 +191,6 @@ public class Piatto implements Serializable {
         return listaMaterieNonModificabili;
     }
     
-   /* public ArrayList<String> getMateriePrime(){
-        ArrayList<String> materiePrime = listaPossibiliAggiunte;
-        materiePrime.addAll(listaMaterieNonModificabili);
-        materiePrime.removeAll(listaMaterieSottraibili);
-        return materiePrime;
-    }*/
 
     public boolean deleteMateriaSottraibile(MateriaPrima materia){
         if(!listaMaterieSottraibili.isEmpty())
