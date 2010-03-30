@@ -15,6 +15,26 @@ public class ConfigurazionePiatto extends Piatto {
 
     private ArrayList<String> aggiunte; //aggiunte effettuate nella configurazione
     private ArrayList<String> sottratte;
+    private int qnt=1;
+
+    /**
+     * Get the value of qnt
+     *
+     * @return the value of qnt
+     */
+    public int getQnt() {
+        return qnt;
+    }
+
+    /**
+     * Set the value of qnt
+     *
+     * @param qnt new value of qnt
+     */
+    public void setQnt(int qnt) {
+        this.qnt = qnt;
+    }
+
 
     /**
      * Get the value of sottratte

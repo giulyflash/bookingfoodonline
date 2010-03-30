@@ -27,7 +27,7 @@ public class Piatto implements Serializable {
     private Double costo;
     private String categoria;
     private String url_immagine;
-
+    
     private ArrayList<String> listaMaterieSottraibili= new ArrayList<String>();
     private ArrayList<String> listaMaterieNonModificabili= new ArrayList<String>();
     private ArrayList<String> listaPossibiliAggiunte = new ArrayList<String>();
