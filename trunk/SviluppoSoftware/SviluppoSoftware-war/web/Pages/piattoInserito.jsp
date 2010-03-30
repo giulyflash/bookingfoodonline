@@ -5,9 +5,9 @@
         <div class="post">
           <h2 class="title"><a href="#">Mello uomo del sud</a></h2>
           <div class="entry">
-              <p>Questa è la pagina dell' amministratore.</p>
-              Da qui puoi <a href="OperazioniAmministratore?op=insertPiatto">inserire</a>, <a href="#">modificare</a> o <a href="#">cancellare</a> un piatto.
-              
+              <p>Piatto inserito con successo!</p>
+              Vuoi ancora <a href="OperazioniAmministratore?op=insertPiatto">inserire</a>, <a href="#">modificare</a> o <a href="#">cancellare</a> un piatto?
+
           </div>
         </div>
 
@@ -22,3 +22,4 @@
     </div>
   </div>  <!-- end div#page -->
 </div>
+
