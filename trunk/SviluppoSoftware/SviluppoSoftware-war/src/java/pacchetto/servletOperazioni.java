@@ -95,12 +95,12 @@ public class servletOperazioni extends HttpServlet {
                 
 
                 Enumeration names = request.getParameterNames();
-
                 List<String> aList = Collections.list(names);
                 
                 ArrayList<String> aggiunte = new ArrayList<String>();
                 ArrayList<String> sottratte = new ArrayList<String>();
                 aList.remove("operazione");
+                
                 for(String a : aList)
                     {String result = request.getParameter(a);
                      if(result.equals("ON"))
@@ -112,40 +112,78 @@ public class servletOperazioni extends HttpServlet {
 
                cp.setAggiunte(aggiunte);
                cp.setSottratte(sottratte);
-               request.getSession().setAttribute("piattoconfigurato", cp);
-
-            out.println("<html>");
+               cp.setCosto(cp.calcolaTotale());
+               //request.getSession().setAttribute("piattoconfigurato", cp);
+               Prenotazione pr = null;
+               ArrayList<ConfigurazionePiatto> lcp = new ArrayList<ConfigurazionePiatto>();
+               out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet servletOperazioni</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet servletOperazioni at " + request.getContextPath () + "</h1>");
+               if(request.getSession().getAttribute("prenotazione")==null){
+                    pr = new Prenotazione();
+                    pr.setPrezzo(cp.getCosto());
+                    lcp.add(cp);
+                    pr.setListaPiatti(lcp);
+                    request.getSession().setAttribute("prenotazione", pr);
+                    
+               }
+               else{
+                   pr= (Prenotazione)request.getSession().getAttribute("prenotazione");
+                   lcp= pr.getListaPiatti();
+                   pr.setPrezzo(pr.getPrezzo()+cp.getCosto());
+                   lcp.add(cp);
+                   request.getSession().setAttribute("prenotazione", pr);                   
+               } 
+               rd = sc.getRequestDispatcher("/Box/carrello.jsp");
+               rd.forward(request,response);
+
+
+
+            
             out.println("aList: " + aList.toString());
             out.println("aggiunte: " + aggiunte.toString());
             out.println("sottratte: " + sottratte.toString());
 
             out.println("PROVA");
             out.println("</body>");
-            out.println("</html>");
-            
-            //String[] values = request.getParameterValues("OFF");
-              
-              //out.println(request.getParameter(aList.get(1)));
-            
-          //  out.println(aList.toString());
-//out.println(values.toString());
-            //List bList =Arrays.asList(values);
-
-
-
-//Create ArrayList from Enumeraton of Vector
-//e collezione
- //ArrayList aList = Collections.list(e);
+            out.println("</html>");        
 
         }
+        if(operazione.equals("aggiorna"))
+         {String ind = (String)request.getParameter("indice");
+          int quantita = Integer.parseInt(request.getParameter("quantita"));
+          Prenotazione p = (Prenotazione)request.getSession().getAttribute("prenotazione");
+          ArrayList<ConfigurazionePiatto> lcp = p.getListaPiatti();
+          double prezzo = p.getPrezzo();
+          ConfigurazionePiatto cp=lcp.get(Integer.parseInt(ind));
+          prezzo = prezzo+(cp.getCosto()*quantita)-(cp.getCosto()*cp.getQnt());
+          cp.setQnt(quantita);
+          lcp.set(Integer.parseInt(ind), cp);
+          p.setListaPiatti(lcp);
+          p.setPrezzo(prezzo);
+          request.getSession().setAttribute("prenotazione", p);
+          rd = sc.getRequestDispatcher("/Box/carrello.jsp");
+          rd.forward(request,response);
+         }
+
+        if(operazione.equals("cancella"))
+         {String ind = (String)request.getParameter("indice");
+          Prenotazione p = (Prenotazione)request.getSession().getAttribute("prenotazione");
+          ArrayList<ConfigurazionePiatto> lcp = p.getListaPiatti();
+          ConfigurazionePiatto cp= lcp.remove(Integer.parseInt(ind));
+          p.setListaPiatti(lcp);
+          double prezzo = p.getPrezzo();
+          prezzo= prezzo-(cp.getCosto()*cp.getQnt());
+          p.setPrezzo(prezzo);
+          request.getSession().setAttribute("prenotazione", p);
+          rd = sc.getRequestDispatcher("/Box/carrello.jsp");
+          rd.forward(request,response);
+        }
              
-             /*
-             out.println("<html>");
+             /*out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet servletOperazioni</title>");
             out.println("</head>");

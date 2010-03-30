@@ -30,18 +30,7 @@
   <div id="page">
     <div id="page-bgtop">
       <div id="content">
-        <%  Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");
-            ArrayList<String> materieSottraibili = p.getMaterieSottraibili();
-            ArrayList<String> possibiliAggiunte = p.getListaPossibiliAggiunte();
-            ArrayList<String> nonModificabili = p.getMaterieNonModificabili();
-            ConfigurazionePiatto cp = new ConfigurazionePiatto();
-            cp.setListaMaterieNonModificabili(nonModificabili);
-            cp.setListaMaterieSottraibili(materieSottraibili);
-            cp.setListaPossibiliAggiunte(possibiliAggiunte);
-            cp.setCategoria(p.getCategoria());
-            cp.setNome(p.getNome());
-            cp.setUrl_immagine(p.getUrl_immagine());
-            cp.setCosto(p.getCosto());
+        <%  Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");            
         %>
 
         <tit>
@@ -72,7 +61,7 @@
                 </tbody>
             </table>
 
-            <%for(String a:nonModificabili){%>
+            <%for(String a:p.getMaterieNonModificabili()){%>
                <b><%=a%></b>
                <%}%>
            </div>

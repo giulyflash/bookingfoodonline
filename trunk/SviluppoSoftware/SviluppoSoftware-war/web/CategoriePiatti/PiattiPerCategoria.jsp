@@ -43,6 +43,6 @@
       <div style="clear: both; height: 1px"></div>
     </div>
   </div>  <!-- end div#page -->
-</div>
+
 <!-- end div#wrapper -->
 </body>
