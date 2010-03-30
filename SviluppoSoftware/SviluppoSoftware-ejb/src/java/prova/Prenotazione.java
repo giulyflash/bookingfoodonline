@@ -15,7 +15,7 @@ public class Prenotazione {
     private Long id;
     private long idUtente;
     private ArrayList<ConfigurazionePiatto> ListaPiatti;
-    private double prezzo;
+    private double prezzo=0;
     private String zona;
     private String indirizzo;
 
