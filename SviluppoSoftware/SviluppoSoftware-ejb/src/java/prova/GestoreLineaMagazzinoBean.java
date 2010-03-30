@@ -50,13 +50,13 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
         int quantita;
         int n_rifornimenti;
         ArrayList<String> listaMaterie;
-        ArrayList<ConfigurazionePiatto> piatti = p.getListaPiatti();
+        ConfigurazionePiatto[] piatti = p.getMappaPiatti().values().toArray(new ConfigurazionePiatto[p.getMappaPiatti().size()]);
 
 
             
 
-       for(ConfigurazionePiatto cp: piatti){
-            listaMaterie= cp.materiePrime();
+       for(int i=0;i<p.getMappaPiatti().size();i++){
+            listaMaterie= piatti[i].materiePrime();
             ot.println(listaMaterie);
             for(String nome:listaMaterie){
                 ot.println("agòiehgoòaeihgioawe");
