@@ -20,8 +20,11 @@
       <div id="content">
         <div class="post">
             <%Prenotazione p = (Prenotazione)request.getSession().getAttribute("prenotazione");
-              ArrayList<ConfigurazionePiatto> lcp = p.getListaPiatti();
-              Double totale = p.getPrezzo();
+             HashMap<Integer,ConfigurazionePiatto> hm = p.getMappaPiatti();
+             double totale = p.getPrezzo();
+              Set<Integer> set= hm.keySet();
+              Integer[] key =set.toArray(new Integer[hm.size()]);
+              ConfigurazionePiatto[] lcp = (hm.values()).toArray(new ConfigurazionePiatto[hm.size()]);
             %>
         <table id="minimalista-righe">
         <thead>
@@ -34,35 +37,36 @@
             </tr>
     </thead>
     <tbody>
-        <% int i=0;
-        for(ConfigurazionePiatto cp:lcp){%>
+        <% 
+        for(int i=0;i<hm.size();i++){%>
         <tr>
-            <td><%=cp.getNome()%></td>
-            <td><%=cp.getCosto()%></td>
+            <td><%=lcp[i].getNome()%></td>
+            <td><%=lcp[i].getCosto()%></td>
 
             <td><form method="POST" action="servletOperazioni">                    
-                    <input type="text" name="quantita" value="<%=cp.getQnt()%>" size="10" maxlength="5"   />
+                    <input type="text" name="quantita" value="<%=lcp[i].getQnt()%>" size="10" maxlength="5"   />
                     <input type="submit"  name="operazione" value="aggiorna"/>
-                    <input type="hidden"name="indice"value="<%=String.valueOf(i)%>"/>
+                    <input type="hidden"name="indice"value="<%=String.valueOf(key[i])%>"/>
                 </form>
             </td>
-            <td><%=cp.getCosto()*cp.getQnt()%></td>
+            <td><%=Math.floor(lcp[i].getCosto()*lcp[i].getQnt() * 100.0) / 100.0%></td>
             <td><form method="POST" action="servletOperazioni">
                 <input type="submit"name="operazione" value="cancella"/>
-                <input type="hidden"name="indice"value="<%=String.valueOf(i)%>"/></form></td>
+                <input type="hidden"name="indice"value="<%=String.valueOf(key[i])%>"/></form></td>
         </tr>
-        <%i++;
-        }%>
+        <%}%>
 
     </tbody>
     <tbody><tr>
             <td align="center" colspan="4">Prezzo totale ordine</td>
-        <td align="center"><b><%=p.getPrezzo()%></b></td>
+        <td align="center"><b><%=totale%></b></td>
         </tr>
     </tbody>
             
      </table>
-        
+
+              <a href="index.jsp">Continua lo shopping</a>
+              <a href="Pages/register.jsp" ><img src="images/button_prosegui.gif" ></a>
           </div>
         </div>
         

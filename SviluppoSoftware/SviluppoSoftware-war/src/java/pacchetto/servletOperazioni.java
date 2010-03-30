@@ -1,8 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package pacchetto;
 
 import java.io.IOException;
@@ -21,6 +16,7 @@ import java.lang.String;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
+import java.util.HashMap;
 
 
 
@@ -35,8 +31,8 @@ public class servletOperazioni extends HttpServlet {
     private GestorePiattoBeanLocal gestorePiattoBean;
 
 
-   
-    /** 
+
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
      * @param request servlet request
      * @param response servlet response
@@ -54,7 +50,7 @@ public class servletOperazioni extends HttpServlet {
         ServletContext sc = getServletContext();
         RequestDispatcher rd;
         String operazione = request.getParameter("operazione");
-        
+
 
 
         //RICERCA CATEGORIA
@@ -67,7 +63,7 @@ public class servletOperazioni extends HttpServlet {
                  rd.forward(request,response);
                 }
         }
-          //GESTIONE PIATTO        
+          //GESTIONE PIATTO
         if(operazione.equals("selezione_piatto"))
             {String id = request.getParameter("id");
              Long i = Long.valueOf(id);
@@ -91,16 +87,16 @@ public class servletOperazioni extends HttpServlet {
                 cp.setNome(p.getNome());
                 cp.setUrl_immagine(p.getUrl_immagine());
                 cp.setCosto(p.getCosto());
-                
-                
+
+
 
                 Enumeration names = request.getParameterNames();
                 List<String> aList = Collections.list(names);
-                
+
                 ArrayList<String> aggiunte = new ArrayList<String>();
                 ArrayList<String> sottratte = new ArrayList<String>();
                 aList.remove("operazione");
-                
+
                 for(String a : aList)
                     {String result = request.getParameter(a);
                      if(result.equals("ON"))
@@ -116,73 +112,70 @@ public class servletOperazioni extends HttpServlet {
                //request.getSession().setAttribute("piattoconfigurato", cp);
                Prenotazione pr = null;
                ArrayList<ConfigurazionePiatto> lcp = new ArrayList<ConfigurazionePiatto>();
-               out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet servletOperazioni</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet servletOperazioni at " + request.getContextPath () + "</h1>");
+               HashMap<Integer,ConfigurazionePiatto> hm= new HashMap<Integer,ConfigurazionePiatto>();
                if(request.getSession().getAttribute("prenotazione")==null){
                     pr = new Prenotazione();
                     pr.setPrezzo(cp.getCosto());
-                    lcp.add(cp);
-                    pr.setListaPiatti(lcp);
+                    hm.put(0, cp);
+                    s.setAttribute("indice", 1);
+                    pr.setMappaPiatti(hm);
                     request.getSession().setAttribute("prenotazione", pr);
-                    
                }
                else{
                    pr= (Prenotazione)request.getSession().getAttribute("prenotazione");
-                   lcp= pr.getListaPiatti();
+                   int i =(Integer)s.getAttribute("indice");
+                   hm= pr.getMappaPiatti();
+                   hm.put(i, cp);
                    pr.setPrezzo(pr.getPrezzo()+cp.getCosto());
-                   lcp.add(cp);
-                   request.getSession().setAttribute("prenotazione", pr);                   
-               } 
+                   i++;
+                   s.setAttribute("indice",i);
+                   pr.setMappaPiatti(hm);
+                   request.getSession().setAttribute("prenotazione", pr);
+               }
                rd = sc.getRequestDispatcher("/Box/carrello.jsp");
                rd.forward(request,response);
 
 
 
-            
-            out.println("aList: " + aList.toString());
-            out.println("aggiunte: " + aggiunte.toString());
-            out.println("sottratte: " + sottratte.toString());
 
-            out.println("PROVA");
-            out.println("</body>");
-            out.println("</html>");        
+            
 
         }
         if(operazione.equals("aggiorna"))
-         {String ind = (String)request.getParameter("indice");
+         {
+          String ind = (String)request.getParameter("indice");
           int quantita = Integer.parseInt(request.getParameter("quantita"));
           Prenotazione p = (Prenotazione)request.getSession().getAttribute("prenotazione");
-          ArrayList<ConfigurazionePiatto> lcp = p.getListaPiatti();
+          HashMap<Integer,ConfigurazionePiatto> hm = p.getMappaPiatti();
           double prezzo = p.getPrezzo();
-          ConfigurazionePiatto cp=lcp.get(Integer.parseInt(ind));
-          prezzo = prezzo+(cp.getCosto()*quantita)-(cp.getCosto()*cp.getQnt());
-          cp.setQnt(quantita);
-          lcp.set(Integer.parseInt(ind), cp);
-          p.setListaPiatti(lcp);
-          p.setPrezzo(prezzo);
-          request.getSession().setAttribute("prenotazione", p);
+          ConfigurazionePiatto cp=hm.get(Integer.valueOf(ind));
+          if(cp!=null){
+            prezzo = prezzo+(cp.getCosto()*quantita)-(cp.getCosto()*cp.getQnt());
+            cp.setQnt(quantita);
+            hm.put(Integer.valueOf(ind), cp);
+            p.setMappaPiatti(hm);
+            p.setPrezzo(prezzo);
+            request.getSession().setAttribute("prenotazione", p);
+          }
           rd = sc.getRequestDispatcher("/Box/carrello.jsp");
           rd.forward(request,response);
          }
 
         if(operazione.equals("cancella"))
-         {String ind = (String)request.getParameter("indice");
+         {
+          String ind = (String)request.getParameter("indice");
           Prenotazione p = (Prenotazione)request.getSession().getAttribute("prenotazione");
-          ArrayList<ConfigurazionePiatto> lcp = p.getListaPiatti();
-          ConfigurazionePiatto cp= lcp.remove(Integer.parseInt(ind));
-          p.setListaPiatti(lcp);
-          double prezzo = p.getPrezzo();
-          prezzo= prezzo-(cp.getCosto()*cp.getQnt());
-          p.setPrezzo(prezzo);
-          request.getSession().setAttribute("prenotazione", p);
+          ConfigurazionePiatto cp= p.getMappaPiatti().remove(Integer.valueOf(ind));
+          if(cp!=null){
+            double prezzo = p.getPrezzo();
+            prezzo= prezzo-(cp.getCosto()*cp.getQnt());
+            p.setPrezzo(prezzo);
+            request.getSession().setAttribute("prenotazione", p);
+          }
           rd = sc.getRequestDispatcher("/Box/carrello.jsp");
           rd.forward(request,response);
         }
-             
+
              /*out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet servletOperazioni</title>");
@@ -194,24 +187,25 @@ public class servletOperazioni extends HttpServlet {
             out.println("</html>");
 
 
-             
+
 
 
             /* TODO output your page here
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet servletOperazioni</title>");  
+            out.println("<title>Servlet servletOperazioni</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet servletOperazioni at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
             */
-        
-    } 
+
+    }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /** 
+    /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -222,9 +216,9 @@ public class servletOperazioni extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         processRequest(request, response);
-    } 
+    }
 
-    /** 
+    /**
      * Handles the HTTP <code>POST</code> method.
      * @param request servlet request
      * @param response servlet response
@@ -237,7 +231,7 @@ public class servletOperazioni extends HttpServlet {
         processRequest(request, response);
     }
 
-    /** 
+    /**
      * Returns a short description of the servlet.
      * @return a String containing servlet description
      */
