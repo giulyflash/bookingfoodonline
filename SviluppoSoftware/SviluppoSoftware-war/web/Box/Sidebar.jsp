@@ -27,15 +27,19 @@
               <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=vini">Vini</a></li>
             </ul>
           </li>
-          <li>
-            <h2>Servizi</h2>
-            <ul>
-              <li><a href="servletOperazioni?servizio=facebook">Facebook</a></li>
-              <li><a href="servletOperazioni?servizio=twitter">Twitter</a></li>
-              <li><a href="servletOperazioni?servizio=organizza_evento">Organizza il tuo evento</a></li>
-              <li><a href="Servlet1">Servlet1</a></li>
-            </ul>
-          </li>
-          
+          <% /* inserimento link ai servizi */
+                if (session.getAttribute("login") != null){ %>
+                 
+                 
+                 
+                      <li>
+                        <h2>Servizi</h2>
+                        <ul>
+                          <li><a href="SaasServlet?op=facebook">Facebook</a></li>
+                          <li><a href="#">Twitter</a></li>
+                          <li><a href="#">Organizza il tuo evento</a></li>
+                        </ul>
+                      </li>
+          <%}%>
         </ul>
     
