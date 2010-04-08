@@ -39,7 +39,7 @@ public class PiattoFacade implements PiattoFacadeLocal {
         return em.createQuery("select object(o) from Piatto as o").getResultList();
     }
 
-    public List<Piatto> findPiatto(String name){
+    public List<Piatto> findNomePiatto(String name){
         return em.createQuery("select object(o) from Piatto as o where o.nome like '"+ name + "%'").getResultList();
     }
 

@@ -22,4 +22,6 @@ public interface GestorePiattoBeanLocal {
     public List<Piatto> findPiattiPerCategoria(String categoria);
 
     public Piatto findPiatto(Long id);
+    
+    public List<Piatto>findPiattoPerNome(String nome);
 }
