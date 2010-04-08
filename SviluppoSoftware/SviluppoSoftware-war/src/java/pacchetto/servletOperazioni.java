@@ -63,6 +63,17 @@ public class servletOperazioni extends HttpServlet {
                  rd.forward(request,response);
                 }
         }
+        
+        //RICERCA PER NOME
+        if(operazione.equals("Cerca")){
+            String nomePiatto = request.getParameter("nomePiatto");
+            List<Piatto> listaPiatti  = gestorePiattoBean.findPiattoPerNome(nomePiatto);
+            s.setAttribute("lista",listaPiatti);
+            rd = sc.getRequestDispatcher("/Box/PiattiPerNome.jsp");
+            rd.forward(request,response);
+        }
+
+
           //GESTIONE PIATTO
         if(operazione.equals("selezione_piatto"))
             {String id = request.getParameter("id");
@@ -175,6 +186,8 @@ public class servletOperazioni extends HttpServlet {
           rd = sc.getRequestDispatcher("/Box/carrello.jsp");
           rd.forward(request,response);
         }
+
+       
 
              /*out.println("<html>");
             out.println("<head>");

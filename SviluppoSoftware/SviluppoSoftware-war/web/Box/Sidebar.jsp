@@ -1,9 +1,9 @@
         <ul>
           <li id="search">
             <h2 class="search">Cerca piatto</h2>
-            <form method="post" action="">
-              <input type="text" id="search-text" name="s" value="" />
-              <input type="submit" id="search-submit" value="Cerca" />
+            <form name="ricerca_piatto" action="servletOperazioni" method="POST">
+              <input type="text" id="search-text" name="nomePiatto" value="" />
+              <input type="submit" name="operazione" value="Cerca"id="search-submit"  />
             </form>
           </li>
           <li>
@@ -19,14 +19,26 @@
           <li>
             <h2 class="categories">Categorie</h2>
             <ul>
-              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=primi">Primi</a></li>
-              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=secondi">Secondi</a></li>
-              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=contorni">Contorni</a></li>
-              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=dessert">Dessert</a></li>
-              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=bevande">Bevande</a></li>
-              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=vini">Vini</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Primi">Primi</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Secondi">Secondi</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Contorni">Contorni</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Dessert">Dessert</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Bevande">Bevande</a></li>
+              <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Vini">Vini</a></li>
             </ul>
           </li>
+ 
+          <li>
+            <h2>Servizi</h2>
+            <ul>
+              <li><a href="servletOperazioni?servizio=Facebook">Facebook</a></li>
+              <li><a href="servletOperazioni?servizio=Twitter">Twitter</a></li>
+              <li><a href="servletOperazioni?servizio=Organizza_evento">Organizza il tuo evento</a></li>
+              <li><a href="Servlet1">Servlet1</a></li>
+            </ul>
+          </li>
+          
+
           <% /* inserimento link ai servizi */
                 if (session.getAttribute("login") != null){ %>
                  
@@ -41,5 +53,6 @@
                         </ul>
                       </li>
           <%}%>
+
         </ul>
     

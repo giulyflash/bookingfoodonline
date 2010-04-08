@@ -29,11 +29,11 @@
     <div id="page-bgtop">
       <div id="content">
         <div class="post">
-          <h2 class="title"><a href="#"> <%=request.getParameter("categoria")%></a></h2>
+          <h2 class="title"><a href="#">Risultato ricerca per nome:</a></h2>
           <div id="categoria_piatto"
              <b></b>
         </div>
-             <jsp:include page="/Box/tabella.jsp" />
+             <jsp:include page="/Box/tabellaNome.jsp" />
       </div>
     </div>
 
