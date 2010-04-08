@@ -102,7 +102,7 @@ public class Servlet1 extends HttpServlet {
 
             /*Piatto p = new Piatto();
             p.setId(Long.MIN_VALUE);
-            p.setCategoria("secondi");
+            p.setCategoria("Secondi");
             p.setCosto(5.0);
             p.setNome("carne al sugo");
             p.setUrl_immagine("images/carne.jpg");
@@ -122,7 +122,7 @@ public class Servlet1 extends HttpServlet {
 
             Piatto p1 = new Piatto();
             p1.setId(Long.MIN_VALUE);
-            p1.setCategoria("secondi");
+            p1.setCategoria("Secondi");
             p1.setCosto(5.0);
             p1.setNome("focaccia");
             p1.setUrl_immagine("images/focaccia.jpg");
@@ -142,7 +142,7 @@ public class Servlet1 extends HttpServlet {
 
             Piatto p2 = new Piatto();
             p2.setId(Long.MIN_VALUE);
-            p2.setCategoria("primi");
+            p2.setCategoria("Primi");
             p2.setCosto(5.0);
             p2.setNome("tagliatelle al sugo");
             p2.setUrl_immagine("images/pasta.jpg");
