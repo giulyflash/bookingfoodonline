@@ -39,7 +39,9 @@ public class GestorePiattoBean implements GestorePiattoBeanLocal {
     public Piatto findPiatto(Long id){
         return piattoFacade.find(id);
     }
-
+    public List<Piatto>findPiattoPerNome(String nome){
+        return piattoFacade.findNomePiatto(nome);
+    }
     
  
 }
