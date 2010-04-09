@@ -33,20 +33,43 @@ public class FacebookSocialNetworkingService {
      *
      * @param request
      * @param response
-     * @param format
-     * @param flid
+     * @param recipient
+     * @param eventName
+     * @param message
      * @return an instance of RestResponse
      */
-    public static RestResponse friendsGet(HttpServletRequest request, HttpServletResponse response, String format, String flid) throws IOException {
+    public static RestResponse liveMessageSend(HttpServletRequest request, HttpServletResponse response, String recipient, String eventName, String message) throws IOException {
         String v = "1.0";
-        String method = "facebook.friends.get";
+        String method = "facebook.liveMessage.send";
         FacebookSocialNetworkingServiceAuthenticator.login(request, response);
         String callId = String.valueOf(System.currentTimeMillis());
         String apiKey = FacebookSocialNetworkingServiceAuthenticator.getApiKey(request, response);
         String sessionKey = FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);
-        String sig = FacebookSocialNetworkingServiceAuthenticator.sign(new String[][]{{"api_key", apiKey}, {"session_key", sessionKey}, {"call_id", callId}, {"v", v}, {"format", format}, {"flid", flid}, {"method", method}});
+        String sig = FacebookSocialNetworkingServiceAuthenticator.sign(new String[][]{{"api_key", apiKey}, {"session_key", sessionKey}, {"call_id", callId}, {"v", v}, {"recipient", recipient}, {"event_name", eventName}, {"message", message}, {"method", method}});
         String[][] pathParams = new String[][]{};
-        String[][] queryParams = new String[][]{{"api_key", "" + apiKey + ""}, {"session_key", sessionKey}, {"call_id", callId}, {"sig", sig}, {"v", v}, {"format", format}, {"flid", flid}, {"method", method}};
+        String[][] queryParams = new String[][]{{"api_key", "" + apiKey + ""}, {"session_key", sessionKey}, {"call_id", callId}, {"sig", sig}, {"v", v}, {"recipient", recipient}, {"event_name", eventName}, {"message", message}, {"method", method}};
+        RestConnection conn = new RestConnection("http://api.facebook.com/restserver.php", pathParams, queryParams);
+        sleep(1000);
+        return conn.get(null);
+    }
+
+    /**
+     *
+     * @param request
+     * @param response
+     * @param format
+     * @return an instance of RestResponse
+     */
+    public static RestResponse friendsGetLists(HttpServletRequest request, HttpServletResponse response, String format) throws IOException {
+        String v = "1.0";
+        String method = "facebook.friends.getLists";
+        FacebookSocialNetworkingServiceAuthenticator.login(request, response);
+        String callId = String.valueOf(System.currentTimeMillis());
+        String apiKey = FacebookSocialNetworkingServiceAuthenticator.getApiKey(request, response);
+        String sessionKey = FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);
+        String sig = FacebookSocialNetworkingServiceAuthenticator.sign(new String[][]{{"api_key", apiKey}, {"session_key", sessionKey}, {"call_id", callId}, {"v", v}, {"format", format}, {"method", method}});
+        String[][] pathParams = new String[][]{};
+        String[][] queryParams = new String[][]{{"api_key", "" + apiKey + ""}, {"session_key", sessionKey}, {"call_id", callId}, {"sig", sig}, {"v", v}, {"format", format}, {"method", method}};
         RestConnection conn = new RestConnection("http://api.facebook.com/restserver.php", pathParams, queryParams);
         sleep(1000);
         return conn.get(null);
