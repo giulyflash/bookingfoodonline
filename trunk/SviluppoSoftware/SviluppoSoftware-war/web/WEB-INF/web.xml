@@ -30,10 +30,6 @@
         <servlet-class>org.netbeans.saas.facebook.FacebookSocialNetworkingServiceCallback</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <servlet>
-        <servlet-name>SaasServlet</servlet-name>
-        <servlet-class>pacchetto.SaasServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet1</servlet-name>
         <url-pattern>/Servlet1</url-pattern>
@@ -56,15 +52,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FacebookSocialNetworkingServiceLogin</servlet-name>
-        <url-pattern>/auth/FacebookSocialNetworkingServiceLogin</url-pattern>
+        <url-pattern>/FacebookSocialNetworkingServiceLogin</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>FacebookSocialNetworkingServiceCallback</servlet-name>
-        <url-pattern>/auth/FacebookSocialNetworkingServiceCallback</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SaasServlet</servlet-name>
-        <url-pattern>/SaasServlet</url-pattern>
+        <url-pattern>/FacebookSocialNetworkingServiceCallback</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
