@@ -46,7 +46,6 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
 
-
         response.setContentType("text/html;charset=UTF-8");
 
         ServletContext sc = getServletContext();

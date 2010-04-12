@@ -28,16 +28,6 @@
             </ul>
           </li>
  
-          <li>
-            <h2>Servizi</h2>
-            <ul>
-              <li><a href="servletOperazioni?servizio=Facebook">Facebook</a></li>
-              <li><a href="servletOperazioni?servizio=Twitter">Twitter</a></li>
-              <li><a href="servletOperazioni?servizio=Organizza_evento">Organizza il tuo evento</a></li>
-              <li><a href="Servlet1">Servlet1</a></li>
-            </ul>
-          </li>
-          
 
           <% /* inserimento link ai servizi */
                 if (session.getAttribute("login") != null){ %>
@@ -47,7 +37,7 @@
                       <li>
                         <h2>Servizi</h2>
                         <ul>
-                          <li><a href="#">Facebook</a></li>
+                          <li><a href="SaasServlet?op=facebook">Facebook</a></li>
                           <li><a href="#">Twitter</a></li>
                           <li><a href="#">Organizza il tuo evento</a></li>
                         </ul>
