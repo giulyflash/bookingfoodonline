@@ -175,13 +175,8 @@ public class Piatto implements Serializable {
         return "Prova.Piatto[id=" + id + "]";
     }
 
-    public void addMateriaSottraibile(MateriaPrima materia){
-        listaMaterieSottraibili.add(materia.getNome());
-    }
-
-    public void addMateriaNonModificabile(MateriaPrima materia){
-        listaMaterieNonModificabili.add(materia.getNome());
-    }
+   
+    
 
     public ArrayList<String> getMaterieSottraibili(){
         return listaMaterieSottraibili;
@@ -192,24 +187,6 @@ public class Piatto implements Serializable {
     }
     
 
-    public boolean deleteMateriaSottraibile(MateriaPrima materia){
-        if(!listaMaterieSottraibili.isEmpty())
-            return listaMaterieSottraibili.remove(materia.getNome());
-        return false;
-    }
-
-    public boolean deleteMateriaNonModificabile(MateriaPrima materia){
-        if(!listaMaterieNonModificabili.isEmpty())
-            return listaMaterieNonModificabili.remove(materia.getNome());
-        return false;
-    }
-
-    public void addPossibileAggiunta(MateriaPrima materia){
-        listaPossibiliAggiunte.add(materia.getNome());
-    }
-
-    public void deletePossibileAggiunta(MateriaPrima materia){
-        listaPossibiliAggiunte.remove(materia.getNome());
-    }
+    
 
 }
