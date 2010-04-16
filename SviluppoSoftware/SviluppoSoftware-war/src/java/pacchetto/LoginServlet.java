@@ -79,9 +79,7 @@ public class LoginServlet extends HttpServlet {
                 String password=request.getParameter("password");
                 
                 
-                 tmp_admin=gestoreAmministratore.findAdmin(id);
-                 out.println("id" + id);
-                    out.println("passw" + password);
+                tmp_admin=gestoreAmministratore.findAdmin(id);
                 if (tmp_admin!=null && tmp_admin.getPassword().equals(password)) {
                     session.setAttribute("login", id);
                     admin_panel.forward(request, response);

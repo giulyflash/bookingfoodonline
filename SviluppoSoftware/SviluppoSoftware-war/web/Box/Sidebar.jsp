@@ -25,6 +25,7 @@
               <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Dessert">Dessert</a></li>
               <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Bevande">Bevande</a></li>
               <li><a href="servletOperazioni?operazione=ricercaPerCategoria&categoria=Vini">Vini</a></li>
+              <li><a href="Servlet1">Servlet1</a></li>
             </ul>
           </li>
  
