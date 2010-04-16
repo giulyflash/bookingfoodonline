@@ -100,7 +100,7 @@ public class Servlet1 extends HttpServlet {
             ArrayList<String> sott = new ArrayList<String>();
             ArrayList<String> possAgg = new ArrayList<String>();
 
-            /*Piatto p = new Piatto();
+            Piatto p = new Piatto();
             p.setId(Long.MIN_VALUE);
             p.setCategoria("Secondi");
             p.setCosto(5.0);
@@ -159,11 +159,11 @@ public class Servlet1 extends HttpServlet {
             p2.setListaMaterieSottraibili(sott);
             p2.setListaPossibiliAggiunte(possAgg);
             piattoFacade.create(p2);
-            */
-
-            /*
+            
+/*
+            
             Piatto p1 = new Piatto();
-            p1.setId(Long.MIN_VALUE);
+            p1.setId(Long.MIN_VALUE+3);
             p1.setCategoria("rwr");
             p1.setCosto(40.0);
             p1.setNome("pasta alla carbonara");
@@ -190,7 +190,7 @@ public class Servlet1 extends HttpServlet {
         */
 
             
-/*
+
 
             
             Magazzino m = new Magazzino();
@@ -232,7 +232,7 @@ public class Servlet1 extends HttpServlet {
             fornitureFacade.create(f);
 
 
-
+/*
 
 
 
@@ -244,7 +244,7 @@ public class Servlet1 extends HttpServlet {
             piatto.setListaMaterieNonModificabili(listaMaterie);
             piatto.setAggiunte(new ArrayList<String>());
             piatto.setSottratte(new ArrayList<String>());
-
+x
             Prenotazione p = new Prenotazione();
             p.setZona("Milano");
             ArrayList<ConfigurazionePiatto> conf = new ArrayList<ConfigurazionePiatto>();

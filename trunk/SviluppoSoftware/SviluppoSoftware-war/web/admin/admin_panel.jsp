@@ -7,7 +7,6 @@
           <div class="entry">
               <p>Questa è la pagina dell' amministratore.</p>
               Da qui puoi <a href="OperazioniAmministratore?op=insertPiatto">inserire</a>, <a href="#">modificare</a> o <a href="#">cancellare</a> un piatto.
-              <jsp:include page="/Pages/facebook.jsp" />
           </div>
         </div>
 
