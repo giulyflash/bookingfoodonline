@@ -25,13 +25,6 @@ public class GestoreUtenteRegistrato implements GestoreUtenteRegistratoLocal {
         return utenteRegistratoFacade.find(username);
     }
 
-
-
-
-    
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
-
-
- 
 }

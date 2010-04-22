@@ -18,5 +18,4 @@ public interface GestoreUtenteRegistratoLocal {
 
     UtenteRegistrato findUser(String username);
 
-    
 }
