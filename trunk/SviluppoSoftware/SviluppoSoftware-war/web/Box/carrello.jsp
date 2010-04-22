@@ -66,7 +66,7 @@
      </table>
 
               <a href="index.jsp">Continua lo shopping</a>
-              <a href="LoginServlet?op=registrazione2" ><img src="images/button_prosegui.gif" ></a>
+              <a href="LoginServlet?op=checkAccount" ><img src="images/button_prosegui.gif" ></a>
           </div>
         </div>
         

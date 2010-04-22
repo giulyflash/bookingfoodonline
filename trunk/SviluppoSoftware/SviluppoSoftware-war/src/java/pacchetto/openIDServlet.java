@@ -103,6 +103,8 @@ public class openIDServlet extends HttpServlet {
 
             //setting session
             session.setAttribute("login", username);
+            //setting openid session attribute
+            session.setAttribute("openid", true);
 
             //redirecting to the welcome page
             welcome.forward(request, response);

@@ -48,15 +48,14 @@ public class LoginServlet extends HttpServlet {
 
         response.setContentType("text/html;charset=UTF-8");
 
-        ServletContext sc = getServletContext();
-        RequestDispatcher rd;
+        
 
         // Recupero i riferimenti alle pagine
         RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
         RequestDispatcher welcome = getServletContext().getRequestDispatcher("/Pages/welcomePage.jsp");
-        RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
+        
         RequestDispatcher err = getServletContext().getRequestDispatcher("/Pages/error.jsp");
-        RequestDispatcher gotReg = getServletContext().getRequestDispatcher("/Pages/gotReg.jsp");
+        
         RequestDispatcher admin_panel = getServletContext().getRequestDispatcher("/admin/admin_panel.jsp");
 
 
@@ -96,22 +95,61 @@ public class LoginServlet extends HttpServlet {
                         err.forward(request, response);
                 }
             }
+            
+            if(operazione.equals("checkAccount"))
+            { 
+                String user=(String)session.getAttribute("login");
+                // se l' utente è loggato
+                if(user!=null){
+                    //se si è loggato tramite
+                    if(session.getAttribute("openid")!=null){
+                        UtenteRegistrato utente=new UtenteRegistrato();
+                        utente.setId(user);
+                        utente.setIndirizzo("inserisci la via");
+                        utente.setN_cartacredito("inserisci numero carta di credito");
+                        session.setAttribute("utente", utente);
+                        RequestDispatcher riepilogo = getServletContext().getRequestDispatcher("/Pages/riepilogoDati.jsp");
+                        riepilogo.forward(request, response);
+                    }
+                    else{
+                        UtenteRegistrato utente = gestoreUtenteRegistrato.findUser(user);
+                        session.setAttribute("utente", utente);
+                        RequestDispatcher riepilogo = getServletContext().getRequestDispatcher("/Pages/riepilogoDati.jsp");
+                        riepilogo.forward(request, response);
+                    }
+                }
+                //se l'utente non è  registrato deve registrarsi
+                else{
+                    //setto la sessione per redirezionare l'utente nella pagina finale
+                    session.setAttribute("callback", true);
+                    RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
+                    reg.forward(request, response);
+                }
+            }
+
+            if(operazione.equals("confermaDati"))
+            {
+                    UtenteRegistrato utente=(UtenteRegistrato)session.getAttribute("utente");
+                    utente.setIndirizzo(request.getParameter("indirizzo"));
+                    utente.setN_cartacredito("n_cartacredito");
+                    //aggiorno le informazioni dell' utente nella sessione
+                    session.setAttribute("utente", utente);
+                    RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
+                    gotBooking.forward(request, response);
+            }
 
 
             //richiesta registrazione dell' utente
             if(operazione.equals("registrazione"))
-                {  request.getSession().setAttribute("reg", "reg1");
-                   reg.forward(request, response);
-                }
-            //registrazione richiesta dal sistema
-            if(operazione.equals("registrazione2"))
-                {request.getSession().setAttribute("reg", "reg2");
-                 reg.forward(request, response);
-                }
+            { 
+                RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
+                reg.forward(request, response);
+            }
 
             //dati registrazione inviati dall' utente e storaging
             if(operazione.equals("datiRegistrazione"))                            
-                {   tmp_user = new UtenteRegistrato();
+                {
+                    tmp_user = new UtenteRegistrato();
                     tmp_user.setId(request.getParameter("username"));
                     tmp_user.setPassword(request.getParameter("password"));
                     tmp_user.setNome(request.getParameter("nome"));
@@ -120,25 +158,16 @@ public class LoginServlet extends HttpServlet {
                     tmp_user.setIndirizzo(request.getParameter("indirizzo"));
                     tmp_user.setN_cartacredito(request.getParameter("n_cartacredito"));
                     gestoreUtenteRegistrato.addUser(tmp_user);
-                  out.println(request.getParameter("Register"));
-                 /*if(request.getParameter("Register").equals("Invia"))
-                    gotReg.forward(request, response);
-                  else
-                  {rd = sc.getRequestDispatcher("/Pages/riepilogoDati.jsp");
-                   rd.forward(request,response);
-                  }*/
-                }
-
-
-
-
-             //CONFERMA DATI
-            if(operazione.equals("conferma_dati"))
-                {UtenteRegistrato utente = (UtenteRegistrato)request.getSession().getAttribute("login");
-                 gestoreUtenteRegistrato.findUser(operazione);
-                 session.setAttribute("utente", utente);
-                 rd = sc.getRequestDispatcher("/Box/riepilogoDati.jsp");
-                 rd.forward(request,response);
+                    //controllo se l'utente arriva da una registrazione sollevata durante una prenotazione
+                    if(session.getAttribute("callback")!=null){
+                        RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
+                        gotBooking.forward(request, response);
+                    }
+                    else{
+                        RequestDispatcher gotReg = getServletContext().getRequestDispatcher("/Pages/gotReg.jsp");
+                        gotReg.forward(request, response);
+                    }
+                    
                 }
 
 
