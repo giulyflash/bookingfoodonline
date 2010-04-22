@@ -13,12 +13,12 @@
 
               <form name="formReg" action="LoginServlet" method="POST">
                 <table>
-                    <input type="hidden" name="operazione" value="datiConferma" />
+                    <input type="hidden" name="op" value="confermaDati" />
                     <tbody>                        
                         
                         <tr>
                             <td>indirizzo:</td>
-                            <td><input type="text" name="indirizzo"  value="<%=utente.getIndirizzo()%>"  /></td>
+                            <td><input type="text" name="indirizzo"  value="<%=utente.getIndirizzo()%>"/></td>
                         </tr>
                         <tr>
                             <td>mail:</td>
