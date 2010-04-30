@@ -4,6 +4,8 @@
     Author     : dani1913
 --%>
 
+<%@page import="prova.*"%>
+<%@page import="java.util.*"%>
 <jsp:include page="/Box/header.jsp"/>
 
     <div id="page">
@@ -13,6 +15,20 @@
           <h2 class="title"><a href="#">Prenotazione effettuata!</a></h2>
           <div class="entry">
             <p>Torna alla <a href="index.jsp">home</a></p>
+            <% Prenotazione tmp=(Prenotazione)session.getAttribute("prenotazione");
+                Collection<ConfigurazionePiatto> c = (tmp.getMappaPiatti()).values();
+
+               for(ConfigurazionePiatto cp:c){
+                    %>
+
+                    <%=cp.getNome()%>
+
+                    <%
+               }
+
+
+               session.setAttribute("prenotazione", null);
+            %>
           </div>
 
         </div>

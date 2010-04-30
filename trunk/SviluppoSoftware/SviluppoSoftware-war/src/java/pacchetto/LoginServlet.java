@@ -17,15 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import prova.Amministratore;
 import prova.GestoreAmministratoreLocal;
+import prova.GestoreLineaMagazzinoBeanLocal;
 import prova.GestoreUtenteRegistratoLocal;
 import prova.UtenteRegistrato;
-
+import prova.Prenotazione;
 
 /**
  *
  * @author dani1913
  */
 public class LoginServlet extends HttpServlet {
+    @EJB
+    private GestoreLineaMagazzinoBeanLocal gestoreLineaMagazzinoBean;
     @EJB
     private GestoreAmministratoreLocal gestoreAmministratore;
     @EJB
@@ -134,8 +137,13 @@ public class LoginServlet extends HttpServlet {
                     utente.setN_cartacredito("n_cartacredito");
                     //aggiorno le informazioni dell' utente nella sessione
                     session.setAttribute("utente", utente);
-                    RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
-                    gotBooking.forward(request, response);
+                    Prenotazione p= (Prenotazione)session.getAttribute("prenotazione");
+                    p.setZona(utente.getZona());
+                    
+                    gestoreLineaMagazzinoBean.checkQuantita(p, out);
+
+                    //RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
+                    //gotBooking.forward(request, response);
             }
 
 
@@ -160,6 +168,7 @@ public class LoginServlet extends HttpServlet {
                     gestoreUtenteRegistrato.addUser(tmp_user);
                     //controllo se l'utente arriva da una registrazione sollevata durante una prenotazione
                     if(session.getAttribute("callback")!=null){
+
                         RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
                         gotBooking.forward(request, response);
                     }
