@@ -31,5 +31,7 @@ public interface LineaMagazzinoFacadeLocal {
 
      void editLineaMagazzino(Long id_mag,Long id_materia,int quantitaAggiunta);
 
+    LineaMagazzino findMateriaZona(String nome, String zona);
+
 
 }

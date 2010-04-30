@@ -53,26 +53,30 @@ public class GestoreLineaMagazzinoBean implements GestoreLineaMagazzinoBeanLocal
         ConfigurazionePiatto[] piatti = p.getMappaPiatti().values().toArray(new ConfigurazionePiatto[p.getMappaPiatti().size()]);
 
 
-            
+            ot.println(zona);
 
        for(int i=0;i<p.getMappaPiatti().size();i++){
             listaMaterie= piatti[i].materiePrime();
             ot.println(listaMaterie);
             for(String nome:listaMaterie){
-                ot.println("agòiehgoòaeihgioawe");
-
-                LineaMagazzino o = (LineaMagazzino)lineaMagazzinoFacade.findCheckMateria(nome, zona).get(0);
+                
+                LineaMagazzino o = (LineaMagazzino)lineaMagazzinoFacade.findMateriaZona(nome, zona);
                 id_materia = o.getMatPrima().getId();
                 idMagazzino = o.getMag().getId();
                 ot.println(id_materia.toString());
                 quantitaMinima = o.getSogliaMinima();
                 quantita = o.getQuantita();
+                ot.println("prima "+quantita);
+                
+                o.setQuantita(77);
+                ot.println("dopo "+o.getQuantita());
+                lineaMagazzinoFacade.editLineaMagazzino(idMagazzino, id_materia, -1);
                 n_rifornimenti = o.getN_rif();           
                 
-                if(quantita<quantitaMinima)
-                    contattaFornitori(zona,idMagazzino,n_rifornimenti,id_materia);
-                    
+                //if(quantita<quantitaMinima)
+                  //  contattaFornitori(zona,idMagazzino,n_rifornimenti,id_materia);
                 
+                ot.println("òoihiòho");
             }
         }
 

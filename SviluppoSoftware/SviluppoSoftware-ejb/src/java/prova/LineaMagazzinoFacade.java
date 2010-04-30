@@ -42,7 +42,9 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
     public List<LineaMagazzino> findAll() {
         return em.createQuery("select object(o) from LineaMagazzino as o").getResultList();
     }
-   
+
+
+
     public List<LineaMagazzino> findCheckMateria(String nome,String zona){
         return(List<LineaMagazzino>)em.createQuery("select object(m) from LineaMagazzino m where m.mag.Localita = '"+zona+"' and m.matPrima.nome = '"+nome+"'").getResultList();
     }
@@ -56,5 +58,9 @@ public class LineaMagazzinoFacade implements LineaMagazzinoFacadeLocal {
 
     public List<LineaMagazzino> findLocalita(){        
         return em.createQuery("select l from LineaMagazzino l where l.sogliaMinima = '50'").getResultList();
+    }
+
+    public LineaMagazzino findMateriaZona(String nome, String zona) {
+        return (LineaMagazzino)em.createQuery("select object(m) from LineaMagazzino m where m.mag.Localita = '"+zona+"' and m.matPrima.nome = '"+nome+"'").getResultList();
     }
 }
