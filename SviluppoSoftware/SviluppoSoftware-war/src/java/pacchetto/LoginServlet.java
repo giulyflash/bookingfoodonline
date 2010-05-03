@@ -138,7 +138,8 @@ public class LoginServlet extends HttpServlet {
                     //aggiorno le informazioni dell' utente nella sessione
                     session.setAttribute("utente", utente);
                     Prenotazione p= (Prenotazione)session.getAttribute("prenotazione");
-                    p.setZona(utente.getZona());
+                    
+                    p.setZona("Milano");
                     
                     gestoreLineaMagazzinoBean.checkQuantita(p, out);
 

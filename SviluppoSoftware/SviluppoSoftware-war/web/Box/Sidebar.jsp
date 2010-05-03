@@ -8,7 +8,7 @@
           </li>
           <li>
           <% /* inserimento form login */
-                if (session.getAttribute("login") == null){
+                if (session.getAttribute("login") == null || (session.getAttribute("login") == null && session.getAttribute("prenotazione")!=null)){
                  //System.out.println("ccc");
                     /*String op = session.getAttribute("op").toString();
                  da qui faccio tutti i vari controlli */ %>
