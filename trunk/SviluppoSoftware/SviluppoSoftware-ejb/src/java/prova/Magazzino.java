@@ -45,7 +45,7 @@ public class Magazzino implements Serializable {
      *
      * @return the value of Località
      */
-    public String getLocalità() {
+    public String getLocalita() {
         return Localita;
     }
 
@@ -54,8 +54,8 @@ public class Magazzino implements Serializable {
      *
      * @param Località new value of Località
      */
-    public void setLocalita(String Località) {
-        this.Localita = Località;
+    public void setLocalita(String Localita) {
+        this.Localita = Localita;
     }
 
 
