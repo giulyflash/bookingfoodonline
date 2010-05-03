@@ -72,6 +72,9 @@ public class Servlet1 extends HttpServlet {
      * @param response servlet response
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
+
+
+
      */
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -100,12 +103,24 @@ public class Servlet1 extends HttpServlet {
             ArrayList<String> sott = new ArrayList<String>();
             ArrayList<String> possAgg = new ArrayList<String>();
 
+
+
+
+
+
+
+
+
+
+
+
+            //INSERIMENTO PIATTI
             Piatto p = new Piatto();
             p.setId(Long.MIN_VALUE);
             p.setCategoria("Secondi");
             p.setCosto(5.0);
             p.setNome("carne al sugo");
-            p.setUrl_immagine("images/carne.jpg");
+            p.setUrl_immagine("images/polpette.jpg");
 
             nonMod.add("carne");
             nonMod.add("sugo");
@@ -162,38 +177,10 @@ public class Servlet1 extends HttpServlet {
 
 
 
-            /*
 
 
-/*
 
 
-            Piatto p1 = new Piatto();
-            p1.setId(Long.MIN_VALUE+3);
-            p1.setCategoria("rwr");
-            p1.setCosto(40.0);
-            p1.setNome("pasta alla carbonara");
-            Piatto p2 = new Piatto();
-            p2.setId(Long.MIN_VALUE);
-            p2.setCategoria("rwr");
-            p2.setCosto(40.0);
-            p2.setNome("carne al sugo");
-
-            Piatto p3 = new Piatto();
-            p3.setId(Long.MIN_VALUE);
-            p3.setCategoria("rwr");
-            p3.setCosto(40.0);
-            p3.setNome("carne al pesce");
-
-            piattoFacade.create(p);
-            piattoFacade.create(p1);
-            piattoFacade.create(p2);
-            piattoFacade.create(p3);
-
-            List<Piatto> list = piattoFacade.findPiatto("pasta");
-            out.println(list.get(0).getNome());
-            out.println(list.get(1).getNome());
-        */
 
 
             //INSERIMENTO MAGAZZINI
@@ -280,7 +267,7 @@ public class Servlet1 extends HttpServlet {
             //INSERIMENTO LINEEMAGAZZINO
             LineaMagazzino lm = new LineaMagazzino();
             lm.setId(Long.MIN_VALUE+18);
-            lm.setN_rif(10);
+            lm.setN_rif(50);
             lm.setQuantita(300);
             lm.setSogliaMinima(350);
             lm.setMatPrima(mp);
@@ -288,9 +275,12 @@ public class Servlet1 extends HttpServlet {
             listaLm.add(lm);
             lineaMagazzinoFacade.create(lm);
 
+
+
+
             LineaMagazzino lm1 = new LineaMagazzino();
             lm1.setId(Long.MIN_VALUE+19);
-            lm1.setN_rif(30);
+            lm1.setN_rif(70);
             lm1.setQuantita(500);
             lm1.setSogliaMinima(150);
             lm1.setMatPrima(mp1);
@@ -298,9 +288,11 @@ public class Servlet1 extends HttpServlet {
             listaLm.add(lm1);
             lineaMagazzinoFacade.create(lm1);
 
+
+
             LineaMagazzino lm2 = new LineaMagazzino();
             lm2.setId(Long.MIN_VALUE+20);
-            lm2.setN_rif(80);
+            lm2.setN_rif(90);
             lm2.setQuantita(290);
             lm2.setSogliaMinima(150);
             lm2.setMatPrima(mp2);
@@ -310,8 +302,8 @@ public class Servlet1 extends HttpServlet {
 
             LineaMagazzino lm3 = new LineaMagazzino();
             lm3.setId(Long.MIN_VALUE+21);
-            lm3.setN_rif(50);
-            lm3.setQuantita(160);
+            lm3.setN_rif(60);
+            lm3.setQuantita(260);
             lm3.setSogliaMinima(150);
             lm3.setMatPrima(mp3);
             lm3.setMag(m);
@@ -320,10 +312,10 @@ public class Servlet1 extends HttpServlet {
 
             LineaMagazzino lm4 = new LineaMagazzino();
             lm4.setId(Long.MIN_VALUE+22);
-            lm4.setN_rif(20);
-            lm4.setQuantita(100);
-            lm4.setSogliaMinima(90);
-            lm4.setMatPrima(mp);
+            lm4.setN_rif(30);
+            lm4.setQuantita(200);
+            lm4.setSogliaMinima(270);
+            lm4.setMatPrima(mp4);
             lm4.setMag(m);
             listaLm.add(lm4);
             lineaMagazzinoFacade.create(lm4);
@@ -373,7 +365,7 @@ public class Servlet1 extends HttpServlet {
             lm9.setN_rif(10);
             lm9.setQuantita(360);
             lm9.setSogliaMinima(350);
-            lm9.setMatPrima(mp);
+            lm9.setMatPrima(mp9);
             lm9.setMag(m);
             listaLm.add(lm9);
             lineaMagazzinoFacade.create(lm9);
@@ -474,6 +466,13 @@ public class Servlet1 extends HttpServlet {
 
 
 
+
+
+
+            //LineaMagazzino lm = (LineaMagazzino)lineaMagazzinoFacade.findCheckMateria("farina", "Milano").get(0);
+            //lm.setQuantita(12);
+            //lineaMagazzinoFacade.edit(lm);
+
 /*
 
 
@@ -529,6 +528,20 @@ x
                 out.println("lista materie modificabili " + (pi.getMaterieSottraibili()).get(0));
                 out.println("lista materie non modificabili " + (pi.getMaterieNonModificabili()).get(0));
             }*/
+
+          //  out.println(materiaPrimaFacade.findAll().get(0).getId());
+
+
+
+
+
+
+
+           //List<LineaMagazzino> lista= lineaMagazzinoFacade.findAll();
+           //LineaMagazzino linea = lista.get(0);
+           //linea.setQuantita(linea.getQuantita() + linea.getN_rif());
+           //lineaMagazzinoFacade.edit(linea);
+           //lineaMagazzinoFacade.editLineaMagazzino(linea.getMag().getId(),linea.getMatPrima().getId(),1777);
 
             out.println("</body>");
             out.println("</html>");
