@@ -1,3 +1,5 @@
+<%@page import="prova.*"%>
+<%@page import="java.util.List"%>
 <jsp:include page="/Box/header.jsp"/>
         
     <div id="page">
@@ -35,9 +37,26 @@
                             <td>indirizzo:</td>
                             <td><input type="text" name="indirizzo" value="" /></td>
                         </tr>
+                        
                         <tr>
                             <td>carta_credito:</td>
                             <td><input type="text" name="n_cartacredito" value="" /></td>
+                        </tr>
+                        <tr>
+                            <td>zona:</td>
+                            <td><select name="zone">
+                                    <%
+                                        List<Magazzino> lista=(List<Magazzino>)session.getAttribute("zone");
+                                        int size=lista.size();
+                                        for(int i=0; i<size; i++){
+                                            out.println("<option>");
+                                            out.println(lista.get(i).getLocalita());
+                                            out.println("</option>");
+                                        }
+                                        session.removeAttribute("zone");
+                                    %>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td>Invia:</td>

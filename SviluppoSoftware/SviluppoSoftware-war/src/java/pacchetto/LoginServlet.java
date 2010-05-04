@@ -7,9 +7,9 @@ package pacchetto;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +19,8 @@ import prova.Amministratore;
 import prova.GestoreAmministratoreLocal;
 import prova.GestoreLineaMagazzinoBeanLocal;
 import prova.GestoreUtenteRegistratoLocal;
+import prova.Magazzino;
+import prova.MagazzinoFacadeLocal;
 import prova.UtenteRegistrato;
 import prova.Prenotazione;
 
@@ -27,6 +29,8 @@ import prova.Prenotazione;
  * @author dani1913
  */
 public class LoginServlet extends HttpServlet {
+    @EJB
+    private MagazzinoFacadeLocal magazzinoFacade;
     @EJB
     private GestoreLineaMagazzinoBeanLocal gestoreLineaMagazzinoBean;
     @EJB
@@ -150,7 +154,10 @@ public class LoginServlet extends HttpServlet {
 
             //richiesta registrazione dell' utente
             if(operazione.equals("registrazione"))
-            { 
+            {
+                List<Magazzino> listaMag=magazzinoFacade.findAll();
+
+                session.setAttribute("zone", listaMag);
                 RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
                 reg.forward(request, response);
             }
@@ -166,6 +173,7 @@ public class LoginServlet extends HttpServlet {
                     tmp_user.setMail(request.getParameter("mail"));
                     tmp_user.setIndirizzo(request.getParameter("indirizzo"));
                     tmp_user.setN_cartacredito(request.getParameter("n_cartacredito"));
+                    tmp_user.setZona(request.getParameter("zone"));
                     gestoreUtenteRegistrato.addUser(tmp_user);
                     //controllo se l'utente arriva da una registrazione sollevata durante una prenotazione
                     if(session.getAttribute("callback")!=null){
