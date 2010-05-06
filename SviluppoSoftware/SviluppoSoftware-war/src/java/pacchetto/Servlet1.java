@@ -194,16 +194,6 @@ public class Servlet1 extends HttpServlet {
             m1.setLocalita("Torino");
             magazzinoFacade.create(m1);
 
-            Magazzino m2 = new Magazzino();
-            m2.setId(Long.MIN_VALUE+5);
-            m2.setLocalita("Lecce");
-            magazzinoFacade.create(m2);
-
-            Magazzino m3 = new Magazzino();
-            m3.setId(Long.MIN_VALUE+6);
-            m3.setLocalita("Cagliari");
-            magazzinoFacade.create(m3);
-
 
             //INSERIMENTO MATERIE PRIME
             MateriaPrima mp = new MateriaPrima();
@@ -380,6 +370,123 @@ public class Servlet1 extends HttpServlet {
             listaLm.add(lm10);
             lineaMagazzinoFacade.create(lm10);
 
+            LineaMagazzino lm11 = new LineaMagazzino();
+            lm11.setId(Long.MIN_VALUE+60);
+            lm11.setN_rif(40);
+            lm11.setQuantita(400);
+            lm11.setSogliaMinima(450);
+            lm11.setMatPrima(mp);
+            lm11.setMag(m1);
+            listaLm.add(lm11);
+            lineaMagazzinoFacade.create(lm11);
+
+
+
+
+            LineaMagazzino lm12 = new LineaMagazzino();
+            lm12.setId(Long.MIN_VALUE+61);
+            lm12.setN_rif(80);
+            lm12.setQuantita(450);
+            lm12.setSogliaMinima(150);
+            lm12.setMatPrima(mp1);
+            lm12.setMag(m1);
+            listaLm.add(lm12);
+            lineaMagazzinoFacade.create(lm12);
+
+
+
+            LineaMagazzino lm13 = new LineaMagazzino();
+            lm13.setId(Long.MIN_VALUE+62);
+            lm13.setN_rif(80);
+            lm13.setQuantita(260);
+            lm13.setSogliaMinima(190);
+            lm13.setMatPrima(mp2);
+            lm13.setMag(m1);
+            listaLm.add(lm13);
+            lineaMagazzinoFacade.create(lm13);
+
+            LineaMagazzino lm14 = new LineaMagazzino();
+            lm14.setId(Long.MIN_VALUE+63);
+            lm14.setN_rif(80);
+            lm14.setQuantita(165);
+            lm14.setSogliaMinima(150);
+            lm14.setMatPrima(mp3);
+            lm14.setMag(m1);
+            listaLm.add(lm14);
+            lineaMagazzinoFacade.create(lm14);
+
+            LineaMagazzino lm15 = new LineaMagazzino();
+            lm15.setId(Long.MIN_VALUE+64);
+            lm15.setN_rif(35);
+            lm15.setQuantita(300);
+            lm15.setSogliaMinima(390);
+            lm15.setMatPrima(mp4);
+            lm15.setMag(m1);
+            listaLm.add(lm15);
+            lineaMagazzinoFacade.create(lm15);
+
+            LineaMagazzino lm16 = new LineaMagazzino();
+            lm16.setId(Long.MIN_VALUE+65);
+            lm16.setN_rif(15);
+            lm16.setQuantita(100);
+            lm16.setSogliaMinima(80);
+            lm16.setMatPrima(mp5);
+            lm16.setMag(m1);
+            listaLm.add(lm16);
+            lineaMagazzinoFacade.create(lm16);
+
+            LineaMagazzino lm17 = new LineaMagazzino();
+            lm17.setId(Long.MIN_VALUE+66);
+            lm17.setN_rif(10);
+            lm17.setQuantita(200);
+            lm17.setSogliaMinima(170);
+            lm17.setMatPrima(mp6);
+            lm17.setMag(m1);
+            listaLm.add(lm17);
+            lineaMagazzinoFacade.create(lm17);
+
+            LineaMagazzino lm18 = new LineaMagazzino();
+            lm18.setId(Long.MIN_VALUE+67);
+            lm18.setN_rif(20);
+            lm18.setQuantita(200);
+            lm18.setSogliaMinima(180);
+            lm18.setMatPrima(mp7);
+            lm18.setMag(m1);
+            listaLm.add(lm18);
+            lineaMagazzinoFacade.create(lm18);
+
+            LineaMagazzino lm19 = new LineaMagazzino();
+            lm19.setId(Long.MIN_VALUE+68);
+            lm19.setN_rif(10);
+            lm19.setQuantita(360);
+            lm19.setSogliaMinima(350);
+            lm19.setMatPrima(mp8);
+            lm19.setMag(m1);
+            listaLm.add(lm19);
+            lineaMagazzinoFacade.create(lm19);
+
+            LineaMagazzino lm20 = new LineaMagazzino();
+            lm20.setId(Long.MIN_VALUE+69);
+            lm20.setN_rif(10);
+            lm20.setQuantita(360);
+            lm20.setSogliaMinima(350);
+            lm20.setMatPrima(mp9);
+            lm20.setMag(m1);
+            listaLm.add(lm20);
+            lineaMagazzinoFacade.create(lm20);
+
+            LineaMagazzino lm21 = new LineaMagazzino();
+            lm21.setId(Long.MIN_VALUE+70);
+            lm21.setN_rif(10);
+            lm21.setQuantita(360);
+            lm21.setSogliaMinima(350);
+            lm21.setMatPrima(mp10);
+            lm21.setMag(m1);
+            listaLm.add(lm21);
+            lineaMagazzinoFacade.create(lm21);
+
+
+
             m.setLineaMagazzinos(listaLm);
             magazzinoFacade.edit(m);
 
@@ -387,11 +494,19 @@ public class Servlet1 extends HttpServlet {
             //INSERIMENTO FORNITORI
             Fornitore forn = new Fornitore();
             forn.setId(Long.MIN_VALUE+29);
-            forn.setIndirizzo("reer");
+            forn.setIndirizzo("via lisbona");
             forn.setLocalita("Milano");
             forn.setNome("carlo");
             forn.setTelefono("43433");
             fornitoreFacade.create(forn);
+
+            Fornitore forn1 = new Fornitore();
+            forn1.setId(Long.MIN_VALUE+50);
+            forn1.setIndirizzo("via degli angeli");
+            forn1.setLocalita("Torino");
+            forn1.setNome("alessandro");
+            forn1.setTelefono("43433");
+            fornitoreFacade.create(forn1);
 
             //INSERIMENTO FORNITURE
             Forniture f = new Forniture();
@@ -463,6 +578,74 @@ public class Servlet1 extends HttpServlet {
             f10.setMatPrima(mp10);
             fornitureFacade.create(f10);
 
+            Forniture f11 = new Forniture();
+            f11.setId(Long.MIN_VALUE+80);
+            f11.setForn(forn1);
+            f11.setMatPrima(mp);
+            fornitureFacade.create(f11);
+
+            Forniture f12 = new Forniture();
+            f12.setId(Long.MIN_VALUE+81);
+            f12.setForn(forn1);
+            f12.setMatPrima(mp1);
+            fornitureFacade.create(f12);
+
+
+            Forniture f13 = new Forniture();
+            f13.setId(Long.MIN_VALUE+82);
+            f13.setForn(forn1);
+            f13.setMatPrima(mp2);
+            fornitureFacade.create(f13);
+
+
+            Forniture f14 = new Forniture();
+            f14.setId(Long.MIN_VALUE+83);
+            f14.setForn(forn1);
+            f14.setMatPrima(mp3);
+            fornitureFacade.create(f14);
+
+            Forniture f15 = new Forniture();
+            f15.setId(Long.MIN_VALUE+84);
+            f15.setForn(forn1);
+            f15.setMatPrima(mp4);
+            fornitureFacade.create(f15);
+
+
+            Forniture f16 = new Forniture();
+            f16.setId(Long.MIN_VALUE+85);
+            f16.setForn(forn1);
+            f16.setMatPrima(mp5);
+            fornitureFacade.create(f16);
+
+            Forniture f17 = new Forniture();
+            f17.setId(Long.MIN_VALUE+86);
+            f17.setForn(forn1);
+            f17.setMatPrima(mp6);
+            fornitureFacade.create(f17);
+
+            Forniture f18 = new Forniture();
+            f18.setId(Long.MIN_VALUE+87);
+            f18.setForn(forn1);
+            f18.setMatPrima(mp7);
+            fornitureFacade.create(f18);
+
+            Forniture f19 = new Forniture();
+            f19.setId(Long.MIN_VALUE+88);
+            f19.setForn(forn1);
+            f19.setMatPrima(mp8);
+            fornitureFacade.create(f19);
+
+            Forniture f20 = new Forniture();
+            f20.setId(Long.MIN_VALUE+89);
+            f20.setForn(forn1);
+            f20.setMatPrima(mp9);
+            fornitureFacade.create(f20);
+
+            Forniture f21 = new Forniture();
+            f21.setId(Long.MIN_VALUE+90);
+            f21.setForn(forn1);
+            f21.setMatPrima(mp10);
+            fornitureFacade.create(f21);
 
 
 
