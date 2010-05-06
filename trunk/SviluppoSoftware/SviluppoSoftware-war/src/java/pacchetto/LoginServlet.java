@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
 
         // Recupero i riferimenti alle pagine
         RequestDispatcher index = getServletContext().getRequestDispatcher("/index.jsp");
-        RequestDispatcher welcome = getServletContext().getRequestDispatcher("/Pages/welcomePage.jsp");
+        
         
         RequestDispatcher err = getServletContext().getRequestDispatcher("/Pages/error.jsp");
         
@@ -92,11 +92,24 @@ public class LoginServlet extends HttpServlet {
                 }
                 //Controllo che l' utente sia già registrato e lo reindirizzo alla pagina personale
                 else{
-                   
+
                     tmp_user=gestoreUtenteRegistrato.findUser(id);
                     if (tmp_user!=null && tmp_user.getPassword().equals(password)) {
                         session.setAttribute("login", id);
-                        welcome.forward(request, response);
+
+                        // controllo se l' utente si e' loggato durante una prenotazione
+                        if(session.getAttribute("callback")!=null){
+                            
+                            session.setAttribute("utente", tmp_user);
+                            RequestDispatcher riepilogo = getServletContext().getRequestDispatcher("/Pages/riepilogoDati.jsp");
+                            riepilogo.forward(request, response);
+                        }
+                        else{
+                            RequestDispatcher welcome = getServletContext().getRequestDispatcher("/Pages/welcomePage.jsp");
+                            welcome.forward(request, response);
+                        }
+
+                        
                     }
                     else
                         err.forward(request, response);
@@ -123,14 +136,16 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("utente", utente);
                         RequestDispatcher riepilogo = getServletContext().getRequestDispatcher("/Pages/riepilogoDati.jsp");
                         riepilogo.forward(request, response);
+                        
                     }
                 }
                 //se l'utente non è  registrato deve registrarsi
                 else{
                     //setto la sessione per redirezionare l'utente nella pagina finale
                     session.setAttribute("callback", true);
-                    RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
-                    reg.forward(request, response);
+                    
+                    RequestDispatcher regOrlog = getServletContext().getRequestDispatcher("/Pages/regOrlog.jsp");
+                    regOrlog.forward(request, response);
                 }
             }
 
@@ -143,12 +158,12 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("utente", utente);
                     Prenotazione p= (Prenotazione)session.getAttribute("prenotazione");
                     
-                    p.setZona("Milano");
+                    p.setZona(utente.getZona());
                     
                     gestoreLineaMagazzinoBean.checkQuantita(p, out);
 
-                    //RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
-                    //gotBooking.forward(request, response);
+                    RequestDispatcher gotBooking = getServletContext().getRequestDispatcher("/Pages/gotBooking.jsp");
+                    gotBooking.forward(request, response);
             }
 
 
