@@ -38,6 +38,7 @@ public class LoginServlet extends HttpServlet {
     @EJB
     private GestoreUtenteRegistratoLocal gestoreUtenteRegistrato;
 
+   
 
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -68,6 +69,7 @@ public class LoginServlet extends HttpServlet {
 
         Amministratore tmp_admin;
         UtenteRegistrato tmp_user;
+        
 
         try {
             
@@ -102,6 +104,8 @@ public class LoginServlet extends HttpServlet {
                             
                             session.setAttribute("utente", tmp_user);
                             RequestDispatcher riepilogo = getServletContext().getRequestDispatcher("/Pages/riepilogoDati.jsp");
+                            //Prenotazione p = (Prenotazione)session.getAttribute("prenotazione");
+                            //p.setZona(tmp_user.getZona());
                             riepilogo.forward(request, response);
                         }
                         else{
@@ -118,6 +122,9 @@ public class LoginServlet extends HttpServlet {
             
             if(operazione.equals("checkAccount"))
             { 
+                List<Magazzino> listaMag =magazzinoFacade.findAll();
+                session.setAttribute("zone", listaMag);
+
                 String user=(String)session.getAttribute("login");
                 // se l' utente è loggato
                 if(user!=null){
@@ -158,7 +165,7 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("utente", utente);
                     Prenotazione p= (Prenotazione)session.getAttribute("prenotazione");
                     
-                    p.setZona(utente.getZona());
+                    p.setZona(request.getParameter("zone"));
                     
                     gestoreLineaMagazzinoBean.checkQuantita(p, out);
 
@@ -170,8 +177,8 @@ public class LoginServlet extends HttpServlet {
             //richiesta registrazione dell' utente
             if(operazione.equals("registrazione"))
             {
-                List<Magazzino> listaMag=magazzinoFacade.findAll();
-
+                
+                List<Magazzino> listaMag =magazzinoFacade.findAll();
                 session.setAttribute("zone", listaMag);
                 RequestDispatcher reg = getServletContext().getRequestDispatcher("/Pages/register.jsp");
                 reg.forward(request, response);

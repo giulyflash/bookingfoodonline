@@ -22,7 +22,7 @@
                         </tr>
                         <tr>
                             <td>mail:</td>
-                            <td><input  type="text" name="mail" value="ciao" /></td>
+                            <td><input  type="text" name="mail" value="<%=utente.getMail()%>" /></td>
                         </tr>
                         <tr>
                             <td>telefono:</td>
@@ -32,6 +32,24 @@
                             <td>carta_credito:</td>
                             <td><input type="text" name="n_cartacredito" value="<%=utente.getN_cartacredito()%>" /></td>
                         </tr>
+                        <tr>
+                            <td>zona:</td>
+                            <td><select name="zone" >
+                                    <%
+                                        List<Magazzino> lista=(List<Magazzino>)session.getAttribute("zone");
+                                   
+                                        out.println("<option SELECTED>"+utente.getZona()+"</option>");
+                                        int size=lista.size();
+                                        for(int i=0; i<size; i++){
+                                            out.println("<option>");
+                                            out.println(lista.get(i).getLocalita());
+                                            out.println("</option>");
+                                        }
+                                        session.removeAttribute("zone");
+                                    %>
+                                </select>
+                            </td>
+                    </tr>
                         <tr>
                             <td>Invia:</td>
                             <td><input type="submit" value="Invia!" name="Register"/></td>
