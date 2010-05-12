@@ -1,3 +1,4 @@
+<%@page import="prova.*"%>
 <jsp:include page="/Box/header.jsp"/>
 
     <div id="page">
@@ -12,7 +13,8 @@
       <!-- end div#content -->
       <div id="sidebar">
         <jsp:include page="/Box/Sidebar.jsp" />
-      </div>
+      </div>   
+      
       <!-- end div#sidebar -->
       <div style="clear: both; height: 1px"></div>
     </div>
