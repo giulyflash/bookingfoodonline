@@ -9,13 +9,15 @@
     <div id="page-bgtop">
       <div id="content">
         <div class="post">
-          <h2 class="title"><a href="#">Mello uomo del sud</a></h2>
+          <h2 class="title"><a href="#">Benvenuti nel nostro ristorante online</a></h2>
           <div class="entry">
-            <p>This is <strong>Culinary</strong>, a free, fully standards-compliant CSS template designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>, released for free under the <a href="http://creativecommons.org/licenses/by/2.5/">Creative Commons Attribution 2.5</a> license.  The photo used in this template is from <a href="http://www.pdphoto.org">PDPhoto.org</a>. You're free to use this template for anything as long as you link back to <a href="http://www.freecsstemplates.org/">my site</a>. Enjoy :)</p>
+              <img src="images/piatti_tipici.jpg"/>
+
+              <h4>Il nostro sito nato dalla collaborazione di tre amici nasce per offrire un servizio di catering online mediante il quale l'utente puÚ prenotare i piatti desiderati. L'utente inoltre ha la possibilit? di personalizzare i piatti scelti aggiungendo o togliendo alcuni ingredienti. Il sito guider? l'utente in ogni suo aspetto fino al completamento dell'acquisto. Per iniziare la prenotazione l'utente puÚ ricercare i suoi piatti per categoria o per nome utilizzando i collegamenti appositi situati sulla barra laterale. Inoltre offriamo la possibilit? all'utente loggato di organizzare il suo evento utilizzando la piattaforma di social network Facebook.</h4>
 
           </div>
         </div>
-        
+
         </div>
       </div>
       <!-- end div#content -->
@@ -25,7 +27,7 @@
       <!-- end div#sidebar -->
       <div style="clear: both; height: 1px"></div>
     </div>
-  </div>  <!-- end div#page --> 
+  </div>  <!-- end div#page -->
 </div>
 <!-- end div#wrapper -->
 <!--RPX Code-->

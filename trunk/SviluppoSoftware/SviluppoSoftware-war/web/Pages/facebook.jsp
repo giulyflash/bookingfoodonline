@@ -27,18 +27,8 @@
                             <td>nome:</td>
                             <td><input type="text" name="nome" value="" /></td>
                         </tr>
-                        <tr>
-                            <td>categoria:</td>
-                            <td><input type="text" name="categoria" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td>sottocategoria:</td>
-                            <td><input type="text" name="sottocategoria" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td>luogo:</td>
-                            <td><input type="text" name="luogo" value="" /></td>
-                        </tr>
+                        
+                       
                         <tr>
                             <td>inizio:</td>
                             <td><input type="text" name="inizio:" value="" /></td>
@@ -47,26 +37,12 @@
                             <td>fine:</td>
                             <td><input type="text" name="fine" value="" /></td>
                         </tr>
-                        <tr>
-                            <td>via/piazza:</td>
-                            <td><input type="text" name="via" value="" /></td>
-                        </tr>
+                        
                         <tr>
                             <td>città:</td>
-                            <td><input type="text" name="città" value="" /></td>
+                            <td><input type="text" name="citta" value="" /></td>
                         </tr>
-                        <tr>
-                            <td>telefono:</td>
-                            <td><input type="text" name="telefono" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td>email:</td>
-                            <td><input type="text" name="email" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td>page_id:</td>
-                            <td><input type="text" name="page_id" value="" /></td>
-                        </tr>
+                        
                         <tr>
                             <td>privacy:</td>
                             <td><select name="privacy" size="1">
@@ -76,14 +52,7 @@
                                 </select></td>
                         </tr>
 
-                        <tr>
-                            <td>tagline:</td>
-                            <td><input type="text" name="tagline" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td>host:</td>
-                            <td><input type="text" name="host" value="" /></td>
-                        </tr>
+                       
                         <tr>
                             <td>descrizione:</td>
                             <td><textarea name="descrizione" rows="5" cols="20">

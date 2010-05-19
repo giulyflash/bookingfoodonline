@@ -1,4 +1,4 @@
-<%-- 
+<%--
     Document   : carrello
     Created on : 22-mar-2010, 11.04.25
     Author     : Matteo
@@ -35,15 +35,15 @@
                 <th>Prezzo totale</th>
                 <th></th>
             </tr>
-    </thead>
-    <tbody>
-        <% 
+        </thead>
+        <tbody>
+        <%
         for(int i=0;i<hm.size();i++){%>
         <tr>
             <td><%=lcp[i].getNome()%></td>
             <td><%=lcp[i].getCosto()%></td>
 
-            <td><form method="POST" action="servletOperazioni">                    
+            <td><form method="POST" action="servletOperazioni">
                     <input type="text" name="quantita" value="<%=lcp[i].getQnt()%>" size="10" maxlength="5"   />
                     <input type="submit"  name="operazione" value="aggiorna"/>
                     <input type="hidden"name="indice"value="<%=String.valueOf(key[i])%>"/>
@@ -57,23 +57,26 @@
         <%}%>
 
     </tbody>
+    <form name="continua" action="LoginServlet" method="POST">
     <tbody><tr>
-            <td align="center" colspan="4">Prezzo totale ordine</td>
-        <td align="center"><b><%=totale%></b></td>
-        </tr>
+            <td align="center" colspan="4"  style="font-weight: bold">Prezzo totale ordine</td>
+            <td align="center"><b><%=totale%></b></td>
+            <input type="hidden" value="checkAccount"name="op"/>
+            <td> <input type="submit"  value="prenota"/>  </td>
+            </tr>
+         </form>
     </tbody>
-            
+
      </table>
 
-              <a href="index.jsp">Continua lo shopping</a>
-              <a href="LoginServlet?op=checkAccount" ><img src="images/button_prosegui.gif" ></a>
           </div>
+            <a href="index.jsp" >Continua lo shopping</a>
         </div>
-        
+
         </div>
-      
+
       <!-- end div#content -->
-      
+
       <!-- end div#sidebar -->
       <div style="clear: both; height: 1px"></div>
   </div>

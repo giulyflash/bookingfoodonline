@@ -1,4 +1,4 @@
-/* 
+/*
     Document   : culinarycss
     Created on : 3-mar-2010, 11.46.10
     Author     : Matteo
@@ -6,15 +6,15 @@
         Purpose of the stylesheet follows.
 */
 
-/* 
+/*
    TODO customize this sample style
    Syntax recommendation http://www.w3.org/TR/REC-CSS2/
 */
 
-root { 
+root {
     display: block;
 }
-    
+
 
 
 * {
@@ -43,6 +43,9 @@ h2 {
 }
 
 h3 {
+}
+h4{
+
 }
 
 p, blockquote, ul, ol {
@@ -314,6 +317,14 @@ a:hover {
 	padding: 20px 0px;
 }
 
+.post .entry h4{
+    padding-left: 288px;
+    padding-top: 15px;
+    font-style: normal;
+    font-weight: lighter;
+}
+
+
 .post img {
 	float: left;
 	padding: 15px 0px;
@@ -335,6 +346,7 @@ a:hover {
 }
 
 /* Sidebar */
+
 
 #sidebar {
 	float: right;
@@ -447,14 +459,16 @@ a:hover {
 	border-bottom: 2px solid #394A57;
 	color: #394A57;
 	font-size: 14px;
-	font-weight: normal;
+	font-weight: bold;
 	padding: 20px;
+
 }
 #minimalista-righe td
 {
 	border-bottom: 1px solid #CCCCCC;
 	color: #394A57;
 	padding: 14px;
+    font-style: oblique;
 }
 #minimalista-righe tr:hover td
 {
@@ -464,7 +478,7 @@ a:hover {
 #categoria_piatto
 {   text-align:left;
     color:red;
-    
+
 }
 
 tit{
@@ -475,23 +489,20 @@ tit{
 
 #piatto_info{
    color:red;
-   
+
     margin-top: 1.5em;
 }
 
 #im_piatto{
-   
     margin-left:3em;
     float:left;
 }
 
 #dati_piatto{
-   
     margin-left:15em;
-        
 }
 
 #scelta_configurazione{
-    margin-top:9em;
+    margin-top:3em;
 
 }

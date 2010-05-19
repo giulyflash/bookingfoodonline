@@ -28,10 +28,15 @@ public class FacebookSocialNetworkingServiceCallback extends HttpServlet {
             HttpSession session = request.getSession(true);
             String authToken = request.getParameter("auth_token");
             session.setAttribute("facebook_auth_token", authToken);
-            
+
+           
+                        
+            /* richiama la login perchè ha ottenuto l'auth token */
             FacebookSocialNetworkingServiceAuthenticator.login(request, response);
+            
+            //String sessionKey=(String) request.getSession().getAttribute("facebook_session_key");
             String sessionKey = FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);
-         
+            
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet FacebookCallback</title>");
