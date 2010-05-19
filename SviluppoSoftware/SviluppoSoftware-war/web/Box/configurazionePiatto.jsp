@@ -30,7 +30,7 @@
   <div id="page">
     <div id="page-bgtop">
       <div id="content">
-        <%  Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");            
+        <%  Piatto p= (Piatto)request.getSession().getAttribute("piatto_selezionato");
         %>
 
         <tit>
@@ -38,32 +38,37 @@
         </tit>
         <div id="piatto_info">
             <div id="im_piatto">
-           
+
             <img  src= <%=p.getUrl_immagine()%> alt="immagine" >
             </div>
             <div id="dati_piatto">
-                
-            
-            <table border="0">
 
+
+                <table border="0" cellspacing="20" >
                 <tbody>
                     <tr>
                         <td>categoria:</td>
                         <td><b><%=p.getCategoria()%></b></td>
-                        
                     </tr>
                     <tr>
                         <td>costo</td>
 
                         <td><b><%=p.getCosto()%></b></td>
                     </tr>
+                    <tr>
+                        <td>ingredienti base:</td>
+                        <td><%for(String a:p.getMaterieNonModificabili()){%>
+                                <b><%=a%></b>
+                            <%}%>
+                        </td>
+
+                    </tr>
 
                 </tbody>
             </table>
 
-            <%for(String a:p.getMaterieNonModificabili()){%>
-               <b><%=a%></b>
-               <%}%>
+
+
            </div>
        </div>
            <div id="scelta_configurazione">
@@ -75,7 +80,7 @@
       <!-- end div#content -->
       <div id="sidebar">
         <jsp:include page="/Box/Sidebar.jsp"/>
-        
+
       </div>
       <!-- end div#sidebar -->
       <div style="clear: both; height: 1px"></div>

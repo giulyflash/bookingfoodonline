@@ -1,5 +1,5 @@
 
-
+<%@ page import="org.netbeans.saas.*, org.netbeans.saas.facebook.*, java.util.Calendar" %>
 <jsp:include page="/Box/header.jsp"/>
 
 <div id="page">
@@ -10,15 +10,15 @@
                 <div class="entry">
                     <p>Torna alla <a href="index.jsp"> home.</a></p>
 
-                    <%@ page import="org.netbeans.saas.*, org.netbeans.saas.facebook.*, java.util.Calendar" %>
+                    
 
-                    <%/*
+                    <%
                                 // {"name":"name","host":"host","start_time":1215929160,"end_time":1215929160}
                                  
 
-                                try {
+                               try {
 
-                                    String eventInfo = "{\"name\": \"Luca Ienco Di Saluzzo\", \"start_time\": 1273935600, \"privacy_type\": \"OPEN\"}";
+                                    String eventInfo = (String)session.getAttribute("event_info");
                                     String format = null;
                                     String callback = null;
 
@@ -32,9 +32,9 @@
                                     out.println("The SaasService returned: " + result.getDataAsString()+"\n");
                                     //recupero l'evento
                                     String format1 = null;
-                                    String uid = null;
+                                    String uid = "1354154534";
                                     String eids = null;
-                                    String startTime = "14052010";
+                                    String startTime = null;
                                     String endTime = null;
                                     String rsvpStatus = null;
 
@@ -48,7 +48,7 @@
                                     out.println("The SaasService returned: "+result1.getDataAsString());
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
-                                }*/
+                                }
 
                     %>
                     

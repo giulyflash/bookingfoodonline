@@ -44,6 +44,7 @@ public class FacebookSocialNetworkingServiceLogin  extends HttpServlet {
             }
             out.println("</body>");
             out.println("</html>");
+
         } catch(IOException iox) {
             out.println("Exception occured: "+iox.getMessage());
         } finally { 

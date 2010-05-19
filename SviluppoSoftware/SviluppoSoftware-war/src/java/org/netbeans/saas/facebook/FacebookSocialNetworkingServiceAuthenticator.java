@@ -30,7 +30,6 @@ public class FacebookSocialNetworkingServiceAuthenticator {
     private static String apiKey;
     private static String secret;
     private static final String PROP_FILE = FacebookSocialNetworkingServiceAuthenticator.class.getSimpleName().toLowerCase() + ".properties";
-    
 
     static {
         try {
@@ -114,8 +113,9 @@ public class FacebookSocialNetworkingServiceAuthenticator {
                 sessionKey = result.substring(result.indexOf("<session_key>") + 13,
                         result.indexOf("</session_key>"));
                 session.setAttribute("facebook_session_key", sessionKey);
+
             } catch (Exception ex) {
-                throw new IOException("Failed to get session key and secret: " + result);
+                throw new IOException("Failed to get session key and secret AUTHENTICATOR: " + result);
             }
 
             String returnUrl = (String) session.getAttribute("facebook_return_url");
@@ -127,6 +127,7 @@ public class FacebookSocialNetworkingServiceAuthenticator {
         } else {
             session.setAttribute("facebook_return_url", request.getRequestURI());
             try {
+                //originale
                 RequestDispatcher rd =  request.getRequestDispatcher("/auth/FacebookSocialNetworkingServiceLogin");
                 rd.include(request, response);
             } catch (ServletException ex) {

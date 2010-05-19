@@ -137,13 +137,17 @@ public class FacebookSocialNetworkingService {
         FacebookSocialNetworkingServiceAuthenticator.login(request, response);
         String callId = String.valueOf(System.currentTimeMillis());
         String apiKey = FacebookSocialNetworkingServiceAuthenticator.getApiKey(request, response);
-        String sessionKey = FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);
+        String sessionKey = (String) request.getSession().getAttribute("facebook_session_key");
+                /*FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);*/
         String sig = FacebookSocialNetworkingServiceAuthenticator.sign(new String[][]{{"api_key", apiKey}, {"session_key", sessionKey}, {"call_id", callId}, {"v", v}, {"event_info", eventInfo}, {"format", format}, {"callback", callback}, {"method", method}});
         String[][] pathParams = new String[][]{};
         String[][] queryParams = new String[][]{{"api_key", "" + apiKey + ""}, {"session_key", sessionKey}, {"call_id", callId}, {"sig", sig}, {"v", v}, {"event_info", eventInfo}, {"format", format}, {"callback", callback}, {"method", method}};
+
         RestConnection conn = new RestConnection("http://api.facebook.com/restserver.php", pathParams, queryParams);
         sleep(1000);
         return conn.get(null);
+        
+
     }
 
     /**
@@ -234,7 +238,9 @@ public class FacebookSocialNetworkingService {
         FacebookSocialNetworkingServiceAuthenticator.login(request, response);
         String callId = String.valueOf(System.currentTimeMillis());
         String apiKey = FacebookSocialNetworkingServiceAuthenticator.getApiKey(request, response);
-        String sessionKey = FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);
+        String sessionKey = (String) request.getSession().getAttribute("facebook_session_key");
+        
+                /*FacebookSocialNetworkingServiceAuthenticator.getSessionKey(request, response);*/
         String sig = FacebookSocialNetworkingServiceAuthenticator.sign(new String[][]{{"api_key", apiKey}, {"session_key", sessionKey}, {"call_id", callId}, {"v", v}, {"format", format}, {"uid", uid}, {"eids", eids}, {"start_time", startTime}, {"end_time", endTime}, {"rsvp_status", rsvpStatus}, {"method", method}});
         String[][] pathParams = new String[][]{};
         String[][] queryParams = new String[][]{{"api_key", "" + apiKey + ""}, {"session_key", sessionKey}, {"call_id", callId}, {"sig", sig}, {"v", v}, {"format", format}, {"uid", uid}, {"eids", eids}, {"start_time", startTime}, {"end_time", endTime}, {"rsvp_status", rsvpStatus}, {"method", method}};

@@ -11,8 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.netbeans.saas.facebook.FacebookSocialNetworkingService;
-import org.netbeans.saas.RestResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -31,10 +30,12 @@ public class SaasServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        HttpSession session=request.getSession();
         try {
             String operazione = request.getParameter("op");
 
             String code = request.getParameter("code");
+
 
             if (operazione != null) {
                 if (operazione.equals("facebook")) {
@@ -44,26 +45,17 @@ public class SaasServlet extends HttpServlet {
 
                 if (operazione.equals("event_info")) {
 
-                    try {
-                        String eventInfo = "{\"name\": \"Luca Ienco Angelo\", \"start_time\": 1273935600, \"privacy_type\": \"OPEN\"}";
-                        String format = null;
-                        String callback = null;
+                    String nome= request.getParameter("nome");
+                    String citta=request.getParameter("citta");
+                    String privacy=request.getParameter("privacy");
+                    String descrizione=request.getParameter("descrizione");
 
-                        RestResponse result = FacebookSocialNetworkingService.eventsCreate(request, response, eventInfo, format, callback);
-                        out.println("Sono dopo result events create");
-                        if (result.getDataAsObject(facebook.socialnetworkingservice.facebookresponse.EventsCreateResponse.class) instanceof facebook.socialnetworkingservice.facebookresponse.EventsCreateResponse) {
-                            facebook.socialnetworkingservice.facebookresponse.EventsCreateResponse resultObj = result.getDataAsObject(facebook.socialnetworkingservice.facebookresponse.EventsCreateResponse.class);
-                        } else if (result.getDataAsObject(facebook.socialnetworkingservice.facebookresponse.ErrorResponse.class) instanceof facebook.socialnetworkingservice.facebookresponse.ErrorResponse) {
-                            facebook.socialnetworkingservice.facebookresponse.ErrorResponse resultObj = result.getDataAsObject(facebook.socialnetworkingservice.facebookresponse.ErrorResponse.class);
-                        }
-                        //TODO - Uncomment the print Statement below to print result.
-                        //out.println("The SaasService returned: "+result.getDataAsString());
-                    } catch (Exception ex) {
-                        ex.printStackTrace();
-                    }
-
+                    String event_info="{\"name\": \"" + nome + "\", \"citta\": \""+citta+"\" ,\"start_time\": 1275796800, \"privacy_type\": \""+ privacy +"\",\"descrizione\": \""+descrizione+"\"}";
+                    session.setAttribute("event_info",event_info);
                     RequestDispatcher gotEvent = getServletContext().getRequestDispatcher("/Pages/gotEvent.jsp");
                     gotEvent.forward(request, response);
+
+
                 }
             }
 
